@@ -7,12 +7,12 @@ namespace ReflectionApp
 {
     class Program
     {
-        static readonly string assemblyFile = @"C:\Users\hyphe\source\repos\ReflectionApp\ReflectionApp\TPA.ApplicationArchitecture.dll";
+        static readonly string assemblyFile = @"C:\Users\hyphe\Desktop\Projects\PTG\TPA_Project\ReflectionApp\ReflectionApp\TPA.ApplicationArchitecture.dll";
 
         public static void Main(String[] args)
         {
             //config!!!
-            TypeMetadata.CreatedTypes = new Dictionary<string, TypeMetadata>();
+            TypeMetadata.CreatedTypes = new Dictionary<Type, TypeMetadata>();
 
 
             Assembly assembly = Assembly.LoadFrom(assemblyFile);
@@ -36,7 +36,17 @@ namespace ReflectionApp
             {
                 Console.WriteLine(item.Name);
             }
-            
+
+            Console.WriteLine();
+
+            foreach (var type in assemblyMetadata.Namespaces[2].Types)
+            {
+                Console.WriteLine("----" + type.Name);
+                foreach (var property in type.Properties)
+                {
+                    Console.WriteLine(property.Name);
+                }
+            }
 
 
             Console.ReadKey();
