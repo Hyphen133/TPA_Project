@@ -71,6 +71,17 @@ namespace ReflectionApp
                 }
             }
 
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            foreach (var method in assemblyMetadata.Namespaces[1].Types[0].Methods)
+            {
+                Console.WriteLine(method.Name + "  --  " + method.ReturnTypeName);
+            }
+
+            Console.WriteLine();
+            
 
             Console.ReadKey();
         }

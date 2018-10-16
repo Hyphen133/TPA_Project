@@ -24,8 +24,9 @@ namespace ReflectionApp.model
                 else
                 {
                     TypeMetadata type = new TypeMetadata();
+                    //decide whether to move to front of TypeMetadata.CreateTypeMetadata(...)
                     createdTypesDictonary[item.PropertyType] = type;
-                    type = TypeMetadata.CreateTypeMetadata(item.PropertyType);
+                    type = TypeMetadata.CreateReferenceTypeMetadata(item.PropertyType);
                     propertyMetadatas.Add(new PropertyMetadata(item.PropertyType.Name, type));
                 }
 	        }

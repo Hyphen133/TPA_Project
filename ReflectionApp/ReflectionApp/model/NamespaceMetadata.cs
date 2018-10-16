@@ -18,7 +18,7 @@ namespace ReflectionApp.model
 
             foreach (Type type in types)
             {
-                Types.Add(TypeMetadata.CreateTypeMetadata(type));
+                Types.Add(TypeMetadata.CreateReferenceTypeMetadata(type));
             }
 
 
