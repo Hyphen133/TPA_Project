@@ -20,7 +20,7 @@ namespace ReflectionApp.model
         
         public static TypeMetadata CreateTypeMetadata(Type type)
         {
-            PropertyInfo[] propertyInfos = type.GetProperties();
+            PropertyInfo[] propertyInfos = type.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
             List<PropertyMetadata> propertyMetadatas = PropertyMetadata.MakeProperties(propertyInfos, createdTypesDictonary);
 
             TypeMetadata typeMetadata = new TypeMetadata();

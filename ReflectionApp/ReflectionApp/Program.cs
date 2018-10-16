@@ -39,6 +39,29 @@ namespace ReflectionApp
 
             Console.WriteLine();
 
+            foreach (var type in assemblyMetadata.Namespaces[0].Types)
+            {
+                Console.WriteLine("----" + type.Name);
+                List<PropertyMetadata> properties = type.Properties;
+                foreach (var property in properties)
+                {
+                    Console.WriteLine(property.Name);
+                }
+            }
+
+            Console.WriteLine();
+
+            foreach (var type in assemblyMetadata.Namespaces[1].Types)
+            {
+                Console.WriteLine("----" + type.Name);
+                foreach (var property in type.Properties)
+                {
+                    Console.WriteLine(property.Name);
+                }
+            }
+
+            Console.WriteLine();
+
             foreach (var type in assemblyMetadata.Namespaces[2].Types)
             {
                 Console.WriteLine("----" + type.Name);
