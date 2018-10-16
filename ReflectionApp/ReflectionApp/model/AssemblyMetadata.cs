@@ -27,14 +27,8 @@ namespace ReflectionApp.model
 
             foreach (var namespaceName in ((from n in namespaces select n.namespaceName).Distinct()))
             {
-                namespaceTypeDictonary[namespaceName] = new List<Type>();
+                namespaceTypeDictonary[namespaceName] = (from t in namespaces where t.namespaceName.Equals(namespaceName) select t.type).ToList();
             }
-
-            foreach (var namespaceType in namespaces)
-            {
-                namespaceTypeDictonary[namespaceType.namespaceName].Add(namespaceType.type);
-            }
-
 
             //Creating namespaces
             foreach (string namespaceName in namespaceTypeDictonary.Keys)
