@@ -77,7 +77,7 @@ namespace ReflectionApp
 
             foreach (var method in assemblyMetadata.Namespaces[1].Types[0].Methods)
             {
-                Console.WriteLine(method.Name + "  --  " + method.ReturnTypeName);
+                Console.WriteLine(method.Name + "  --  " + method.ReturnType.Name);
             }
 
             Console.WriteLine();

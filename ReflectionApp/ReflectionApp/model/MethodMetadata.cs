@@ -34,7 +34,7 @@ namespace ReflectionApp.model
                     typeMetadata = TypeMetadata.CreateReferenceTypeMetadata(methodInfo.ReturnType);
 
                     methodMetadata.ReturnType = typeMetadata;
-                    
+                    Console.WriteLine();
                 }
                 //Adding parameters TODO!!!
 
