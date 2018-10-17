@@ -1,20 +1,19 @@
 ﻿using ReflectionApp.model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 
 namespace ReflectionApp
 {
     class Program
     {
-        static readonly string assemblyFile = @"C:\Users\hyphe\Desktop\Projects\PTG\TPA_Project\ReflectionApp\ReflectionApp\TPA.ApplicationArchitecture.dll";
+        static readonly string assemblyFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, @"TPA.ApplicationArchitecture.dll");
 
         public static void Main(String[] args)
         {
             //config!!!
             TypeMetadata.CreatedTypes = new Dictionary<Type, TypeMetadata>();
-
-
             Assembly assembly = Assembly.LoadFrom(assemblyFile);
             AssemblyMetadata assemblyMetadata = new AssemblyMetadata(assembly);
             Console.WriteLine(assemblyMetadata.Name);
@@ -77,7 +76,7 @@ namespace ReflectionApp
 
             foreach (var method in assemblyMetadata.Namespaces[1].Types[0].Methods)
             {
-                Console.WriteLine(method.Name + "  --  " + method.ReturnTypeName);
+                Console.WriteLine(method.Name + "  --  " + method.ReturnType.Name);
             }
 
             Console.WriteLine();
