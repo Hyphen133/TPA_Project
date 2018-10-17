@@ -28,12 +28,9 @@ namespace ReflectionApp.model
                 else
                 {
                     //Check if not better to make null
-                    TypeMetadata typeMetadata = new TypeMetadata();
-                    createdTypesDictonary[methodInfo.ReturnType] = typeMetadata;
                     createdTypesDictonary[methodInfo.ReturnType] = TypeMetadata.CreateReferenceTypeMetadata(methodInfo.ReturnType);
 
                     methodMetadata.ReturnType = typeMetadata;
-
                 }
                 //Adding parameters TODO!!!
 
