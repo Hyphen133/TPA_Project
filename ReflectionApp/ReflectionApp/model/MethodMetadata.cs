@@ -22,18 +22,13 @@ namespace ReflectionApp.model
                 methodMetadata.Name = methodInfo.Name;
 
                 //Adding return type
-                if(createdTypesDictonary.ContainsKey(methodInfo.ReturnType))
-                {
-                    methodMetadata.ReturnType = createdTypesDictonary[methodInfo.ReturnType];
-                }
-                else
+                if(!createdTypesDictonary.ContainsKey(methodInfo.ReturnType))
                 {
                     TypeMetadata typeMetadata = new TypeMetadata();
                     createdTypesDictonary[methodInfo.ReturnType] = typeMetadata;
                     createdTypesDictonary[methodInfo.ReturnType] = TypeMetadata.CreateReferenceTypeMetadata(methodInfo.ReturnType);
-
-                    methodMetadata.ReturnType = createdTypesDictonary[methodInfo.ReturnType];
                 }
+                methodMetadata.ReturnType = createdTypesDictonary[methodInfo.ReturnType];
 
                 //Adding parameters
                 ParameterInfo[] parameterInfos = methodInfo.GetParameters();

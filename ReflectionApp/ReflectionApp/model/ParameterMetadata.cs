@@ -16,18 +16,14 @@ namespace ReflectionApp.model
 
             foreach (ParameterInfo parameterInfo in parameterInfos)
             {
-                if (createdTypesDictonary.ContainsKey(parameterInfo.ParameterType))
-                {
-                    parameterMetadatas.Add(new ParameterMetadata(parameterInfo.Name, createdTypesDictonary[parameterInfo.ParameterType]));
-                }
-                else
+                if (!createdTypesDictonary.ContainsKey(parameterInfo.ParameterType))
                 {
                     TypeMetadata type = new TypeMetadata();
                     createdTypesDictonary[parameterInfo.ParameterType] = type;
                     createdTypesDictonary[parameterInfo.ParameterType] = TypeMetadata.CreateReferenceTypeMetadata(parameterInfo.ParameterType);
-                    parameterMetadatas.Add(new ParameterMetadata(parameterInfo.Name, createdTypesDictonary[parameterInfo.ParameterType]));
-
                 }
+                parameterMetadatas.Add(new ParameterMetadata(parameterInfo.Name, createdTypesDictonary[parameterInfo.ParameterType]));
+
             }
 
             return parameterMetadatas;

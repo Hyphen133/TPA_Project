@@ -16,20 +16,14 @@ namespace ReflectionApp.model
             List<PropertyMetadata> propertyMetadatas = new List<PropertyMetadata>();
             foreach (var item in propertyInfos)
 	        {
-                if(createdTypesDictonary.ContainsKey(item.PropertyType))
-                {
-                    propertyMetadatas.Add(new PropertyMetadata(item.PropertyType.Name, createdTypesDictonary[item.PropertyType]));
-
-                }
-                else
+                if(!createdTypesDictonary.ContainsKey(item.PropertyType))
                 {
                     TypeMetadata type = new TypeMetadata();
-                    //decide whether to move to front of TypeMetadata.CreateTypeMetadata(...)
                     createdTypesDictonary[item.PropertyType] = type;
                     type = TypeMetadata.CreateReferenceTypeMetadata(item.PropertyType);
-                    propertyMetadatas.Add(new PropertyMetadata(item.PropertyType.Name, type));
                 }
-	        }
+                propertyMetadatas.Add(new PropertyMetadata(item.PropertyType.Name, type));
+            }
 
             return propertyMetadatas;
         }
