@@ -39,14 +39,7 @@ namespace ReflectionApp.model
 
             return typeMetadata;
         }
-
-        //public static TypeMetadata CreateValueType(Type type)
-        //{
-        //    if ()
-        //    {
-
-        //    }
-        //}
+        
 
 
 

@@ -9,6 +9,7 @@ namespace ReflectionApp.model
     {
         private string name;
         private TypeMetadata returnType;
+        private List<ParameterMetadata> parameters;
 
         public static List<MethodMetadata> CreateMethods(MethodInfo[] methodInfos, Dictionary<Type, TypeMetadata> createdTypesDictonary)
         {
@@ -20,21 +21,24 @@ namespace ReflectionApp.model
 
                 methodMetadata.Name = methodInfo.Name;
 
-                //Checking if return type was already created
+                //Adding return type
                 if(createdTypesDictonary.ContainsKey(methodInfo.ReturnType))
                 {
                     methodMetadata.ReturnType = createdTypesDictonary[methodInfo.ReturnType];
                 }
                 else
                 {
-                    //Check if not better to make null
                     TypeMetadata typeMetadata = new TypeMetadata();
                     createdTypesDictonary[methodInfo.ReturnType] = typeMetadata;
                     createdTypesDictonary[methodInfo.ReturnType] = TypeMetadata.CreateReferenceTypeMetadata(methodInfo.ReturnType);
 
-                    methodMetadata.ReturnType = typeMetadata;
+                    methodMetadata.ReturnType = createdTypesDictonary[methodInfo.ReturnType];
                 }
-                //Adding parameters TODO!!!
+
+                //Adding parameters
+                ParameterInfo[] parameterInfos = methodInfo.GetParameters();
+                methodMetadata.Parameters = ParameterMetadata.CreateParameters(parameterInfos, createdTypesDictonary);
+
 
                 //Returning Name correctly but not TypeMetadata?
                 methodMetadatas.Add(methodMetadata);
@@ -51,5 +55,6 @@ namespace ReflectionApp.model
 
         public string Name { get => name; set => name = value; }
         public TypeMetadata ReturnType { get => returnType; set => returnType = value; }
+        internal List<ParameterMetadata> Parameters { get => parameters; set => parameters = value; }
     }
 }

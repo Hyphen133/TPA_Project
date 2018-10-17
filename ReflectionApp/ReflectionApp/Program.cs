@@ -80,7 +80,11 @@ namespace ReflectionApp
             }
 
             Console.WriteLine();
-            
+
+            foreach (var parameter in assemblyMetadata.Namespaces[1].Types[0].Methods[2].Parameters)
+            {
+                Console.WriteLine(parameter.Name + " ---- " + parameter.TypeMetadata.Name);
+            }
 
             Console.ReadKey();
         }
