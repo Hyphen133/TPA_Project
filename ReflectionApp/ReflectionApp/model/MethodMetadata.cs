@@ -17,8 +17,6 @@ namespace ReflectionApp.model
             foreach (MethodInfo methodInfo in methodInfos)
             {
                 MethodMetadata methodMetadata = new MethodMetadata();
-
-
                 methodMetadata.Name = methodInfo.Name;
 
                 //Adding return type

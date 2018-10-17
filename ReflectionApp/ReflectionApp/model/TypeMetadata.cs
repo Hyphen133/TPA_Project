@@ -24,7 +24,7 @@ namespace ReflectionApp.model
         {
             //Creating properties
             PropertyInfo[] propertyInfos = type.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-            List<PropertyMetadata> propertyMetadatas = PropertyMetadata.MakeProperties(propertyInfos, createdTypesDictonary);
+            List<PropertyMetadata> propertyMetadatas = PropertyMetadata.CreateProperties(propertyInfos, createdTypesDictonary);
 
             //Creating methods
             MethodInfo[] methodInfos = type.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);

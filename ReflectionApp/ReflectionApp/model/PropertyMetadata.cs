@@ -11,21 +11,35 @@ namespace ReflectionApp.model
         private TypeMetadata type;
 
         
-        public static List<PropertyMetadata> MakeProperties(PropertyInfo[] propertyInfos, Dictionary<Type, TypeMetadata> createdTypesDictonary)
+        public static List<PropertyMetadata> CreateProperties(PropertyInfo[] propertyInfos, Dictionary<Type, TypeMetadata> createdTypesDictonary)
         {
             List<PropertyMetadata> propertyMetadatas = new List<PropertyMetadata>();
-            foreach (var item in propertyInfos)
+            foreach (PropertyInfo propertyInfo in propertyInfos)
 	        {
-                if(!createdTypesDictonary.ContainsKey(item.PropertyType))
+                PropertyMetadata propertyMetadata = new PropertyMetadata();
+
+                //Name
+                propertyMetadata.Name = propertyInfo.Name;
+
+                //Type
+                if (!createdTypesDictonary.ContainsKey(propertyInfo.PropertyType))
                 {
                     TypeMetadata type = new TypeMetadata();
-                    createdTypesDictonary[item.PropertyType] = type;
-                    type = TypeMetadata.CreateReferenceTypeMetadata(item.PropertyType);
+                    createdTypesDictonary[propertyInfo.PropertyType] = type;
+                    createdTypesDictonary[propertyInfo.PropertyType] = TypeMetadata.CreateReferenceTypeMetadata(propertyInfo.PropertyType);
                 }
-                propertyMetadatas.Add(new PropertyMetadata(item.PropertyType.Name, type));
+                propertyMetadata.Type = createdTypesDictonary[propertyInfo.PropertyType];
+
+                
+
+                propertyMetadatas.Add(propertyMetadata);
             }
 
             return propertyMetadatas;
+        }
+
+        public PropertyMetadata()
+        {
         }
 
         public PropertyMetadata(string name, TypeMetadata typeMetadata)
