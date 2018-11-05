@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewWPF", "ViewWPF\ViewWPF.csproj", "{03D29A92-7693-4B4D-A54C-F0AAEBD871DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewConsole", "ViewConsole\ViewConsole.csproj", "{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPAv2", "TPAv2\TPAv2.csproj", "{93E4403F-1736-4100-9E2E-F717638E09CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03D29A92-7693-4B4D-A54C-F0AAEBD871DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D29A92-7693-4B4D-A54C-F0AAEBD871DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D29A92-7693-4B4D-A54C-F0AAEBD871DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D29A92-7693-4B4D-A54C-F0AAEBD871DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93E4403F-1736-4100-9E2E-F717638E09CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93E4403F-1736-4100-9E2E-F717638E09CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93E4403F-1736-4100-9E2E-F717638E09CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93E4403F-1736-4100-9E2E-F717638E09CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E1B0AB3-6CB0-4984-A577-06533234B64D}
+	EndGlobalSection
+EndGlobal
