@@ -15,8 +15,7 @@ namespace ViewConsole
         {
             MyViewModel myViewModel = new MyViewModel();
             myViewModel.PathVariable = "C:\\Users\\stz\\Google Drive\\Studia\\Informatyka\\5 Semestr\\Technologie programowania adaptacyjnego\\Projekt\\TPA_Project\\TPAv2\\TPA.ApplicationArchitecture.dll";
-            Console.WriteLine("oko");
-            myViewModel.Click_Browse.Execute(null);
+            myViewModel.Click_Button.Execute(null);
 
             Console.WriteLine(myViewModel.HierarchicalAreas.Count);
             Console.WriteLine(myViewModel.HierarchicalAreas[0].Name);

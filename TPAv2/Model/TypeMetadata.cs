@@ -67,14 +67,14 @@ namespace TPA.Reflection.Model
 
         if (!type.IsGenericType)
         {
-                Console.WriteLine("Creating new Type " + type.Name);
+                /*Console.WriteLine("Creating new Type " + type.Name);
 
                 foreach (var item in HelperDictonaries.TypeDictonary.Keys)
                 {
                     Console.WriteLine(HelperDictonaries.TypeDictonary[item].TypeName);
                 }
                 Console.WriteLine();
-
+                */
 
                 HelperDictonaries.TypeDictonary[type] = new TypeMetadata(type);
 
