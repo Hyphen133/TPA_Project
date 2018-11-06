@@ -57,6 +57,10 @@ namespace ViewWPF.TreeView
             {
                 typeItem = typeDictonary[typeMetadata.TypeName];
             }
+            else
+            {
+                typeDictonary[typeMetadata.TypeName] = typeItem;
+            }
             
             //Adding properties
             typeItem.Name = "[type] " + typeMetadata.TypeName;
@@ -68,18 +72,105 @@ namespace ViewWPF.TreeView
                 {
                     
                         typeItem.Children.Add(ConvertPropertyMetadata(property));
-                    
-                    
+                }
+            }
+
+            //Adding methods
+            if(typeMetadata.Methods != null)
+            {
+                foreach (var method in typeMetadata.Methods)
+                {
+                    typeItem.Children.Add(ConvertMethodMetadata(method));
+                }
+            }
+
+            //Adding constructors
+            if(typeMetadata.Constructors != null)
+            {
+                foreach (var constructor in typeMetadata.Constructors)
+                {
+                    typeItem.Children.Add(ConvertMethodMetadata(constructor));
+                }
+            }
+
+            //Converting modifiers
+            Tuple<AccessLevel, SealedEnum, AbstractEnum> tuple = typeMetadata.Modifiers;
+            if(tuple!= null)
+            {
+                if (tuple.Item1 != null)
+                {
+                    TreeViewItem accessLevelItem = new TreeViewItem();
+                    accessLevelItem.Name = "[access] " + tuple.Item1.ToString();
+                    typeItem.Children.Add(accessLevelItem);
+                }
+                if (tuple.Item2 != null)
+                {
+                    TreeViewItem sealedItem = new TreeViewItem();
+                    sealedItem.Name = "[sealed] " + tuple.Item2.ToString();
+                    typeItem.Children.Add(sealedItem);
+                }
+                if (tuple.Item3 != null)
+                {
+                    TreeViewItem abstractItem = new TreeViewItem();
+                    abstractItem.Name = "[abstract] " + tuple.Item3.ToString();
+                    typeItem.Children.Add(abstractItem);
                 }
             }
 
 
-            //TODO -> Add more properties
+
 
             return typeItem;
-
             
+        }
 
+        private static TreeViewItem ConvertMethodMetadata(MethodMetadata method)
+        {
+            TreeViewItem methodItem = new TreeViewItem();
+            methodItem.Name = "[method]" + method.Name;
+            methodItem.Children.Clear();
+
+            //Return type
+            if(method.ReturnType != null) //For constructors
+            {
+                if (typeDictonary.ContainsKey(method.ReturnType.TypeName))
+                {
+                    methodItem.Children.Add(typeDictonary[method.ReturnType.TypeName]);
+                }
+                else
+                {
+                    methodItem.Children.Add(ConvertTypeMetadata(method.ReturnType));
+                }
+            }
+
+
+            //Parameters
+            foreach (var parameter in method.Parameters)
+            {
+                methodItem.Children.Add(ConvertParameterMetadata(parameter));
+            }
+
+
+            return methodItem;
+
+        }
+
+        private static TreeViewItem ConvertParameterMetadata(ParameterMetadata parameterMetadata)
+        {
+            TreeViewItem parameterItem = new TreeViewItem();
+            parameterItem.Name = "[parameter] " + parameterMetadata.Name;
+            parameterItem.Children.Clear();
+
+            if (typeDictonary.ContainsKey(parameterMetadata.TypeMetadata.TypeName))
+            {
+                parameterItem.Children.Add(typeDictonary[parameterMetadata.TypeMetadata.TypeName]);
+            }
+            else
+            {
+                parameterItem.Children.Add(ConvertTypeMetadata(parameterMetadata.TypeMetadata));
+            }
+
+            return parameterItem;
         }
 
         public static TreeViewItem ConvertPropertyMetadata(PropertyMetadata propertyMetadata)
@@ -97,10 +188,6 @@ namespace ViewWPF.TreeView
             {
                 propertyItem.Children.Add(ConvertTypeMetadata(propertyMetadata.TypeMetadata));
             }
-            
-            
-            
-
 
             return propertyItem;
         }

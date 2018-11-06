@@ -35,6 +35,8 @@ namespace TP.GraphicalData.TreeView
 
         private void BuildMyself()
         {
+            //TODO -> check if originalitem children are not {null}
+
             this.Children.Clear();
             for (int i = 0; i < OriginalItem.Children.Count; i++)
             {

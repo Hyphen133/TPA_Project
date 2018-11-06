@@ -1,7 +1,7 @@
 ﻿
 namespace TPA.Reflection.Model
 {
-  internal enum SealedEnum
+  public enum SealedEnum
   {
     Sealed, NotSealed
   }

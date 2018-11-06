@@ -109,7 +109,7 @@ namespace TPA.Reflection.Model
         public string NamespaceName { get => m_NamespaceName; set => m_NamespaceName = value; }
         public TypeMetadata BaseType { get => m_BaseType; set => m_BaseType = value; }
         public IEnumerable<TypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
-        internal Tuple<AccessLevel, SealedEnum, AbstractEnum> Modifiers { get => m_Modifiers; set => m_Modifiers = value; }
+        public Tuple<AccessLevel, SealedEnum, AbstractEnum> Modifiers { get => m_Modifiers; set => m_Modifiers = value; }
         public TypeKind TypeKind1 { get => m_TypeKind; set => m_TypeKind = value; }
         public IEnumerable<Attribute> Attributes { get => m_Attributes; set => m_Attributes = value; }
         public IEnumerable<TypeMetadata> ImplementedInterfaces { get => m_ImplementedInterfaces; set => m_ImplementedInterfaces = value; }

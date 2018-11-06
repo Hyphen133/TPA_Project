@@ -27,11 +27,11 @@ namespace TPA.Reflection.Model
     private IEnumerable<ParameterMetadata> m_Parameters;
 
         public string Name { get => m_Name; set => m_Name = value; }
-        internal IEnumerable<TypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
+        public IEnumerable<TypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
         internal Tuple<AccessLevel, AbstractEnum, StaticEnum, VirtualEnum> Modifiers { get => m_Modifiers; set => m_Modifiers = value; }
-        internal TypeMetadata ReturnType { get => m_ReturnType; set => m_ReturnType = value; }
+        public TypeMetadata ReturnType { get => m_ReturnType; set => m_ReturnType = value; }
         public bool Extension { get => m_Extension; set => m_Extension = value; }
-        internal IEnumerable<ParameterMetadata> Parameters { get => m_Parameters; set => m_Parameters = value; }
+        public IEnumerable<ParameterMetadata> Parameters { get => m_Parameters; set => m_Parameters = value; }
 
         //constructor
         private MethodMetadata(MethodBase method)

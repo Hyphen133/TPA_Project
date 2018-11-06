@@ -1,7 +1,7 @@
 ﻿
 namespace TPA.Reflection.Model
 {
-  internal class ParameterMetadata
+  public class ParameterMetadata
   {
 
     public ParameterMetadata(string name, TypeMetadata typeMetadata)
@@ -14,5 +14,7 @@ namespace TPA.Reflection.Model
     private string m_Name;
     private TypeMetadata m_TypeMetadata;
 
-  }
+        public string Name { get => m_Name; set => m_Name = value; }
+        public TypeMetadata TypeMetadata { get => m_TypeMetadata; set => m_TypeMetadata = value; }
+    }
 }
