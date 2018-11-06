@@ -99,9 +99,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TPAv2\TPAv2.csproj">
+    <ProjectReference Include="..\TPAv2\Model.csproj">
       <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
-      <Name>TPAv2</Name>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
