@@ -110,7 +110,79 @@ namespace ViewWPF.TreeView
             }
 
 
+            //Generic Types
+            if (typeMetadata.GenericArguments != null)
+            {
+                foreach (var genericType in typeMetadata.GenericArguments)
+                {
+                    if (typeDictonary.ContainsKey(genericType.TypeName))
+                    {
+                        typeItem.Children.Add(typeDictonary[genericType.TypeName]);
+                    }
+                    else
+                    {
+                        typeItem.Children.Add(ConvertTypeMetadata(genericType));
+                    }
+                }
+            }
 
+            //Implemented Inferfaces
+            if (typeMetadata.ImplementedInterfaces != null)
+            {
+                foreach (var implementedInterface in typeMetadata.ImplementedInterfaces)
+                {
+                    if (typeDictonary.ContainsKey(implementedInterface.TypeName))
+                    {
+                        typeItem.Children.Add(typeDictonary[implementedInterface.TypeName]);
+                    }
+                    else
+                    {
+                        typeItem.Children.Add(ConvertTypeMetadata(implementedInterface));
+                    }
+                }
+            }
+
+            //Nested types
+            if (typeMetadata.NestedTypes != null)
+            {
+                foreach (var nestedType in typeMetadata.NestedTypes)
+                {
+                    if (typeDictonary.ContainsKey(nestedType.TypeName))
+                    {
+                        typeItem.Children.Add(typeDictonary[nestedType.TypeName]);
+                    }
+                    else
+                    {
+                        typeItem.Children.Add(ConvertTypeMetadata(nestedType));
+                    }
+                }
+            }
+
+            //Base type
+            if(typeMetadata.BaseType != null)
+            {
+                if (typeDictonary.ContainsKey(typeMetadata.BaseType.TypeName))
+                {
+                    typeItem.Children.Add(typeDictonary[typeMetadata.BaseType.TypeName]);
+                }
+                else
+                {
+                    typeItem.Children.Add(ConvertTypeMetadata(typeMetadata.BaseType));
+                }
+            }
+
+            //Declaring type
+            if (typeMetadata.DeclaringType != null)
+            {
+                if (typeDictonary.ContainsKey(typeMetadata.DeclaringType.TypeName))
+                {
+                    typeItem.Children.Add(typeDictonary[typeMetadata.DeclaringType.TypeName]);
+                }
+                else
+                {
+                    typeItem.Children.Add(ConvertTypeMetadata(typeMetadata.DeclaringType));
+                }
+            }
 
             return typeItem;
             
@@ -164,6 +236,22 @@ namespace ViewWPF.TreeView
                 methodItem.Children.Add(virtualItem);
 
 
+            }
+
+            //Generic Types
+            if(method.GenericArguments != null)
+            {
+                foreach (var genericType in method.GenericArguments)
+                {
+                    if (typeDictonary.ContainsKey(genericType.TypeName))
+                    {
+                        methodItem.Children.Add(typeDictonary[genericType.TypeName]);
+                    }
+                    else
+                    {
+                        methodItem.Children.Add(ConvertTypeMetadata(genericType));
+                    }
+                }
             }
 
 
