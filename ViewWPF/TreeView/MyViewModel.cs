@@ -56,8 +56,8 @@ namespace TP.GraphicalData.TreeView
             {
                 DataService.LoadAssembly(PathVariable);
                 AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(PathVariable);
-                XmlSerializer.SerializeAssembly(assemblyMetadata, @"C:\Users\hyphe\Desktop\data.xml");
-                XmlSerializer.DeserializeAssembly(@"C:\Users\hyphe\Desktop\data.xml");
+                //XmlSerializer.SerializeAssembly(assemblyMetadata, @"C:\Users\hyphe\Desktop\data.xml");
+                //XmlSerializer.DeserializeAssembly(@"C:\Users\hyphe\Desktop\data.xml");
                 TreeViewItem originalRootItem = ConversionServices.ConvertAssemblyMetadata(assemblyMetadata);
                 TreeViewItem rootItem = new TreeViewItem();
                 rootItem.Name = originalRootItem.Name;

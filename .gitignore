@@ -3,6 +3,7 @@
 *.exe
 */bin/*
 */obj/*
+/packages/*
 */packages/*
 
 ReflectionApp/ReflectionApp/bin/Debug/netcoreapp2.0/ReflectionApp.deps.json

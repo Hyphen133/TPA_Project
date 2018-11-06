@@ -10,19 +10,33 @@ using TPA.Reflection.Model;
 
 namespace TPAv2.Services
 {
-    public class XmlSerializer
+    public class XmlSerialize
     {
-        public static void SerializeAssembly(AssemblyMetadata assembly, String filepath)
+        static ITraceSource traceSource;
+
+        public XmlSerialize(ITraceSource traceSource)
+        {
+            traceSource = traceSource;
+        }
+
+        public void SerializeAssembly(AssemblyMetadata assembly, String filepath)
         {
             DataContractSerializer serializer = new DataContractSerializer(assembly.GetType());
 
-            using (FileStream fs = new FileStream(filepath, FileMode.Create))
+            try
             {
-                serializer.WriteObject(fs, assembly);
+                using (FileStream fs = new FileStream(filepath, FileMode.Create))
+                {
+                    serializer.WriteObject(fs, assembly);
+                }
+            }catch(Exception e)
+            {
+                traceSource.TraceData(System.Diagnostics.TraceEventType.Error, 1, "Assembly serialization failed");
             }
+            
         }
 
-        public static AssemblyMetadata DeserializeAssembly(String filepath)
+        public AssemblyMetadata DeserializeAssembly(String filepath)
         {
             DataContractSerializer serializer = new DataContractSerializer(typeof(AssemblyMetadata));
 
