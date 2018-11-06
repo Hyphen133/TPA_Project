@@ -50,7 +50,6 @@ namespace ViewWPF.TreeView
 
         public static TreeViewItem ConvertTypeMetadata(TypeMetadata typeMetadata)
         {
-
             TreeViewItem typeItem = new TreeViewItem();
 
             if (typeDictonary.ContainsKey(typeMetadata.TypeName))
@@ -97,28 +96,93 @@ namespace ViewWPF.TreeView
             Tuple<AccessLevel, SealedEnum, AbstractEnum> tuple = typeMetadata.Modifiers;
             if(tuple!= null)
             {
-                if (tuple.Item1 != null)
-                {
-                    TreeViewItem accessLevelItem = new TreeViewItem();
-                    accessLevelItem.Name = "[access] " + tuple.Item1.ToString();
-                    typeItem.Children.Add(accessLevelItem);
-                }
-                if (tuple.Item2 != null)
-                {
-                    TreeViewItem sealedItem = new TreeViewItem();
-                    sealedItem.Name = "[sealed] " + tuple.Item2.ToString();
-                    typeItem.Children.Add(sealedItem);
-                }
-                if (tuple.Item3 != null)
-                {
-                    TreeViewItem abstractItem = new TreeViewItem();
-                    abstractItem.Name = "[abstract] " + tuple.Item3.ToString();
-                    typeItem.Children.Add(abstractItem);
-                }
+                TreeViewItem accessLevelItem = new TreeViewItem();
+                accessLevelItem.Name = "[access] " + tuple.Item1.ToString();
+                typeItem.Children.Add(accessLevelItem);
+                
+                TreeViewItem sealedItem = new TreeViewItem();
+                sealedItem.Name = "[sealed] " + tuple.Item2.ToString();
+                typeItem.Children.Add(sealedItem);
+                
+                TreeViewItem abstractItem = new TreeViewItem();
+                abstractItem.Name = "[abstract] " + tuple.Item3.ToString();
+                typeItem.Children.Add(abstractItem);
             }
 
 
+            //Generic Types
+            if (typeMetadata.GenericArguments != null)
+            {
+                foreach (var genericType in typeMetadata.GenericArguments)
+                {
+                    if (typeDictonary.ContainsKey(genericType.TypeName))
+                    {
+                        typeItem.Children.Add(typeDictonary[genericType.TypeName]);
+                    }
+                    else
+                    {
+                        typeItem.Children.Add(ConvertTypeMetadata(genericType));
+                    }
+                }
+            }
 
+            //Implemented Inferfaces
+            if (typeMetadata.ImplementedInterfaces != null)
+            {
+                foreach (var implementedInterface in typeMetadata.ImplementedInterfaces)
+                {
+                    if (typeDictonary.ContainsKey(implementedInterface.TypeName))
+                    {
+                        typeItem.Children.Add(typeDictonary[implementedInterface.TypeName]);
+                    }
+                    else
+                    {
+                        typeItem.Children.Add(ConvertTypeMetadata(implementedInterface));
+                    }
+                }
+            }
+
+            //Nested types
+            if (typeMetadata.NestedTypes != null)
+            {
+                foreach (var nestedType in typeMetadata.NestedTypes)
+                {
+                    if (typeDictonary.ContainsKey(nestedType.TypeName))
+                    {
+                        typeItem.Children.Add(typeDictonary[nestedType.TypeName]);
+                    }
+                    else
+                    {
+                        typeItem.Children.Add(ConvertTypeMetadata(nestedType));
+                    }
+                }
+            }
+
+            //Base type
+            if(typeMetadata.BaseType != null)
+            {
+                if (typeDictonary.ContainsKey(typeMetadata.BaseType.TypeName))
+                {
+                    typeItem.Children.Add(typeDictonary[typeMetadata.BaseType.TypeName]);
+                }
+                else
+                {
+                    typeItem.Children.Add(ConvertTypeMetadata(typeMetadata.BaseType));
+                }
+            }
+
+            //Declaring type
+            if (typeMetadata.DeclaringType != null)
+            {
+                if (typeDictonary.ContainsKey(typeMetadata.DeclaringType.TypeName))
+                {
+                    typeItem.Children.Add(typeDictonary[typeMetadata.DeclaringType.TypeName]);
+                }
+                else
+                {
+                    typeItem.Children.Add(ConvertTypeMetadata(typeMetadata.DeclaringType));
+                }
+            }
 
             return typeItem;
             
@@ -149,6 +213,47 @@ namespace ViewWPF.TreeView
             {
                 methodItem.Children.Add(ConvertParameterMetadata(parameter));
             }
+
+            //Modifiers
+            Tuple<AccessLevel, AbstractEnum, StaticEnum, VirtualEnum> tuple = method.Modifiers;
+
+            if(tuple != null)
+            {
+                TreeViewItem accessItem = new TreeViewItem();
+                accessItem.Name = "[access] " + tuple.Item1.ToString();
+                methodItem.Children.Add(accessItem);
+
+                TreeViewItem abstractItem = new TreeViewItem();
+                abstractItem.Name = "[abstract] " + tuple.Item2.ToString();
+                methodItem.Children.Add(abstractItem);
+
+                TreeViewItem staticItem = new TreeViewItem();
+                staticItem.Name = "[static] " + tuple.Item3.ToString();
+                methodItem.Children.Add(staticItem);
+
+                TreeViewItem virtualItem = new TreeViewItem();
+                virtualItem.Name = "[virtual] " + tuple.Item4.ToString();
+                methodItem.Children.Add(virtualItem);
+
+
+            }
+
+            //Generic Types
+            if(method.GenericArguments != null)
+            {
+                foreach (var genericType in method.GenericArguments)
+                {
+                    if (typeDictonary.ContainsKey(genericType.TypeName))
+                    {
+                        methodItem.Children.Add(typeDictonary[genericType.TypeName]);
+                    }
+                    else
+                    {
+                        methodItem.Children.Add(ConvertTypeMetadata(genericType));
+                    }
+                }
+            }
+
 
 
             return methodItem;

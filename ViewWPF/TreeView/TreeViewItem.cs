@@ -38,11 +38,19 @@ namespace TP.GraphicalData.TreeView
             //TODO -> check if originalitem children are not {null}
 
             this.Children.Clear();
+            if(OriginalItem.Children != null)
+            {
+
+            }
             for (int i = 0; i < OriginalItem.Children.Count; i++)
             {
-                this.Children.Add(new TreeViewItem());
-                this.Children[i].Name = OriginalItem.Children[i].Name;
-                this.Children[i].OriginalItem = OriginalItem.Children[i];
+                if(OriginalItem.Children[i] != null)
+                {
+                    this.Children.Add(new TreeViewItem());
+                    this.Children[i].Name = OriginalItem.Children[i].Name;
+                    this.Children[i].OriginalItem = OriginalItem.Children[i];
+                }
+                
             }
         }
 
