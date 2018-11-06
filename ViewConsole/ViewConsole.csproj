@@ -54,6 +54,10 @@
       <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
       <Name>TPAv2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewWPF\ViewWPF.csproj">
+      <Project>{03d29a92-7693-4b4d-a54c-f0aaebd871df}</Project>
+      <Name>ViewWPF</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
