@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TP.GraphicalData.TreeView
+namespace ViewWPF
 {
   /// <summary>
   /// Interaction logic for MainWindow.xaml
@@ -11,7 +11,7 @@ namespace TP.GraphicalData.TreeView
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MyViewModel();
+            DataContext = new ViewForWPF();
         }
        
     }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleAppClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,13 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TPAv2\Model.csproj">
-      <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewWPF\ViewWPF.csproj">
-      <Project>{03d29a92-7693-4b4d-a54c-f0aaebd871df}</Project>
-      <Name>ViewWPF</Name>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{d3a41646-f523-4717-88a8-81d9046b351b}</Project>
+      <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -55,20 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MVVMLight\RelayCommand.cs" />
-    <Compile Include="MVVMLight\ViewModelBase.cs" />
-    <Compile Include="TreeView\ConversionServices.cs" />
-    <Compile Include="TreeView\DelegateCommand.cs" />
-    <Compile Include="TreeView\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TreeView\MyViewModel.cs" />
-    <Compile Include="TreeView\TreeViewItem.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TreeView\MainWindow.xaml">
+    <Compile Include="ViewForWPF.cs" />
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -89,6 +84,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -99,9 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TPAv2\Model.csproj">
-      <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
-      <Name>Model</Name>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{d3a41646-f523-4717-88a8-81d9046b351b}</Project>
+      <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

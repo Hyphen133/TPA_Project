@@ -21,11 +21,11 @@ namespace TP.GraphicalData.TreeView
   /// Class MyViewModel - ViewModel implementation 
   /// </summary>
   /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-  public class MyViewModel : INotifyPropertyChanged
+  public class BaseViewModel : INotifyPropertyChanged
   {
 
     #region constructors
-    public MyViewModel()
+    public BaseViewModel()
     {
       HierarchicalAreas = new ObservableCollection<TreeViewItem>();
       Click_Button = new RelayCommand(LoadDLL);
@@ -36,14 +36,14 @@ namespace TP.GraphicalData.TreeView
     #region DataContext
     public ObservableCollection<TreeViewItem> HierarchicalAreas { get; set; }
     public string PathVariable { get; set; }
-    public Visibility ChangeControlVisibility { get; set; } = Visibility.Hidden;
+    
     public ICommand Click_Browse { get; }
     public ICommand Click_Button { get; }
     #endregion
 
     #region INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
-    private void RaisePropertyChanged(string propertyName_)
+    public void RaisePropertyChanged(string propertyName_)
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName_));
     }
@@ -70,22 +70,9 @@ namespace TP.GraphicalData.TreeView
             }
         }
 
-    private void Browse()
+    public virtual void Browse()
     {
-      OpenFileDialog test = new OpenFileDialog()
-      {
-        Filter = "Dynamic Library File(*.dll)| *.dll"
-      };
-      test.ShowDialog();
-      if (test.FileName.Length == 0)
-        MessageBox.Show("No files selected");
-      else
-      {
-        PathVariable = test.FileName;
-        ChangeControlVisibility = Visibility.Visible;
-        RaisePropertyChanged("ChangeControlVisibility");
-        RaisePropertyChanged("PathVariable");
-      }
+      //empty
     }
     #endregion
 
