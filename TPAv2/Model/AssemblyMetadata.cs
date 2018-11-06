@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using TPAv2.Model;
 
 namespace TPA.Reflection.Model
 {
+  [DataContract(IsReference=true)]
   public class AssemblyMetadata
   {
 
@@ -25,7 +27,11 @@ namespace TPA.Reflection.Model
                      select new NamespaceMetadata(_group.Key, _group);
     }
 
+
+
+    [DataMember]
     private string m_Name;
+    [DataMember]
     private IEnumerable<NamespaceMetadata> m_Namespaces;
 
     public IEnumerable<NamespaceMetadata> Namespaces { get => m_Namespaces; set => m_Namespaces = value; }

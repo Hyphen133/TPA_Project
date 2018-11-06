@@ -1,6 +1,9 @@
 ﻿
+using System.Runtime.Serialization;
+
 namespace TPA.Reflection.Model
 {
+  [DataContract(IsReference = true)]
   public class ParameterMetadata
   {
 
@@ -11,7 +14,9 @@ namespace TPA.Reflection.Model
     }
     
     //private vars
+    [DataMember]
     private string m_Name;
+    [DataMember]
     private TypeMetadata m_TypeMetadata;
 
         public string Name { get => m_Name; set => m_Name = value; }

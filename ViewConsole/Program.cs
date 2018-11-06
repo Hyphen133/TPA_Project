@@ -21,7 +21,7 @@ namespace ViewConsole
         {
             parenting = new Stack<TreeViewItem>();
             MyViewModel myViewModel = new MyViewModel();
-            myViewModel.PathVariable = "C:\\Users\\stz\\Google Drive\\Studia\\Informatyka\\5 Semestr\\Technologie programowania adaptacyjnego\\Projekt\\TPA_Project\\TPAv2\\TPA.ApplicationArchitecture.dll";
+            myViewModel.PathVariable = @"C:\Users\hyphe\source\repos\ReflectionApp\ReflectionApp\TPA.ApplicationArchitecture.dll";
             myViewModel.Click_Button.Execute(null);
 
             Console.WriteLine(myViewModel.HierarchicalAreas[0].Name);

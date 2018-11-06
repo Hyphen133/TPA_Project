@@ -8,7 +8,7 @@ using TPA.Reflection.Model;
 
 namespace ViewWPF.TreeView
 {
-    public class ConversionServices
+    class ConversionServices
     {
         private static Dictionary<string, TreeViewItem> typeDictonary = new Dictionary<string, TreeViewItem>();
 

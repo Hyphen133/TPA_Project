@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using TPAv2.Model;
 
 namespace TPA.Reflection.Model
 {
-  public class TypeMetadata
+  [DataContract(IsReference=true)]
+    public class TypeMetadata
   {
 
         #region constructors
@@ -67,15 +69,6 @@ namespace TPA.Reflection.Model
 
         if (!type.IsGenericType)
         {
-                /*Console.WriteLine("Creating new Type " + type.Name);
-
-                foreach (var item in HelperDictonaries.TypeDictonary.Keys)
-                {
-                    Console.WriteLine(HelperDictonaries.TypeDictonary[item].TypeName);
-                }
-                Console.WriteLine();
-                */
-
                 HelperDictonaries.TypeDictonary[type] = new TypeMetadata(type);
 
             return HelperDictonaries.TypeDictonary[type];
@@ -91,18 +84,31 @@ namespace TPA.Reflection.Model
 
     #region private
     //vars
+    [DataMember]
     private string m_typeName;
+    [DataMember]
     private string m_NamespaceName;
+    [DataMember]
     private TypeMetadata m_BaseType;
+    [DataMember]
     private IEnumerable<TypeMetadata> m_GenericArguments;
+    [DataMember]
     private Tuple<AccessLevel, SealedEnum, AbstractEnum> m_Modifiers;
+    [DataMember]
     private TypeKind m_TypeKind;
+    //[DataMember]
     private IEnumerable<Attribute> m_Attributes;
+    [DataMember]
     private IEnumerable<TypeMetadata> m_ImplementedInterfaces;
+    [DataMember]
     private IEnumerable<TypeMetadata> m_NestedTypes;
+    [DataMember]
     private IEnumerable<PropertyMetadata> m_Properties;
+    [DataMember]
     private TypeMetadata m_DeclaringType;
+    [DataMember]
     private IEnumerable<MethodMetadata> m_Methods;
+    [DataMember]
     private IEnumerable<MethodMetadata> m_Constructors;
 
         public string TypeName { get => m_typeName; set => m_typeName = value; }

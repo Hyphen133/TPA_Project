@@ -11,9 +11,8 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using TP.GraphicalData.MVVMLight;
-using TPAv2.Model;
+using TPA.Reflection.Model;
 using TPAv2.Services;
-using TPAv2.ViewModel;
 using ViewWPF.TreeView;
 
 namespace TP.GraphicalData.TreeView
@@ -56,10 +55,14 @@ namespace TP.GraphicalData.TreeView
             if (PathVariable.Substring(PathVariable.Length - 4) == ".dll")
             {
                 DataService.LoadAssembly(PathVariable);
-                TreeViewItem originalRootItem = ConversionServices.ConvertAssemblyMetadata(DataService.LoadAssembly(PathVariable));
+                AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(PathVariable);
+                XmlSerializer.SerializeAssembly(assemblyMetadata, @"C:\Users\hyphe\Desktop\data.xml");
+                XmlSerializer.DeserializeAssembly(@"C:\Users\hyphe\Desktop\data.xml");
+                TreeViewItem originalRootItem = ConversionServices.ConvertAssemblyMetadata(assemblyMetadata);
                 TreeViewItem rootItem = new TreeViewItem();
                 rootItem.Name = originalRootItem.Name;
                 rootItem.OriginalItem = originalRootItem;
+
 
                
 

@@ -12,6 +12,7 @@ namespace TPAv2.Model
         private static Dictionary<Type, TypeMetadata> typeDictonary = new Dictionary<Type, TypeMetadata>();
 
         public static Dictionary<Type, TypeMetadata> TypeDictonary { get => typeDictonary; set => typeDictonary = value; }
+        
 
         public static void resetDictonaries()
         {

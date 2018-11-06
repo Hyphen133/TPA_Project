@@ -1,8 +1,14 @@
 ﻿
+using System.Runtime.Serialization;
+
 namespace TPA.Reflection.Model
 {
+  [DataContract]
   public enum SealedEnum
   {
-    Sealed, NotSealed
+    [EnumMember]
+    Sealed,
+    [EnumMember]
+    NotSealed
   }
 }
