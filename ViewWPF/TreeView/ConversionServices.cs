@@ -50,7 +50,6 @@ namespace ViewWPF.TreeView
 
         public static TreeViewItem ConvertTypeMetadata(TypeMetadata typeMetadata)
         {
-
             TreeViewItem typeItem = new TreeViewItem();
 
             if (typeDictonary.ContainsKey(typeMetadata.TypeName))
@@ -97,24 +96,17 @@ namespace ViewWPF.TreeView
             Tuple<AccessLevel, SealedEnum, AbstractEnum> tuple = typeMetadata.Modifiers;
             if(tuple!= null)
             {
-                if (tuple.Item1 != null)
-                {
-                    TreeViewItem accessLevelItem = new TreeViewItem();
-                    accessLevelItem.Name = "[access] " + tuple.Item1.ToString();
-                    typeItem.Children.Add(accessLevelItem);
-                }
-                if (tuple.Item2 != null)
-                {
-                    TreeViewItem sealedItem = new TreeViewItem();
-                    sealedItem.Name = "[sealed] " + tuple.Item2.ToString();
-                    typeItem.Children.Add(sealedItem);
-                }
-                if (tuple.Item3 != null)
-                {
-                    TreeViewItem abstractItem = new TreeViewItem();
-                    abstractItem.Name = "[abstract] " + tuple.Item3.ToString();
-                    typeItem.Children.Add(abstractItem);
-                }
+                TreeViewItem accessLevelItem = new TreeViewItem();
+                accessLevelItem.Name = "[access] " + tuple.Item1.ToString();
+                typeItem.Children.Add(accessLevelItem);
+                
+                TreeViewItem sealedItem = new TreeViewItem();
+                sealedItem.Name = "[sealed] " + tuple.Item2.ToString();
+                typeItem.Children.Add(sealedItem);
+                
+                TreeViewItem abstractItem = new TreeViewItem();
+                abstractItem.Name = "[abstract] " + tuple.Item3.ToString();
+                typeItem.Children.Add(abstractItem);
             }
 
 
@@ -149,6 +141,31 @@ namespace ViewWPF.TreeView
             {
                 methodItem.Children.Add(ConvertParameterMetadata(parameter));
             }
+
+            //Modifiers
+            Tuple<AccessLevel, AbstractEnum, StaticEnum, VirtualEnum> tuple = method.Modifiers;
+
+            if(tuple != null)
+            {
+                TreeViewItem accessItem = new TreeViewItem();
+                accessItem.Name = "[access] " + tuple.Item1.ToString();
+                methodItem.Children.Add(accessItem);
+
+                TreeViewItem abstractItem = new TreeViewItem();
+                abstractItem.Name = "[abstract] " + tuple.Item2.ToString();
+                methodItem.Children.Add(abstractItem);
+
+                TreeViewItem staticItem = new TreeViewItem();
+                staticItem.Name = "[static] " + tuple.Item3.ToString();
+                methodItem.Children.Add(staticItem);
+
+                TreeViewItem virtualItem = new TreeViewItem();
+                virtualItem.Name = "[virtual] " + tuple.Item4.ToString();
+                methodItem.Children.Add(virtualItem);
+
+
+            }
+
 
 
             return methodItem;
