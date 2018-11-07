@@ -14,9 +14,11 @@ namespace TPAv2.Services
     {
         static ITraceSource traceSource;
 
+        public static ITraceSource TraceSource { get => traceSource; set => traceSource = value; }
+
         public XmlSerialize(ITraceSource traceSource)
         {
-            traceSource = traceSource;
+            TraceSource = traceSource;
         }
 
         public void SerializeAssembly(AssemblyMetadata assembly, String filepath)
