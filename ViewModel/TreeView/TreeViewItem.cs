@@ -54,7 +54,7 @@ namespace TP.GraphicalData.TreeView
             }
         }
 
-        public TreeViewItem OriginalItem { get; internal set; }
+        public TreeViewItem OriginalItem { get; set; }
 
         private bool m_WasBuilt;
     private bool m_IsExpanded;
