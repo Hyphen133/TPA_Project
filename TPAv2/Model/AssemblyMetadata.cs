@@ -12,7 +12,7 @@ namespace TPA.Reflection.Model
   public class AssemblyMetadata
   {
 
-    internal AssemblyMetadata(Assembly assembly)
+    public AssemblyMetadata(Assembly assembly)
     {
             //Reseting dictonaries
             HelperDictonaries.resetDictonaries();

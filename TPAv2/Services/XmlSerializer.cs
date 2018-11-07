@@ -33,7 +33,10 @@ namespace TPAv2.Services
                 }
             }catch(Exception e)
             {
-                traceSource.TraceData(System.Diagnostics.TraceEventType.Error, 1, "Assembly serialization failed");
+                if (traceSource != null)
+                {
+                    traceSource.TraceData(System.Diagnostics.TraceEventType.Error, 1, "Assembly serialization failed");
+                }
             }
             
         }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TP.GraphicalData.TreeView;
-using TPAv2.Services;
-using ViewWPF.TreeView;
 
 namespace ViewConsole
 {
