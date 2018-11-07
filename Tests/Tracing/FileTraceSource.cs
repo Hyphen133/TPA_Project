@@ -11,6 +11,11 @@ namespace Tests
 
         public FileTraceSource(string filepath)
         {
+            FileInfo f = new FileInfo(filepath);
+            if(!f.Exists)
+            {
+                throw new FileNotFoundException();
+            }
             this.filepath = filepath;
         }
 
