@@ -10,7 +10,7 @@ namespace Tests
     public class WPFViewModelButtonTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void WPFViewModelButtonTest_IfEverythinIsOk_ShouldBeOk()
         {
             ViewForWPF vm = new ViewForWPF();
             Assert.IsTrue(vm.Click_Browse.CanExecute(null));

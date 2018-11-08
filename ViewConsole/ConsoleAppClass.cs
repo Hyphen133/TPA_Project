@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TP.GraphicalData.TreeView;
+using ViewModel.TreeView;
 
 namespace ViewConsole
 {
@@ -27,7 +28,7 @@ namespace ViewConsole
             parenting = new Stack<TreeViewItem>();
             BaseViewModel myViewModel = new BaseViewModel();
             myViewModel.PathVariable = path;
-            myViewModel.Click_Button.Execute(null);
+            DllLoader.LoadDLL(path, myViewModel.HierarchicalAreas);
 
             Console.WriteLine(myViewModel.HierarchicalAreas[0].Name);
 

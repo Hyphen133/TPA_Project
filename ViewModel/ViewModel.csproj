@@ -43,11 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MVVMLight\RelayCommand.cs" />
-    <Compile Include="MVVMLight\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeView\ConversionServices.cs" />
-    <Compile Include="TreeView\DelegateCommand.cs" />
+    <Compile Include="TreeView\DllLoader.cs" />
     <Compile Include="TreeView\MyViewModel.cs" />
     <Compile Include="TreeView\TreeViewItem.cs" />
   </ItemGroup>
