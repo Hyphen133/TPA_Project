@@ -62,8 +62,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MVVMLight\RelayCommand.cs" />
-    <Compile Include="ViewForWPF.cs" />
+    <Compile Include="ViewBrowse.cs" />
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

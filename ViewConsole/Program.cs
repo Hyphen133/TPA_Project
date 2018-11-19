@@ -8,9 +8,7 @@ namespace ViewConsole
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Plese enter path to dll library.");
-            string path = Console.ReadLine();
-            cac = new ConsoleAppClass(path);
+            cac = new ConsoleAppClass();
             cac.Start();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ViewModel;
 
 namespace ViewWPF
 {
@@ -11,7 +12,7 @@ namespace ViewWPF
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewForWPF();
+            DataContext = new MyViewModel(new ViewBrowse());
         }
        
     }

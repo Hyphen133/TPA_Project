@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TP.GraphicalData.TreeView;
-using ViewModel.TreeView;
+using ViewModel;
 
 namespace ViewConsole
 {
@@ -15,20 +13,21 @@ namespace ViewConsole
         private int currentChildValue;
         private List<List<String>> above;
         private List<List<String>> below;
-        private string path;
-
-        public ConsoleAppClass(String path)
-        {
-            this.path = path;
-        }
 
         public void Start()
         {
             Console.Clear();
             parenting = new Stack<TreeViewItem>();
-            BaseViewModel myViewModel = new BaseViewModel();
-            myViewModel.PathVariable = path;
-            DllLoader.LoadDLL(path, myViewModel.HierarchicalAreas);
+            MyViewModel myViewModel = new MyViewModel(new ConsoleBrowse());
+            if(myViewModel.Click_Browse.CanExecute(null))
+            {
+                myViewModel.Click_Browse.Execute(null);
+            }
+            if(myViewModel.Click_Button.CanExecute(null))
+            {
+                myViewModel.Click_Button.Execute(null);
+            }
+            Console.Clear();
 
             Console.WriteLine(myViewModel.HierarchicalAreas[0].Name);
 
