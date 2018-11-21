@@ -12,6 +12,7 @@ namespace ViewConsole
         private TreeViewItem currentElement;
         private int currentChildValue;
         private List<List<String>> above;
+        private List<String> parents;
         private List<List<String>> below;
 
         public void Start()
@@ -34,9 +35,8 @@ namespace ViewConsole
             currentElement = myViewModel.HierarchicalAreas[0];
 
             above = new List<List<string>>();
+            parents = new List<string>();
             below = new List<List<string>>();
-            above.Add(new List<string>());
-            below.Add(new List<string>());
 
             while (true)
             {
@@ -100,26 +100,15 @@ namespace ViewConsole
                             currentChildValue = 0;
                             above.RemoveAt(above.Count - 1);
                             below.RemoveAt(below.Count - 1);
+                            parents.RemoveAt(parents.Count - 1);
                             currentElement = parenting.Pop();
                             currentElement.IsExpanded = false;
-
-                            if (above[above.Count - 1][above[above.Count - 1].Count - 1] == currentElement.Name)
-                            {
-                                above[above.Count - 1].RemoveAt(above[above.Count - 1].Count - 1);
-                            }
                         }
                         break;
                     case ConsoleKey.RightArrow:
                         if (currentElement.Children.Count > 0)
                         {
-                            if (above[above.Count - 1].Count == 0)
-                            {
-                                above[above.Count - 1].Add(currentElement.Name);
-                            }
-                            else if (above[above.Count - 1][above[above.Count - 1].Count - 1] != currentElement.Name)
-                            {
-                                above[above.Count - 1].Add(currentElement.Name);
-                            }
+                            parents.Add(currentElement.Name);
                             above.Add(new List<string>());
                             below.Add(new List<string>());
 
@@ -132,13 +121,9 @@ namespace ViewConsole
                                 currentChildValue = pom;
                                 above.RemoveAt(above.Count - 1);
                                 below.RemoveAt(below.Count - 1);
+                                parents.RemoveAt(parents.Count - 1);
                                 currentElement = parenting.Pop();
                                 currentElement.IsExpanded = false;
-
-                                if (above[above.Count - 1][above[above.Count - 1].Count - 1] == currentElement.Name)
-                                {
-                                    above[above.Count - 1].RemoveAt(above[above.Count - 1].Count - 1);
-                                }
                             }
                             else
                             {
@@ -160,21 +145,30 @@ namespace ViewConsole
         private void Display()
         {
             StringBuilder all = new StringBuilder();
+            if (parents.Count > 0) all.AppendLine(parents[0]);
             for (int i = 0; i < above.Count; i++)
             {
                 foreach (string s in above[i])
                 {
-                    for (int k = 0; k < i; k++)
+                    for (int k = 0; k <= i; k++)
                     {
                         all.Append("\t");
                     }
                     all.AppendLine(s);
                 }
+                if (parents.Count > i + 1)
+                {
+                    for (int k = 0; k <= i; k++)
+                    {
+                        all.Append("\t");
+                    }
+                    all.AppendLine(parents[i + 1]);
+                }
             }
 
-            if (above.Count > 1)
+            if (parents.Count > 1)
             {
-                for (int i = 0; i < above.Count - 2; i++)
+                for (int i = 0; i < parents.Count - 1; i++)
                 {
                     all.Append("--------");
                 }
@@ -189,7 +183,7 @@ namespace ViewConsole
             {
                 foreach (string s in below[below.Count - i - 1])
                 {
-                    for (int k = 0; k < below.Count - i - 1; k++)
+                    for (int k = 0; k < below.Count - i; k++)
                     {
                         all.Append("\t");
                     }

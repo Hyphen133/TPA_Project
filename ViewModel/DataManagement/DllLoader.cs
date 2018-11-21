@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TP.GraphicalData.TreeView;
+﻿using System.Collections.ObjectModel;
 using TPA.Reflection.Model;
 using TPAv2.Services;
+using ViewModel.TreeView;
 using ViewWPF.TreeView;
 
-namespace ViewModel.TreeView
+namespace ViewModel.DataManagement
 {
     public class DllLoader
     {

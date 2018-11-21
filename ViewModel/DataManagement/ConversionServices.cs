@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TP.GraphicalData.TreeView;
 using TPA.Reflection.Model;
+using ViewModel.TreeView;
 
-namespace ViewWPF.TreeView
+namespace ViewWPF.DataManagement
 {
     public class ConversionServices
     {
