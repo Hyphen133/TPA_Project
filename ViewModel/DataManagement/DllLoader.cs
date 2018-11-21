@@ -2,7 +2,6 @@
 using TPA.Reflection.Model;
 using TPAv2.Services;
 using ViewModel.TreeView;
-using ViewWPF.TreeView;
 
 namespace ViewModel.DataManagement
 {

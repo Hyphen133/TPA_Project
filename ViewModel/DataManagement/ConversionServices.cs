@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TPA.Reflection.Model;
 using ViewModel.TreeView;
 
-namespace ViewWPF.DataManagement
+namespace ViewModel.DataManagement
 {
     public class ConversionServices
     {
