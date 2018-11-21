@@ -31,7 +31,7 @@ namespace TPAv2.Services
                 {
                     serializer.WriteObject(fs, assembly);
                 }
-            }catch(Exception e)
+            }catch (Exception)
             {
                 if (traceSource != null)
                 {

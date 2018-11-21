@@ -2,7 +2,7 @@
 
 namespace ViewModel.TreeView
 {
-    class MethodTreeViewItem : BaseTreeViewItem
+    public class MethodTreeViewItem : BaseTreeViewItem
     {
         private MethodMetadata methodMetadata;
 

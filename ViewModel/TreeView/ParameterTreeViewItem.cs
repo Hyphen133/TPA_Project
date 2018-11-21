@@ -2,7 +2,7 @@
 
 namespace ViewModel.TreeView
 {
-    class ParameterTreeViewItem : BaseTreeViewItem
+    public class ParameterTreeViewItem : BaseTreeViewItem
     {
         private ParameterMetadata parameterMetadata;
 

@@ -2,7 +2,7 @@
 
 namespace ViewModel.TreeView
 {
-    class PropertyTreeViewItem : BaseTreeViewItem
+    public class PropertyTreeViewItem : BaseTreeViewItem
     {
         private PropertyMetadata propertyMetadata;
 

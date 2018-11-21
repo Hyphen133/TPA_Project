@@ -2,11 +2,10 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TP.GraphicalData.TreeView;
 using TPAv2.Services;
 using TPA.Reflection.Model;
-using ViewWPF.TreeView;
 using System.IO;
+using ViewModel.TreeView;
 
 namespace Tests
 {
@@ -30,10 +29,7 @@ namespace Tests
             string fullFilePath = path + filename;
             Console.WriteLine(fullFilePath);
             AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(fullFilePath);
-            TreeViewItem originalRootItem = ConversionServices.ConvertAssemblyMetadata(assemblyMetadata);
-            TreeViewItem rootItem = new TreeViewItem();
-            rootItem.Name = originalRootItem.Name;
-            rootItem.OriginalItem = originalRootItem;
+            BaseTreeViewItem rootItem = new AssemblyTreeViewItem(assemblyMetadata);
             rootItem.IsExpanded = true;
             Assert.AreEqual(rootItem.Children.Count, 3);
 

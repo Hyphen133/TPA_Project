@@ -2,7 +2,7 @@
 
 namespace ViewModel.TreeView
 {
-    class AssemblyTreeViewItem : BaseTreeViewItem
+    public class AssemblyTreeViewItem : BaseTreeViewItem
     {
         private AssemblyMetadata assemblyMetadata;
 
