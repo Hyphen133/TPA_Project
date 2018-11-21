@@ -7,16 +7,13 @@ namespace ViewModel.DataManagement
 {
     public class DllLoader
     {
-        public static void LoadDLL(string PathVariable, ObservableCollection<TreeViewItem> HierarchicalArea)
+        public static void LoadDLL(string PathVariable, ObservableCollection<BaseTreeViewItem> HierarchicalArea)
         {
             if (PathVariable.Substring(PathVariable.Length - 4) == ".dll")
             {
                 DataService.LoadAssembly(PathVariable);
                 AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(PathVariable);
-                TreeViewItem originalRootItem = ConversionServices.ConvertAssemblyMetadata(assemblyMetadata);
-                TreeViewItem rootItem = new TreeViewItem();
-                rootItem.Name = originalRootItem.Name;
-                rootItem.OriginalItem = originalRootItem;
+                BaseTreeViewItem rootItem = new AssemblyTreeViewItem(assemblyMetadata);
                 HierarchicalArea.Add(rootItem);
             }
         }

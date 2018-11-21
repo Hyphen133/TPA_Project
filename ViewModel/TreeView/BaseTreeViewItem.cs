@@ -26,7 +26,6 @@ namespace ViewModel.TreeView
                 m_IsExpanded = value;
                 if (m_WasBuilt)
                     return;
-                //Children.Clear();
                 BuildMyself();
                 m_WasBuilt = true;
             }

@@ -6,7 +6,7 @@ using ViewModel.TreeView;
 namespace ViewModel.DataManagement
 {
     public class ConversionServices
-    {
+    {/*
         private static Dictionary<string, TreeViewItem> typeDictonary = new Dictionary<string, TreeViewItem>();
 
         public static TreeViewItem ConvertAssemblyMetadata(AssemblyMetadata assembyMetadata)
@@ -292,7 +292,7 @@ namespace ViewModel.DataManagement
             }
 
             return propertyItem;
-        }
+        }*/
 
     }
 }

@@ -43,13 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TreeView\AssemblyTreeViewItem.cs" />
+    <Compile Include="TreeView\BaseTreeViewItem.cs" />
     <Compile Include="IBrowse.cs" />
     <Compile Include="MVVMLight\RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TreeView\ConversionServices.cs" />
-    <Compile Include="TreeView\DllLoader.cs" />
+    <Compile Include="DataManagement\ConversionServices.cs" />
+    <Compile Include="DataManagement\DllLoader.cs" />
     <Compile Include="MyViewModel.cs" />
-    <Compile Include="TreeView\TreeViewItem.cs" />
+    <Compile Include="TreeView\MethodTreeViewItem.cs" />
+    <Compile Include="TreeView\NamespaceTreeViewItem.cs" />
+    <Compile Include="TreeView\ParameterTreeViewItem.cs" />
+    <Compile Include="TreeView\PropertyTreeViewItem.cs" />
+    <Compile Include="TreeView\TypeTreeViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TPAv2\Model.csproj">

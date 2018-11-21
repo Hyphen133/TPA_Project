@@ -9,11 +9,16 @@ namespace ViewModel.TreeView
         public NamespaceTreeViewItem(NamespaceMetadata namespaceMetadata)
         {
             this.namespaceMetadata = namespaceMetadata;
+            Name = namespaceMetadata.NamespaceName;
         }
 
-        public new void BuildMyself()
+        override public void BuildMyself()
         {
-            //TODO
+            Children.Clear();
+            foreach(TypeMetadata tm in namespaceMetadata.Types)
+            {
+                Children.Add(new TypeTreeViewItem(tm));
+            }
         }
     }
 }

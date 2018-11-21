@@ -63,17 +63,9 @@
       <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ViewConsole\ViewConsole.csproj">
-      <Project>{7bcefde2-0de5-4f39-b819-ecf87f0035d0}</Project>
-      <Name>ViewConsole</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj">
       <Project>{d3a41646-f523-4717-88a8-81d9046b351b}</Project>
       <Name>ViewModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewWPF\ViewWPF.csproj">
-      <Project>{03d29a92-7693-4b4d-a54c-f0aaebd871df}</Project>
-      <Name>ViewWPF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

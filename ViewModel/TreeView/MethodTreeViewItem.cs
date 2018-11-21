@@ -9,11 +9,17 @@ namespace ViewModel.TreeView
         public MethodTreeViewItem(MethodMetadata methodMetadata)
         {
             this.methodMetadata = methodMetadata;
+            Name = methodMetadata.Name;
         }
 
-        public new void BuildMyself()
+        override public void BuildMyself()
         {
-            //TODO
+            Children.Clear();
+            Children.Add(new TypeTreeViewItem(methodMetadata.ReturnType));
+            foreach(var v in methodMetadata.Parameters)
+            {
+                Children.Add(new ParameterTreeViewItem(v));
+            }
         }
     }
 }

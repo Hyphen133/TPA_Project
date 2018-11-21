@@ -8,8 +8,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using TP.GraphicalData.MVVMLight;
-using TP.GraphicalData.TreeView;
+using ViewModel.DataManagement;
+using ViewModel.MVVMLight;
 using ViewModel.TreeView;
 
 namespace ViewModel
@@ -28,14 +28,14 @@ namespace ViewModel
         public MyViewModel(IBrowse browse)
         {
             this.browse = browse;
-            HierarchicalAreas = new ObservableCollection<TreeViewItem>();
+            HierarchicalAreas = new ObservableCollection<BaseTreeViewItem>();
             Click_Button = new RelayCommand(LoadDLL);
             Click_Browse = new RelayCommand(Browse);
         }
         #endregion
 
         #region DataContext
-        public ObservableCollection<TreeViewItem> HierarchicalAreas { get; set; }
+        public ObservableCollection<BaseTreeViewItem> HierarchicalAreas { get; set; }
         public string PathVariable { get; set; }
         #endregion
 

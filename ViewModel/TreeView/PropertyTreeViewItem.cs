@@ -9,11 +9,13 @@ namespace ViewModel.TreeView
         public PropertyTreeViewItem(PropertyMetadata propertyMetadata)
         {
             this.propertyMetadata = propertyMetadata;
+            Name = propertyMetadata.Name;
         }
 
-        public new void BuildMyself()
+        override public void BuildMyself()
         {
-            //TODO
+            Children.Clear();
+            Children.Add(new TypeTreeViewItem(propertyMetadata.TypeMetadata));
         }
     }
 }

@@ -6,14 +6,20 @@ namespace ViewModel.TreeView
     {
         private AssemblyMetadata assemblyMetadata;
 
-        public AssemblyTreeViewItem(AssemblyMetadata assemblyMetadata)
+        public AssemblyTreeViewItem(AssemblyMetadata assemblyMetadata) : base()
         {
+            
             this.assemblyMetadata = assemblyMetadata;
+            Name = assemblyMetadata.Name;
         }
 
-        public new void BuildMyself()
+        override public void BuildMyself()
         {
-            //TODO
+            Children.Clear();
+            foreach(NamespaceMetadata nm in assemblyMetadata.Namespaces)
+            {
+                Children.Add(new NamespaceTreeViewItem(nm));
+            }
         }
     }
 }

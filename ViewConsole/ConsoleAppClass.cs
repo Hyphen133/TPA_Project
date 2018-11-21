@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TP.GraphicalData.TreeView;
 using ViewModel;
+using ViewModel.TreeView;
 
 namespace ViewConsole
 {
     class ConsoleAppClass
     {
-        private Stack<TreeViewItem> parenting;
-        private TreeViewItem currentElement;
+        private Stack<BaseTreeViewItem> parenting;
+        private BaseTreeViewItem currentElement;
         private int currentChildValue;
         private List<List<String>> above;
         private List<String> parents;
@@ -18,7 +18,7 @@ namespace ViewConsole
         public void Start()
         {
             Console.Clear();
-            parenting = new Stack<TreeViewItem>();
+            parenting = new Stack<BaseTreeViewItem>();
             MyViewModel myViewModel = new MyViewModel(new ConsoleBrowse());
             if(myViewModel.Click_Browse.CanExecute(null))
             {
