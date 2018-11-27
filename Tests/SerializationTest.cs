@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Serializer;
 using TPA.Reflection.Model;
 using TPAv2.Services;
 
@@ -36,9 +37,9 @@ namespace Tests
             string fullXmlPath = path + xmlName;
             Console.WriteLine(fullFilePath);
             AssemblyMetadata assemblyMetaData = DataService.LoadAssembly(fullFilePath);
-            XmlSerialize xmlSerialize = new XmlSerialize(null);
-            xmlSerialize.SerializeAssembly(assemblyMetaData, fullXmlPath);
-            AssemblyMetadata assemblyMetadata2 = xmlSerialize.DeserializeAssembly(fullXmlPath);
+            ISerialize xmlSerialize = new XmlSerialize(null, fullXmlPath);
+            xmlSerialize.Write(assemblyMetaData);
+            AssemblyMetadata assemblyMetadata2 = (AssemblyMetadata)xmlSerialize.Read(typeof(AssemblyMetadata));
             Assert.AreEqual(assemblyMetaData.Name, assemblyMetadata2.Name);
         }
     }

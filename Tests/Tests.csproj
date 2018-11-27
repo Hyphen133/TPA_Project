@@ -59,6 +59,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Serializer\Serializer.csproj">
+      <Project>{ae1617bd-4329-4d42-9b3d-d7f80369f48f}</Project>
+      <Name>Serializer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TPAv2\Model.csproj">
       <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
       <Name>Model</Name>
