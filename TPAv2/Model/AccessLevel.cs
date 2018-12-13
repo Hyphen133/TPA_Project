@@ -1,18 +1,10 @@
-﻿
-using System.Runtime.Serialization;
-
-namespace TPA.Reflection.Model
+﻿namespace Model
 {
-  [DataContract]
-  public enum AccessLevel
-  {
-        [EnumMemberAttribute]
+    public enum AccessLevel
+    {
         IsPublic,
-        [EnumMemberAttribute]
         IsProtected,
-        [EnumMemberAttribute]
         IsProtectedInternal,
-        [EnumMemberAttribute]
         IsPrivate
-  }
+    }
 }

@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using TPA.Reflection.Model;
+﻿using Model;
+using System.Collections.ObjectModel;
 using TPAv2.Services;
 using ViewModel.TreeView;
 

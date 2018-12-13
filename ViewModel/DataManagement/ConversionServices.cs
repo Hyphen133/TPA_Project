@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TPA.Reflection.Model;
 using ViewModel.TreeView;
 
 namespace ViewModel.DataManagement

@@ -1,14 +1,8 @@
-﻿
-using System.Runtime.Serialization;
-
-namespace TPA.Reflection.Model
+﻿namespace Model
 {
-  [DataContract]
-  public enum  VirtualEnum
-  {
-        [EnumMember]
+    public enum VirtualEnum
+    {
         NotVirtual,
-        [EnumMember]
-        Virtual 
-  }
+        Virtual
+    }
 }

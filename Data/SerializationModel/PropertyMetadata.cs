@@ -1,15 +1,14 @@
-﻿namespace Model
-{
-    public class ParameterMetadata
-    {
-        public ParameterMetadata(string name, TypeMetadata typeMetadata)
-        {
-            this.m_Name = name;
-            this.m_TypeMetadata = typeMetadata;
-        }
+﻿using System.Runtime.Serialization;
 
+namespace Data
+{
+    [DataContract(IsReference = true)]
+    public class PropertyMetadata
+    {
         #region private
+        [DataMember]
         private string m_Name;
+        [DataMember]
         private TypeMetadata m_TypeMetadata;
 
         public string Name { get => m_Name; set => m_Name = value; }

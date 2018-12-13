@@ -1,4 +1,4 @@
-﻿using TPA.Reflection.Model;
+﻿using Model;
 
 namespace ViewModel.TreeView
 {

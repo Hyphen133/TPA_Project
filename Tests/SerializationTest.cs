@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serializer;
-using TPA.Reflection.Model;
+using Model;
 using TPAv2.Services;
 
 namespace Tests

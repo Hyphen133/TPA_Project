@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TPAv2.Services;
-using TPA.Reflection.Model;
+using Model;
 using System.IO;
 using ViewModel.TreeView;
 

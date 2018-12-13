@@ -1,14 +1,8 @@
-﻿
-using System.Runtime.Serialization;
-
-namespace TPA.Reflection.Model
+﻿namespace Model
 {
-  [DataContract]
-  public enum StaticEnum
-  {
-    [EnumMember]
-    NotStatic,
-    [EnumMember]
-    Static
-  }
+    public enum StaticEnum
+    {
+        NotStatic,
+        Static
+    }
 }

@@ -46,7 +46,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,7 +58,6 @@
     <Compile Include="Model\AbstractENum.cs" />
     <Compile Include="Model\AccessLevel.cs" />
     <Compile Include="Model\AssemblyMetadata.cs" />
-    <Compile Include="Model\ExtensionMethods.cs" />
     <Compile Include="Model\HelperDictonaries.cs" />
     <Compile Include="Model\MethodMetadata.cs" />
     <Compile Include="Model\NamespaceMetadata.cs" />

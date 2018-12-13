@@ -1,13 +1,8 @@
-﻿using System.Runtime.Serialization;
-
-namespace TPA.Reflection.Model
+﻿namespace Model
 {
-  [DataContract]
-  public enum AbstractEnum
-  {
-        [EnumMember]
+    public enum AbstractEnum
+    {
         NotAbstract,
-        [EnumMember]
         Abstract
-  }
+    }
 }
