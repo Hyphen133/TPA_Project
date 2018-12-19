@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Serializer;
-using Model;
-using TPAv2.Services;
+using Model.Model;
+using Model.Services;
+using DataSerializer;
+using Model.MEF;
 
 namespace Tests
 {
@@ -35,11 +35,11 @@ namespace Tests
             string xmlName = "\\test.xml";
             string fullFilePath = path + filename;
             string fullXmlPath = path + xmlName;
-            Console.WriteLine(fullFilePath);
             AssemblyMetadata assemblyMetaData = DataService.LoadAssembly(fullFilePath);
-            ISerialize xmlSerialize = new XmlSerialize(null, fullXmlPath);
-            xmlSerialize.Write(assemblyMetaData);
-            AssemblyMetadata assemblyMetadata2 = (AssemblyMetadata)xmlSerialize.Read(typeof(AssemblyMetadata));
+            //ISerialize xmlSerialize = new XmlSerialize(fullXmlPath);
+            ISerialize xmlSerialize = Mef.Container.GetExportedValue<ISerialize>();
+            xmlSerialize.Write(assemblyMetaData, fullXmlPath);
+            AssemblyMetadata assemblyMetadata2 = (AssemblyMetadata)xmlSerialize.Read(typeof(AssemblyMetadata), fullXmlPath);
             Assert.AreEqual(assemblyMetaData.Name, assemblyMetadata2.Name);
         }
     }

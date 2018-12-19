@@ -1,9 +1,9 @@
-﻿using Model;
-using System;
-using System.IO;
+﻿using Model.Model;
+using Model.Tracing;
+using System.ComponentModel.Composition;
 using System.Reflection;
 
-namespace TPAv2.Services
+namespace Model.Services
 {
     public class DataService
     {

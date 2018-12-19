@@ -11,7 +11,7 @@ namespace Data
         public AssemblyMetadata assemblyMetadata;
         public Dictionary<string, TypeMetadata> typeDictionary;
         public Dictionary<string, MethodMetadata> methodDictionary;
-        public Dictionary<string, NamespaceMetadata> namespaceDictionary;
+        public Dictionary<string, DataNamespaceMetadata> namespaceDictionary;
         public Dictionary<string, PropertyMetadata> propertyDictionary;
         public Dictionary<string, ParameterMetadata> parameterDictionary;
     }

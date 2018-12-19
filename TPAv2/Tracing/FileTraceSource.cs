@@ -1,22 +1,27 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
-using TPAv2;
 
-namespace Tests
+namespace Model.Tracing
 {
+    [Export(typeof(ITraceSource))]
     public class FileTraceSource : ITraceSource
     {
-        private String filepath;
+        private String filepath = "";
 
-        public FileTraceSource(string filepath)
+        public string Filepath
         {
-            FileInfo f = new FileInfo(filepath);
-            if(!f.Exists)
+            get => filepath;
+            set
             {
-                throw new FileNotFoundException();
+                FileInfo f = new FileInfo(value);
+                if (!f.Exists)
+                {
+                    throw new FileNotFoundException();
+                }
+                filepath = value;
             }
-            this.filepath = filepath;
         }
 
         public void TraceData(TraceEventType eventType, int id, object data)

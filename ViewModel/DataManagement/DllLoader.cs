@@ -1,6 +1,6 @@
-﻿using Model;
+﻿using Model.Model;
 using System.Collections.ObjectModel;
-using TPAv2.Services;
+using Model.Services;
 using ViewModel.TreeView;
 
 namespace ViewModel.DataManagement

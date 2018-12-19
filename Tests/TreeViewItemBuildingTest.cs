@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TPAv2.Services;
-using Model;
+using Model.Services;
+using Model.Model;
 using System.IO;
 using ViewModel.TreeView;
 

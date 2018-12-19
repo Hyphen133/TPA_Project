@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model
+namespace Model.Model
 {
     public class TypeMetadata
     {
+        public TypeMetadata() { }
+
         #region constructors
         public TypeMetadata(Type type)
         {

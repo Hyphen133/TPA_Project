@@ -2,10 +2,12 @@
 using System.Reflection;
 using System.Linq;
 
-namespace Model
+namespace Model.Model
 {
     public class PropertyMetadata
     {
+        public PropertyMetadata() { }
+
         internal static IEnumerable<PropertyMetadata> EmitProperties(IEnumerable<PropertyInfo> props)
         {
             return from prop in props

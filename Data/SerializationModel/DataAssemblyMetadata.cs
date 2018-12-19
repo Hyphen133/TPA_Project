@@ -12,9 +12,9 @@ namespace Data
     [DataMember]
     private string m_Name;
     [DataMember]
-    private IEnumerable<NamespaceMetadata> m_Namespaces;
+    private IEnumerable<DataNamespaceMetadata> m_Namespaces;
 
-    public IEnumerable<NamespaceMetadata> Namespaces { get => m_Namespaces; set => m_Namespaces = value; }
+    public IEnumerable<DataNamespaceMetadata> Namespaces { get => m_Namespaces; set => m_Namespaces = value; }
     public string Name { get => m_Name; set => m_Name = value; }
     }
 }

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Data
 {
     [DataContract(IsReference = true)]
-    public class NamespaceMetadata
+    public class DataNamespaceMetadata
     {
         [DataMember]
         private string m_NamespaceName;

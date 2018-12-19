@@ -1,7 +1,9 @@
-﻿namespace Model
+﻿namespace Model.Model
 {
     public class ParameterMetadata
     {
+        public ParameterMetadata() { }
+
         public ParameterMetadata(string name, TypeMetadata typeMetadata)
         {
             this.m_Name = name;

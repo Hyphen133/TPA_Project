@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TPAv2
+namespace Model.Tracing
+
 {
     public interface ITraceSource
     {

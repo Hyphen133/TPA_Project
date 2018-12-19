@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Model.Tracing;
+using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
-using TPAv2;
 
 namespace Serializer
 {
     public class XmlSerialize : ISerialize
     {
+        [Import]
         static ITraceSource traceSource;
         private string filePath;
 
@@ -16,7 +18,7 @@ namespace Serializer
 
         public XmlSerialize(ITraceSource traceSource, string filePath)
         {
-            TraceSource = traceSource;
+            //TraceSource = traceSource;
             FilePath = filePath;
         }
 
@@ -39,7 +41,6 @@ namespace Serializer
         public void Write(object obj)
         {
             DataContractSerializer serializer = new DataContractSerializer(obj.GetType());
-
             try
             {
                 using (FileStream fs = new FileStream(filePath, FileMode.Create))

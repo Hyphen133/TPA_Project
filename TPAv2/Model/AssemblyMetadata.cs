@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Model
+namespace Model.Model
 {
     public class AssemblyMetadata
     {
+        public AssemblyMetadata()
+        {
+
+        }
+
         public AssemblyMetadata(Assembly assembly)
         {
             //Reseting dictonaries

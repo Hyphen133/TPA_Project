@@ -1,10 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Model;
-using TPAv2.Services;
+using Model.Tracing;
+using Model.MEF;
 
 namespace Tests
 {
@@ -16,7 +13,8 @@ namespace Tests
         public void TracingTest_WhenPathIsWrong_ShouldThrowexception()
         {
             string wrongPath = "IAmWrongPath";
-            FileTraceSource fileTraceSource = new FileTraceSource(wrongPath);
+            ITraceSource tracing = Mef.Container.GetExportedValue<ITraceSource>();
+            ((FileTraceSource)tracing).Filepath = wrongPath;
         }
     }
 }

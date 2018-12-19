@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model
+namespace Model.Model
 {
     public class NamespaceMetadata
     {
+        public NamespaceMetadata() { }
+
         public NamespaceMetadata(string name, IEnumerable<Type> types)
         {
             m_NamespaceName = name;

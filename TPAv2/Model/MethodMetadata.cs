@@ -4,10 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Model
+namespace Model.Model
 {
     public class MethodMetadata
     {
+        public MethodMetadata() { }
 
         internal static IEnumerable<MethodMetadata> EmitMethods(IEnumerable<MethodBase> methods)
         {

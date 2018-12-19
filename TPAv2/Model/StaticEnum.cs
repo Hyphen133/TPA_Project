@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace Model.Model
 {
     public enum StaticEnum
     {
