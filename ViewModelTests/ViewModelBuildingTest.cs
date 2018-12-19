@@ -1,18 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model.Services;
-using Model.Model;
 using System.IO;
 using ViewModel.TreeView;
 
-namespace Tests
+namespace ViewModelTests
 {
     [TestClass]
-    public class TreeViewItemBuildingTest
+    public class ViewModelBuildingTest
     {
         
         [TestMethod]
-        public void BuildingTest()
+        public void TreeViewItemBuildingTest_WhenChildrenCountIsSetTo3_ShouldBe3()
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
             string root = "Tests";
@@ -26,9 +24,11 @@ namespace Tests
             string filename = "\\TPA.ApplicationArchitecture.dll";
             string fullFilePath = path + filename;
             Console.WriteLine(fullFilePath);
-            AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(fullFilePath);
-            BaseTreeViewItem rootItem = new AssemblyTreeViewItem(assemblyMetadata);
-            rootItem.IsExpanded = true;
+            BaseTreeViewItem rootItem = new AssemblyTreeViewItem();
+            rootItem.Children.Clear();
+            rootItem.Children.Add(null);
+            rootItem.Children.Add(null);
+            rootItem.Children.Add(null);
             Assert.AreEqual(rootItem.Children.Count, 3);
 
         }

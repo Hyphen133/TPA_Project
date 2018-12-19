@@ -6,6 +6,8 @@ namespace ViewModel.TreeView
     {
         private AssemblyMetadata assemblyMetadata;
 
+        public AssemblyTreeViewItem() { }
+
         public AssemblyTreeViewItem(AssemblyMetadata assemblyMetadata) : base()
         {
             
