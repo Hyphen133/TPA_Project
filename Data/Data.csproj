@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7721D674-EA3C-4A4A-A908-176E73D3ABE3}</ProjectGuid>
+    <ProjectGuid>{CCFBEB43-08DF-443B-92A9-2049D98AA967}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Data</RootNamespace>
@@ -33,6 +33,14 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Xml">
+      <HintPath>..\packages\System.Runtime.Serialization.Xml.4.3.0\lib\net46\System.Runtime.Serialization.Xml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,21 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContract.cs" />
+    <Compile Include="IAssemblyModel.cs" />
+    <Compile Include="ISerialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\TypeRepository.cs" />
-    <Compile Include="SerializationModel\AbstractENum.cs" />
-    <Compile Include="SerializationModel\AccessLevel.cs" />
-    <Compile Include="SerializationModel\AssemblyMetadata.cs" />
-    <Compile Include="ICRUDRepository.cs" />
-    <Compile Include="SerializationModel\MethodMetadata.cs" />
-    <Compile Include="SerializationModel\NamespaceMetadata.cs" />
-    <Compile Include="SerializationModel\ParameterMetadata.cs" />
-    <Compile Include="SerializationModel\PropertyMetadata.cs" />
-    <Compile Include="SerializationModel\SealedEnum.cs" />
-    <Compile Include="SerializationModel\StaticEnum.cs" />
-    <Compile Include="SerializationModel\TypeMetadata.cs" />
-    <Compile Include="SerializationModel\VirtualEnum.cs" />
+    <Compile Include="SerializationModel\SerializableAssemblyModel.cs" />
+    <Compile Include="SerializationModel\SerializableMethodModel.cs" />
+    <Compile Include="SerializationModel\SerializableNamespaceModel.cs" />
+    <Compile Include="SerializationModel\SerializableParameterModel.cs" />
+    <Compile Include="SerializationModel\SerializablePropertyModel.cs" />
+    <Compile Include="SerializationModel\SerializableTypeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

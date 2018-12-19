@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace DataSerializer.SerializationModel
+namespace Data.SerializationModel
 {
     [DataContract(IsReference = true)]
     public class SerializableTypeModel

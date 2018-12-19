@@ -6,7 +6,7 @@ using Model.MEF;
 using Model.Model;
 using Model.Services;
 
-namespace Tests
+namespace DataSerializerTests
 {
     [TestClass]
     public class SerializationTest

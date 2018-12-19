@@ -1,4 +1,4 @@
-﻿using DataSerializer.SerializationModel;
+﻿using Data.SerializationModel;
 using Model.Model;
 using System.Linq;
 
@@ -9,9 +9,11 @@ namespace DataSerializer.SerializationMapper
 
         public MethodMetadata MapToUpper(SerializableMethodModel model)
         {
-            MethodMetadata methodMetadata = new MethodMetadata();
-            methodMetadata.Name = model.Name;
-            methodMetadata.Extension = model.Extension;
+            MethodMetadata methodMetadata = new MethodMetadata
+            {
+                Name = model.Name,
+                Extension = model.Extension
+            };
             if (model.GenericArguments != null)
                 methodMetadata.GenericArguments = model.GenericArguments.Select(g => TypeMapper.EmitType((SerializableTypeModel)g)).ToList();
             //methodMetadata.Modifiers = model.Modifiers;
@@ -24,9 +26,11 @@ namespace DataSerializer.SerializationMapper
 
         public SerializableMethodModel MapToLower(MethodMetadata model)
         {
-            SerializableMethodModel methodModel = new SerializableMethodModel();
-            methodModel.Name = model.Name;
-            methodModel.Extension = model.Extension;
+            SerializableMethodModel methodModel = new SerializableMethodModel
+            {
+                Name = model.Name,
+                Extension = model.Extension
+            };
             if (model.GenericArguments != null)
                 methodModel.GenericArguments = model.GenericArguments.Select(t => TypeMapper.EmitXMLType(t)).ToList();
             //methodModel.Modifiers = model.Modifiers;

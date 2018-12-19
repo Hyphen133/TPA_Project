@@ -8,8 +8,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using ViewModel.DataManagement;
-using ViewModel.MVVMLight;
 using ViewModel.TreeView;
 
 namespace ViewModel

@@ -8,7 +8,7 @@
 using System;
 using System.Windows.Input;
 
-namespace ViewModel.MVVMLight
+namespace ViewModel
 {
 
   /// <summary>

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewWPF", "ViewWPF\ViewWPF.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewConsole", "ViewConsole\ViewConsole.csproj", "{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "TPAv2\Model.csproj", "{93E4403F-1736-4100-9E2E-F717638E09CA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{D3A41646-F523-4717-88A8-81D9046B351B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSerializer", "DataSerializer\DataSerializer.csproj", "{AC807132-F845-4430-9A26-71936AB5BBED}"
@@ -18,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSerializerTests", "DataSerializerTests\DataSerializerTests.csproj", "{E095754C-CDAC-45C2-9101-27E0202174F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelTests", "ViewModelTests\ViewModelTests.csproj", "{2022A9D8-BC89-4144-A4BB-C09BB6493D70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{CCFBEB43-08DF-443B-92A9-2049D98AA967}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +35,6 @@ Global
 		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93E4403F-1736-4100-9E2E-F717638E09CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93E4403F-1736-4100-9E2E-F717638E09CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93E4403F-1736-4100-9E2E-F717638E09CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93E4403F-1736-4100-9E2E-F717638E09CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3A41646-F523-4717-88A8-81D9046B351B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3A41646-F523-4717-88A8-81D9046B351B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3A41646-F523-4717-88A8-81D9046B351B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +55,14 @@ Global
 		{2022A9D8-BC89-4144-A4BB-C09BB6493D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2022A9D8-BC89-4144-A4BB-C09BB6493D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2022A9D8-BC89-4144-A4BB-C09BB6493D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCFBEB43-08DF-443B-92A9-2049D98AA967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCFBEB43-08DF-443B-92A9-2049D98AA967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCFBEB43-08DF-443B-92A9-2049D98AA967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCFBEB43-08DF-443B-92A9-2049D98AA967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

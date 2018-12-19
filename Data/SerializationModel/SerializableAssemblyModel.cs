@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Data;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace DataSerializer.SerializationModel
+namespace Data.SerializationModel
 {
     [DataContract]
     public class SerializableAssemblyModel : IAssemblyModel

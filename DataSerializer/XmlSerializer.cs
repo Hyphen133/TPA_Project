@@ -1,6 +1,5 @@
 ﻿using DataSerializer.SerializationMapper;
-using DataSerializer.SerializationModel;
-using Model.MEF;
+using Data.SerializationModel;
 using Model.Model;
 using Model.Tracing;
 using System;

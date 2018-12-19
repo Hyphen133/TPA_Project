@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Model.Services;
 using ViewModel.TreeView;
 
-namespace ViewModel.DataManagement
+namespace ViewModel
 {
     public class DllLoader
     {

@@ -1,4 +1,4 @@
-﻿using DataSerializer.SerializationModel;
+﻿using Data.SerializationModel;
 using Model.Model;
 using System.Collections.Generic;
 using System.Linq;

@@ -34,14 +34,6 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Runtime.Serialization.Primitives">
-      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Xml">
-      <HintPath>..\packages\System.Runtime.Serialization.Xml.4.3.0\lib\net46\System.Runtime.Serialization.Xml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAssemblyModel.cs" />
     <Compile Include="IModelMapper.cs" />
     <Compile Include="ISerialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,20 +51,18 @@
     <Compile Include="SerializationMapper\ParameterMapper.cs" />
     <Compile Include="SerializationMapper\PropertyMapper.cs" />
     <Compile Include="SerializationMapper\TypeMapper.cs" />
-    <Compile Include="SerializationModel\SerializableAssemblyModel.cs" />
-    <Compile Include="SerializationModel\SerializableMethodModel.cs" />
-    <Compile Include="SerializationModel\SerializableNamespaceModel.cs" />
-    <Compile Include="SerializationModel\SerializableParameterModel.cs" />
-    <Compile Include="SerializationModel\SerializablePropertyModel.cs" />
-    <Compile Include="SerializationModel\SerializableTypeModel.cs" />
     <Compile Include="XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TPAv2\Model.csproj">
-      <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{ccfbeb43-08df-443b-92a9-2049d98aa967}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>

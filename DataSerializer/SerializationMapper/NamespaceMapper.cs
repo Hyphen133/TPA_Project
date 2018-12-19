@@ -1,4 +1,4 @@
-﻿using DataSerializer.SerializationModel;
+﻿using Data.SerializationModel;
 using Model.Model;
 using System.Linq;
 
@@ -8,8 +8,10 @@ namespace DataSerializer.SerializationMapper
     {
         public NamespaceMetadata MapToUpper(SerializableNamespaceModel model)
         {
-            NamespaceMetadata namespaceMetadata = new NamespaceMetadata();
-            namespaceMetadata.NamespaceName = model.Name;
+            NamespaceMetadata namespaceMetadata = new NamespaceMetadata
+            {
+                NamespaceName = model.Name
+            };
             if (model.Types != null)
                 namespaceMetadata.Types = model.Types.Select(n => TypeMapper.EmitType((SerializableTypeModel)n)).ToList();
             return namespaceMetadata;
@@ -17,8 +19,10 @@ namespace DataSerializer.SerializationMapper
 
         public SerializableNamespaceModel MapToLower(NamespaceMetadata model)
         {
-            SerializableNamespaceModel namespaceModel = new SerializableNamespaceModel();
-            namespaceModel.Name = model.NamespaceName;
+            SerializableNamespaceModel namespaceModel = new SerializableNamespaceModel
+            {
+                Name = model.NamespaceName
+            };
             if (model.Types != null)
                 namespaceModel.Types = model.Types.Select(t => new TypeMapper().MapToLower(t)).ToList();
             return namespaceModel;

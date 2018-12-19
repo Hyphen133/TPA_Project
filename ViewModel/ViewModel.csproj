@@ -46,10 +46,9 @@
     <Compile Include="TreeView\AssemblyTreeViewItem.cs" />
     <Compile Include="TreeView\BaseTreeViewItem.cs" />
     <Compile Include="IBrowse.cs" />
-    <Compile Include="MVVMLight\RelayCommand.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataManagement\ConversionServices.cs" />
-    <Compile Include="DataManagement\DllLoader.cs" />
+    <Compile Include="DllLoader.cs" />
     <Compile Include="MyViewModel.cs" />
     <Compile Include="TreeView\MethodTreeViewItem.cs" />
     <Compile Include="TreeView\NamespaceTreeViewItem.cs" />
@@ -58,8 +57,8 @@
     <Compile Include="TreeView\TypeTreeViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TPAv2\Model.csproj">
-      <Project>{93e4403f-1736-4100-9e2e-f717638e09ca}</Project>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>

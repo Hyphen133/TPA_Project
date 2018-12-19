@@ -1,4 +1,4 @@
-﻿using DataSerializer.SerializationModel;
+﻿using Data.SerializationModel;
 using Model.Model;
 
 namespace DataSerializer.SerializationMapper

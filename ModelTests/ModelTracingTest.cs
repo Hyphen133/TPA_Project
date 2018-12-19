@@ -3,7 +3,7 @@ using System.IO;
 using Model.Tracing;
 using Model.MEF;
 
-namespace Tests
+namespace ModelTests
 {
     [TestClass]
     public class ModelTracingTest

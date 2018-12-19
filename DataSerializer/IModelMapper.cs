@@ -1,9 +1,8 @@
-﻿using Model.Model;
-using System.ComponentModel.Composition;
+﻿using Data;
+using Model.Model;
 
 namespace DataSerializer
 {
-    //[InheritedExport(typeof(IModelMapper))]
     public interface IModelMapper
     {
         AssemblyMetadata MapToUpper(IAssemblyModel model);

@@ -1,6 +1,4 @@
 ﻿using Model.Model;
-using Model.Tracing;
-using System.ComponentModel.Composition;
 using System.Reflection;
 
 namespace Model.Services
