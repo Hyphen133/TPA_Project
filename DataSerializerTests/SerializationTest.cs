@@ -1,6 +1,5 @@
-﻿using System;
-using System.IO;
-using DataSerializer;
+﻿using System.IO;
+using Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model.MEF;
 using Model.Model;
