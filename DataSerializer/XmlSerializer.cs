@@ -1,13 +1,11 @@
 ﻿using DataSerializer.SerializationMapper;
-using Data.SerializationModel;
-using Model.Model;
-using Model.Tracing;
+using DataSerializer.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
-using Data;
+using DataTransferGraph.Model;
 
 namespace DataSerializer
 {
@@ -15,47 +13,39 @@ namespace DataSerializer
     public class XmlSerialize : ISerialize
     {
         [Import]
-        AssemblyMapper am;
+        SerializationAssemblyMapper am;
 
-        [Import]
-        static ITraceSource traceSource;
+        //[Import]
+        //static ITraceSource traceSource;
 
-        public static ITraceSource TraceSource { get => traceSource; set => traceSource = value; }
+        //public static ITraceSource TraceSource { get => traceSource; set => traceSource = value; }
 
-        public object Read(Type type, string path)
+        public DTGAssemblyModel Read(string path)
         {
-            SerializableAssemblyModel model;
-            List<Type> knownTypes = new List<Type>
-            {
-                typeof(SerializableTypeModel),
-                typeof(SerializableNamespaceModel),
-                typeof(SerializableMethodModel),
-                typeof(SerializableParameterModel),
-                typeof(SerializablePropertyModel)
-            };
+            XMLAssemblyModel model;
 
-            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(SerializableAssemblyModel), knownTypes);
+            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyModel));
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
-                model = (SerializableAssemblyModel)dataContractSerializer.ReadObject(fileStream);
+                model = (XMLAssemblyModel)dataContractSerializer.ReadObject(fileStream);
             }
-            return am.MapToUpper(model);
+            return am.MapToLower(model);
         }
 
-        public void Write(object obj, string path)
+        public void Write(DTGAssemblyModel assemblyModel, string path)
         {
-            SerializableAssemblyModel assembly = (SerializableAssemblyModel)am.MapToLower((AssemblyMetadata)obj);
+            XMLAssemblyModel assembly = am.MapToUpper(assemblyModel);
             List<Type> knownTypes = new List<Type>
             {
-                typeof(SerializableTypeModel),
-                typeof(SerializableNamespaceModel),
-                typeof(SerializableMethodModel),
-                typeof(SerializableParameterModel),
-                typeof(SerializablePropertyModel)
+                typeof(XMLTypeModel),
+                typeof(XMLNamespaceModel),
+                typeof(XMLMethodModel),
+                typeof(XMLParameterModel),
+                typeof(XMLPropertyModel)
             };
 
             DataContractSerializer dataContractSerializer =
-                new DataContractSerializer(typeof(SerializableAssemblyModel), knownTypes);
+                new DataContractSerializer(typeof(XMLAssemblyModel), knownTypes);
 
             try
             {
@@ -66,10 +56,10 @@ namespace DataSerializer
             }
             catch (Exception)
             {
-                if (traceSource != null)
-                {
-                    traceSource.TraceData(System.Diagnostics.TraceEventType.Error, 1, "Serialization failed");
-                }
+                //if (traceSource != null)
+                //{
+                //    traceSource.TraceData(System.Diagnostics.TraceEventType.Error, 1, "Serialization failed");
+                //}
             }
         }
     }

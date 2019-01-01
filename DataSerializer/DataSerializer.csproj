@@ -42,27 +42,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IModelMapper.cs" />
+    <Compile Include="ISerialize.cs" />
+    <Compile Include="Model\XMLAssemblyModel.cs" />
+    <Compile Include="Model\XMLMethodModel.cs" />
+    <Compile Include="Model\XMLNamespaceModel.cs" />
+    <Compile Include="Model\XMLParameterModel.cs" />
+    <Compile Include="Model\XMLPropertyModel.cs" />
+    <Compile Include="Model\XMLTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerializationMapper\AssemblyMapper.cs" />
-    <Compile Include="SerializationMapper\MethodMapper.cs" />
-    <Compile Include="SerializationMapper\NamespaceMapper.cs" />
-    <Compile Include="SerializationMapper\ParameterMapper.cs" />
-    <Compile Include="SerializationMapper\PropertyMapper.cs" />
-    <Compile Include="SerializationMapper\TypeMapper.cs" />
+    <Compile Include="SerializationMapper\SerializationAssemblyMapper.cs" />
+    <Compile Include="SerializationMapper\SerializationMethodMapper.cs" />
+    <Compile Include="SerializationMapper\SerializationNamespaceMapper.cs" />
+    <Compile Include="SerializationMapper\SerializationParameterMapper.cs" />
+    <Compile Include="SerializationMapper\SerializationPropertyMapper.cs" />
+    <Compile Include="SerializationMapper\SerializationTypeMapper.cs" />
     <Compile Include="XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{ccfbeb43-08df-443b-92a9-2049d98aa967}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
-      <Name>Model</Name>
+    <ProjectReference Include="..\DataTransferGraph\DataTransferGraph.csproj">
+      <Project>{d2916c3e-d067-4a2d-87fe-ded5bae0f994}</Project>
+      <Name>DataTransferGraph</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

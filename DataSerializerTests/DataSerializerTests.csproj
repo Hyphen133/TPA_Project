@@ -61,9 +61,9 @@
       <Project>{ac807132-f845-4430-9a26-71936ab5bbed}</Project>
       <Name>DataSerializer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{CCFBEB43-08DF-443B-92A9-2049D98AA967}</Project>
-      <Name>Data</Name>
+    <ProjectReference Include="..\DataTransferGraph\DataTransferGraph.csproj">
+      <Project>{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}</Project>
+      <Name>DataTransferGraph</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>

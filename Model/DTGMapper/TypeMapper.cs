@@ -1,26 +1,26 @@
-﻿using Data.SerializationModel;
+﻿using DataTransferGraph.Model;
 using Model.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataSerializer.SerializationMapper
+namespace Model.DTGMapper
 {
     public class TypeMapper
     {
-        public static Dictionary<string, SerializableTypeModel> XMLTypes = new Dictionary<string, SerializableTypeModel>();
+        public static Dictionary<string, DTGTypeModel> XMLTypes = new Dictionary<string, DTGTypeModel>();
         public static Dictionary<string, TypeMetadata> Types = new Dictionary<string, TypeMetadata>();
 
-        public static SerializableTypeModel EmitXMLType(TypeMetadata model)
+        public static DTGTypeModel EmitXMLType(TypeMetadata model)
         {
-            return new TypeMapper().MapToLower(model);
+            return new TypeMapper().MapToDTGModel(model);
         }
 
-        public static TypeMetadata EmitType(SerializableTypeModel model)
+        public static TypeMetadata EmitType(DTGTypeModel model)
         {
-            return new TypeMapper().MapToUpper(model);
+            return new TypeMapper().MapFromDTGModel(model);
         }
 
-        private void FillXMLType(TypeMetadata model, SerializableTypeModel typModel)
+        private void FillXMLType(TypeMetadata model, DTGTypeModel typModel)
         {
             typModel.Name = model.TypeName;
             //typModel.IsExternal = model.IsExternal;
@@ -38,12 +38,12 @@ namespace DataSerializer.SerializationMapper
             typModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(c => EmitXMLType(c)).ToList();
 
             //typModel.Fields = model.Fields?.Select(c => new ParameterMapper().MapToLower(c)).ToList();
-            typModel.Methods = model.Methods?.Select(m => new MethodMapper().MapToLower(m)).ToList();
-            typModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapToLower(c)).ToList();
-            typModel.Properties = model.Properties?.Select(c => new PropertyMapper().MapToLower(c)).ToList();
+            typModel.Methods = model.Methods?.Select(m => new MethodMapper().MapToDTGModel(m)).ToList();
+            typModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapToDTGModel(c)).ToList();
+            typModel.Properties = model.Properties?.Select(c => new PropertyMapper().MapToDTGModel(c)).ToList();
         }
 
-        private void FillType(SerializableTypeModel model, TypeMetadata typeModel)
+        private void FillType(DTGTypeModel model, TypeMetadata typeModel)
         {
             typeModel.TypeName = model.Name;
             //typeModel.IsExternal = model.IsExternal;
@@ -52,23 +52,23 @@ namespace DataSerializer.SerializationMapper
             //typeModel.Name = model.AssemblyName;
             //typeModel.Modifiers = model.Modifiers ?? new TypeModifiers();
 
-            typeModel.BaseType = EmitType((SerializableTypeModel)model.BaseType);
-            typeModel.DeclaringType = EmitType((SerializableTypeModel)model.DeclaringType);
+            typeModel.BaseType = EmitType(model.BaseType);
+            typeModel.DeclaringType = EmitType(model.DeclaringType);
 
-            typeModel.NestedTypes = model.NestedTypes?.Select(n => EmitType((SerializableTypeModel)n)).ToList();
-            typeModel.GenericArguments = model.GenericArguments?.Select(g => EmitType((SerializableTypeModel)g)).ToList();
-            typeModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(i => EmitType((SerializableTypeModel)i)).ToList();
+            typeModel.NestedTypes = model.NestedTypes?.Select(n => EmitType(n)).ToList();
+            typeModel.GenericArguments = model.GenericArguments?.Select(g => EmitType(g)).ToList();
+            typeModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(i => EmitType(i)).ToList();
 
             //typeModel.Parameters = model.Fields?.Select(g => new ParameterMapper().MapToUpper((SerializableParameterModel)g)).ToList();
-            typeModel.Methods = model.Methods?.Select(c => new MethodMapper().MapToUpper((SerializableMethodModel)c)).ToList();
-            typeModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapToUpper((SerializableMethodModel)c)).ToList();
-            typeModel.Properties = model.Properties?.Select(g => new PropertyMapper().MapToUpper((SerializablePropertyModel)g)).ToList();
+            typeModel.Methods = model.Methods?.Select(c => new MethodMapper().MapFromDTGModel(c)).ToList();
+            typeModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapFromDTGModel(c)).ToList();
+            typeModel.Properties = model.Properties?.Select(g => new PropertyMapper().MapFromDTGModel(g)).ToList();
         }
 
 
         #region IModelMapper
 
-        public TypeMetadata MapToUpper(SerializableTypeModel model)
+        public TypeMetadata MapFromDTGModel(DTGTypeModel model)
         {
             TypeMetadata typeMetadata = new TypeMetadata();
             if (model == null)
@@ -83,9 +83,9 @@ namespace DataSerializer.SerializationMapper
 
         }
 
-        public SerializableTypeModel MapToLower(TypeMetadata model)
+        public DTGTypeModel MapToDTGModel(TypeMetadata model)
         {
-            SerializableTypeModel typeModel = new SerializableTypeModel();
+            DTGTypeModel typeModel = new DTGTypeModel();
             if (model == null)
                 return null;
             if (!XMLTypes.ContainsKey(model.TypeName))

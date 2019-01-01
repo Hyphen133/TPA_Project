@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BCEFDE2-0DE5-4F39-B819-ECF87F0035D0}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ViewConsole</RootNamespace>
-    <AssemblyName>ViewConsole</AssemblyName>
+    <ProjectGuid>{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataTransferGraph</RootNamespace>
+    <AssemblyName>DataTransferGraph</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,23 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleAppClass.cs" />
-    <Compile Include="ConsoleBrowse.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Model\DTGAssemblyModel.cs" />
+    <Compile Include="Model\DTGMethodModel.cs" />
+    <Compile Include="Model\DTGNamespaceModel.cs" />
+    <Compile Include="Model\DTGParameterModel.cs" />
+    <Compile Include="Model\DTGPropertyModel.cs" />
+    <Compile Include="Model\DTGTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
-      <Project>{d3a41646-f523-4717-88a8-81d9046b351b}</Project>
-      <Name>ViewModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
