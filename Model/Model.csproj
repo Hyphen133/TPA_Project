@@ -80,7 +80,6 @@
     <Compile Include="Model\VirtualEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DataService.cs" />
-    <Compile Include="TMP.cs" />
     <Compile Include="Tracing\FileTraceSource.cs" />
     <Compile Include="Tracing\ITraceSource.cs" />
   </ItemGroup>
