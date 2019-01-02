@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Model.Model
+namespace Logic.Model
 {
     public class MethodMetadata
     {

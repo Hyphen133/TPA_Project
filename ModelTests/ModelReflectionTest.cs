@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model.Model;
-using Model.Services;
+using Logic.Model;
+using Logic.Services;
 
 namespace ModelTests
 {

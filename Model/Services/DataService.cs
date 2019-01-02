@@ -1,7 +1,7 @@
-﻿using Model.Model;
+﻿using Logic.Model;
 using System.Reflection;
 
-namespace Model.Services
+namespace Logic.Services
 {
     public class DataService
     {

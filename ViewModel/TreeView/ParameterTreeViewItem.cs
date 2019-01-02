@@ -1,4 +1,4 @@
-﻿using Model.Model;
+﻿using Logic.Model;
 
 namespace ViewModel.TreeView
 {

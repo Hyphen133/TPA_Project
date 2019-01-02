@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 
-namespace Model.Tracing
+namespace Logic.Tracing
 {
     [Export(typeof(ITraceSource))]
     public class FileTraceSource : ITraceSource

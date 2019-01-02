@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Model.Model
+namespace Logic.Model
 {
     public class HelperDictonaries
     {

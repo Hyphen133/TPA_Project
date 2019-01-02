@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using DataSerializer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model.DTGMapper;
-using Model.MEF;
-using Model.Model;
-using Model.Services;
+using Logic.DTGMapper;
+using Logic.MEF;
+using Logic.Model;
+using Logic.Services;
 
 namespace DataSerializerTests
 {

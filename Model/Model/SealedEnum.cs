@@ -1,4 +1,4 @@
-﻿namespace Model.Model
+﻿namespace Logic.Model
 {
     public enum SealedEnum
     {

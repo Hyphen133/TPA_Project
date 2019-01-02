@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Model.Model
+namespace Logic.Model
 {
     public class AssemblyMetadata
     {

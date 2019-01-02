@@ -1,7 +1,7 @@
 ﻿using DataTransferGraph.Model;
-using Model.Model;
+using Logic.Model;
 
-namespace Model.DTGMapper
+namespace Logic.DTGMapper
 {
     public class ParameterMapper
     {

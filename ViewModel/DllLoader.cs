@@ -1,13 +1,13 @@
-﻿using Model.Model;
+﻿using Logic.Model;
 using System.Collections.ObjectModel;
-using Model.Services;
+using Logic.Services;
 using ViewModel.TreeView;
 
 namespace ViewModel
 {
     public class DllLoader
     {
-        public static void LoadDLL(string PathVariable, ObservableCollection<BaseTreeViewItem> HierarchicalArea)
+        public static AssemblyMetadata LoadDLL(string PathVariable, ObservableCollection<BaseTreeViewItem> HierarchicalArea)
         {
             if (PathVariable.Substring(PathVariable.Length - 4) == ".dll")
             {
@@ -15,7 +15,9 @@ namespace ViewModel
                 AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(PathVariable);
                 BaseTreeViewItem rootItem = new AssemblyTreeViewItem(assemblyMetadata);
                 HierarchicalArea.Add(rootItem);
+                return assemblyMetadata;
             }
+            return null;
         }
     }
 }

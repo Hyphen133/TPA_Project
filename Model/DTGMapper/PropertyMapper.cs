@@ -1,7 +1,7 @@
 ﻿using DataTransferGraph.Model;
-using Model.Model;
+using Logic.Model;
 
-namespace Model.DTGMapper
+namespace Logic.DTGMapper
 {
     public class PropertyMapper
     {
@@ -16,10 +16,12 @@ namespace Model.DTGMapper
 
         public PropertyMetadata MapFromDTGModel(DTGPropertyModel model)
         {
-            PropertyMetadata propertyMetadata = new PropertyMetadata();
-            propertyMetadata.Name = model.Name;
+            PropertyMetadata propertyMetadata = new PropertyMetadata
+            {
+                Name = model.Name
+            };
             if (model.Type != null)
-                propertyMetadata.TypeMetadata = TypeMapper.EmitType((DTGTypeModel)model.Type);
+                propertyMetadata.TypeMetadata = TypeMapper.EmitType(model.Type);
             return propertyMetadata;
         }
     }

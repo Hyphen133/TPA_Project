@@ -1,13 +1,13 @@
 ﻿using DataTransferGraph.Model;
-using Model.Model;
+using Logic.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model.DTGMapper
+namespace Logic.DTGMapper
 {
     public class TypeMapper
     {
-        public static Dictionary<string, DTGTypeModel> XMLTypes = new Dictionary<string, DTGTypeModel>();
+        public static Dictionary<string, DTGTypeModel> DTGTypes = new Dictionary<string, DTGTypeModel>();
         public static Dictionary<string, TypeMetadata> Types = new Dictionary<string, TypeMetadata>();
 
         public static DTGTypeModel EmitXMLType(TypeMetadata model)
@@ -20,7 +20,7 @@ namespace Model.DTGMapper
             return new TypeMapper().MapFromDTGModel(model);
         }
 
-        private void FillXMLType(TypeMetadata model, DTGTypeModel typModel)
+        private void FillDTGType(TypeMetadata model, DTGTypeModel typModel)
         {
             typModel.Name = model.TypeName;
             //typModel.IsExternal = model.IsExternal;
@@ -59,7 +59,7 @@ namespace Model.DTGMapper
             typeModel.GenericArguments = model.GenericArguments?.Select(g => EmitType(g)).ToList();
             typeModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(i => EmitType(i)).ToList();
 
-            //typeModel.Parameters = model.Fields?.Select(g => new ParameterMapper().MapToUpper((SerializableParameterModel)g)).ToList();
+            //typeModel.Parameters = model.Fields?.Select(g => new ParameterMapper().MapFromDTGModel((DTGParameterModel)g)).ToList();
             typeModel.Methods = model.Methods?.Select(c => new MethodMapper().MapFromDTGModel(c)).ToList();
             typeModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapFromDTGModel(c)).ToList();
             typeModel.Properties = model.Properties?.Select(g => new PropertyMapper().MapFromDTGModel(g)).ToList();
@@ -71,8 +71,8 @@ namespace Model.DTGMapper
         public TypeMetadata MapFromDTGModel(DTGTypeModel model)
         {
             TypeMetadata typeMetadata = new TypeMetadata();
-            if (model == null)
-                return null;
+            //if (model == null)
+                //return null;
 
             if (!Types.ContainsKey(model.Name))
             {
@@ -86,14 +86,14 @@ namespace Model.DTGMapper
         public DTGTypeModel MapToDTGModel(TypeMetadata model)
         {
             DTGTypeModel typeModel = new DTGTypeModel();
-            if (model == null)
-                return null;
-            if (!XMLTypes.ContainsKey(model.TypeName))
+            //if (model == null)
+                //return null;
+            if (!DTGTypes.ContainsKey(model.TypeName))
             {
-                XMLTypes.Add(model.TypeName, typeModel);
-                FillXMLType(model, typeModel);
+                DTGTypes.Add(model.TypeName, typeModel);
+                FillDTGType(model, typeModel);
             }
-            return XMLTypes[model.TypeName];
+            return DTGTypes[model.TypeName];
         }
 
         #endregion

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Model.Tracing;
-using Model.MEF;
+using Logic.Tracing;
+using Logic.MEF;
 
 namespace ModelTests
 {

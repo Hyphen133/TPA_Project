@@ -7,8 +7,8 @@
     <ProjectGuid>{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
+    <RootNamespace>Logic</RootNamespace>
+    <AssemblyName>Logic</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -79,6 +79,7 @@
     <Compile Include="Model\TypeMetadata.cs" />
     <Compile Include="Model\VirtualEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Tracing\FileTraceSource.cs" />
     <Compile Include="Tracing\ITraceSource.cs" />

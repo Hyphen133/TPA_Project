@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.Composition.Hosting;
 
-namespace Model.MEF
+namespace Logic.MEF
 {
     public class Mef
     {

@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Linq;
 
-namespace Model.Model
+namespace Logic.Model
 {
     public class PropertyMetadata
     {

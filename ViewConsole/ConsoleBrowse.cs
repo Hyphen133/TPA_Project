@@ -9,7 +9,13 @@ namespace ViewConsole
 {
     class ConsoleBrowse : IBrowse
     {
-        public string GetPath()
+        public string GetFilePath()
+        {
+            Console.WriteLine("Plese enter path to dll library.");
+            return Console.ReadLine();
+        }
+
+        public string GetFolderPath()
         {
             Console.WriteLine("Plese enter path to dll library.");
             return Console.ReadLine();

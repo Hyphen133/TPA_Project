@@ -5,6 +5,8 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
+using Logic;
+using Logic.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -21,6 +23,10 @@ namespace ViewModel
 
         public ICommand Click_Browse { get; }
         public ICommand Click_Button { get; }
+        public ICommand Click_Serialize { get; }
+        public ICommand Click_Deserialize { get; }
+
+        private AssemblyMetadata assembly;
 
         #region constructors
         public MyViewModel(IBrowse browse)
@@ -29,6 +35,8 @@ namespace ViewModel
             HierarchicalAreas = new ObservableCollection<BaseTreeViewItem>();
             Click_Button = new RelayCommand(LoadDLL);
             Click_Browse = new RelayCommand(Browse);
+            Click_Serialize = new RelayCommand(Serialize);
+            Click_Deserialize = new RelayCommand(Deserialize);
         }
         #endregion
 
@@ -49,12 +57,26 @@ namespace ViewModel
         private IBrowse browse;
         private void LoadDLL()
         {
-            DllLoader.LoadDLL(PathVariable, HierarchicalAreas);
+            assembly = DllLoader.LoadDLL(PathVariable, HierarchicalAreas);
         }
 
         private void Browse()
         {
-            PathVariable = browse.GetPath();
+            PathVariable = browse.GetFilePath();
+        }
+
+        private void Serialize()
+        {
+            string path = browse.GetFolderPath();
+            Serialization.Serialize(assembly, path);
+        }
+
+        private void Deserialize()
+        {
+            string path = browse.GetFilePath();
+            BaseTreeViewItem rootItem = new AssemblyTreeViewItem(Serialization.Deserialize(path));
+            HierarchicalAreas.Clear();
+            HierarchicalAreas.Add(rootItem);
         }
         #endregion
     }

@@ -1,8 +1,8 @@
 ﻿using DataTransferGraph.Model;
-using Model.Model;
+using Logic.Model;
 using System.Linq;
 
-namespace Model.DTGMapper
+namespace Logic.DTGMapper
 {
     public class NamespaceMapper
     {

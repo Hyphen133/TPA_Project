@@ -7,8 +7,8 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationTypeMapper
     {
-        public static Dictionary<string, DTGTypeModel> XMLTypes = new Dictionary<string, DTGTypeModel>();
-        public static Dictionary<string, XMLTypeModel> Types = new Dictionary<string, XMLTypeModel>();
+        public static Dictionary<string, DTGTypeModel> DTGTypes = new Dictionary<string, DTGTypeModel>();
+        public static Dictionary<string, XMLTypeModel> XMLTypes = new Dictionary<string, XMLTypeModel>();
 
         public static DTGTypeModel EmitXMLType(XMLTypeModel model)
         {
@@ -20,7 +20,7 @@ namespace DataSerializer.SerializationMapper
             return new SerializationTypeMapper().MapToUpper(model);
         }
 
-        private void FillXMLType(XMLTypeModel model, DTGTypeModel typModel)
+        private void FillDTGType(XMLTypeModel model, DTGTypeModel typModel)
         {
             typModel.Name = model.Name;
             //typModel.IsExternal = model.IsExternal;
@@ -43,13 +43,13 @@ namespace DataSerializer.SerializationMapper
             typModel.Properties = model.Properties?.Select(c => new SerializationPropertyMapper().MapToLower(c)).ToList();
         }
 
-        private void FillType(DTGTypeModel model, XMLTypeModel typeModel)
+        private void FillXMLType(DTGTypeModel model, XMLTypeModel typeModel)
         {
             typeModel.Name = model.Name;
-            //typeModel.IsExternal = model.IsExternal;
-            //typeModel.IsGeneric = model.IsGeneric;
+            typeModel.IsExternal = model.IsExternal;
+            typeModel.IsGeneric = model.IsGeneric;
             //typeModel.Type = model.Type;
-            //typeModel.Name = model.AssemblyName;
+            typeModel.Name = model.AssemblyName;
             //typeModel.Modifiers = model.Modifiers ?? new TypeModifiers();
 
             typeModel.BaseType = EmitType(model.BaseType);
@@ -65,21 +65,18 @@ namespace DataSerializer.SerializationMapper
             typeModel.Properties = model.Properties?.Select(g => new SerializationPropertyMapper().MapToUpper(g)).ToList();
         }
 
-
-        #region IModelMapper
-
         public XMLTypeModel MapToUpper(DTGTypeModel model)
         {
             XMLTypeModel typeMetadata = new XMLTypeModel();
             if (model == null)
                 return null;
 
-            if (!Types.ContainsKey(model.Name))
+            if (!XMLTypes.ContainsKey(model.Name))
             {
-                Types.Add(model.Name, typeMetadata);
-                FillType(model, typeMetadata);
+                XMLTypes.Add(model.Name, typeMetadata);
+                FillXMLType(model, typeMetadata);
             }
-            return Types[model.Name];
+            return XMLTypes[model.Name];
 
         }
 
@@ -88,14 +85,12 @@ namespace DataSerializer.SerializationMapper
             DTGTypeModel typeModel = new DTGTypeModel();
             if (model == null)
                 return null;
-            if (!XMLTypes.ContainsKey(model.Name))
+            if (!DTGTypes.ContainsKey(model.Name))
             {
-                XMLTypes.Add(model.Name, typeModel);
-                FillXMLType(model, typeModel);
+                DTGTypes.Add(model.Name, typeModel);
+                FillDTGType(model, typeModel);
             }
-            return XMLTypes[model.Name];
+            return DTGTypes[model.Name];
         }
-
-        #endregion
     }
 }

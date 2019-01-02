@@ -1,9 +1,9 @@
 ﻿using DataTransferGraph.Model;
-using Model.Model;
+using Logic.Model;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace Model.DTGMapper
+namespace Logic.DTGMapper
 {
     [Export]
     public class AssemblyMapper

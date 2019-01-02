@@ -2,6 +2,7 @@
 {
     public interface IBrowse
     {
-        string GetPath();
+        string GetFilePath();
+        string GetFolderPath();
     }
 }

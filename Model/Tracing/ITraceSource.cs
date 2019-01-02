@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Tracing
+namespace Logic.Tracing
 
 {
     public interface ITraceSource
