@@ -70,6 +70,7 @@ namespace Logic.DTGMapper
         }
         internal static IEnumerable<DTG2TypeMetadata> EmitGenericArguments(IEnumerable<TypeMetadata> arguments)
         {
+            if (arguments == null) return null;
             return from TypeMetadata _argument in arguments select EmitReference(_argument);
         }
 

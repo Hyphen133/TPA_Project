@@ -18,6 +18,7 @@ namespace DataSerializer.SerializationMapper
                 Namespaces = from DTG2NamespaceMetadata _namespace in assemblyMetadata.Namespaces
                              select SerializationNamespaceMapper.MapToXML(_namespace)
             };
+            assemblyModel.SetValues();
             return assemblyModel;
         }
 

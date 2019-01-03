@@ -12,15 +12,15 @@ namespace DataSerializer.SerializationMapper
             XMLTypeMetadata xmlTypeMetadata = new XMLTypeMetadata
             {
                 TypeName = typeMetadata.TypeName,
-                DeclaringType = EmitDeclaringTypeXML(typeMetadata.DeclaringType),
-                Constructors = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Constructors),
-                Methods = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Methods),
-                NestedTypes = EmitNestedTypesXML(typeMetadata.NestedTypes),
-                ImplementedInterfaces = EmitImplementsXML(typeMetadata.ImplementedInterfaces),
-                GenericArguments = CheckGenericArgumentsXML(typeMetadata),
-                BaseType = EmitExtendsXML(typeMetadata.BaseType),
-                Properties = SerializationPropertyMapper.EmitPropertiesXML(typeMetadata.Properties),
-                IsGenericType = typeMetadata.IsGenericType
+                //DeclaringType = EmitDeclaringTypeXML(typeMetadata.DeclaringType),
+                //Constructors = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Constructors),
+                //Methods = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Methods),
+                //NestedTypes = EmitNestedTypesXML(typeMetadata.NestedTypes),
+                //ImplementedInterfaces = EmitImplementsXML(typeMetadata.ImplementedInterfaces),
+                //GenericArguments = CheckGenericArgumentsXML(typeMetadata),
+                //BaseType = EmitExtendsXML(typeMetadata.BaseType),
+                //Properties = SerializationPropertyMapper.EmitPropertiesXML(typeMetadata.Properties),
+                //IsGenericType = typeMetadata.IsGenericType
             };
 
             return xmlTypeMetadata;
@@ -70,6 +70,7 @@ namespace DataSerializer.SerializationMapper
         }
         internal static IEnumerable<XMLTypeMetadata> EmitGenericArgumentsXML(IEnumerable<DTG2TypeMetadata> arguments)
         {
+            if (arguments == null) return null;
             return from DTG2TypeMetadata _argument in arguments select EmitReferenceXML(_argument);
         }
 
