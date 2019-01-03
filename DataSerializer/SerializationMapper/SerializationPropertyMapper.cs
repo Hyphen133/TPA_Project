@@ -7,20 +7,38 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationPropertyMapper
     {
-        public static XMLPropertyMetadata MapToXMLModel(DTG2PropertyMetadata propertyMetadata)
+        public static XMLPropertyMetadata MapToXML(DTG2PropertyMetadata propertyMetadata)
         {
             XMLPropertyMetadata propertyModel = new XMLPropertyMetadata
             {
                 Name = propertyMetadata.Name,
-                TypeMetadata = SerializationTypeMapper.EmitReference(propertyMetadata.TypeMetadata)
+                TypeMetadata = SerializationTypeMapper.EmitReferenceXML(propertyMetadata.TypeMetadata)
             };
             return propertyModel;
         }
 
-        internal static IEnumerable<XMLPropertyMetadata> EmitProperties(IEnumerable<DTG2PropertyMetadata> props)
+        internal static IEnumerable<XMLPropertyMetadata> EmitPropertiesXML(IEnumerable<DTG2PropertyMetadata> props)
         {
             return from prop in props
-                   select MapToXMLModel(prop);
+                   select MapToXML(prop);
+        }
+
+
+        public static DTG2PropertyMetadata MapToDTG(XMLPropertyMetadata propertyMetadata)
+        {
+            DTG2PropertyMetadata propertyModel = new DTG2PropertyMetadata
+            {
+                Name = propertyMetadata.Name,
+                TypeMetadata = SerializationTypeMapper.EmitReferenceDTG(propertyMetadata.TypeMetadata)
+            };
+            return propertyModel;
+        }
+
+        internal static IEnumerable<DTG2PropertyMetadata> EmitPropertiesDTG(IEnumerable<XMLPropertyMetadata> props)
+        {
+            if (props == null) return null;
+            return from prop in props
+                   select MapToDTG(prop);
         }
     }
 }

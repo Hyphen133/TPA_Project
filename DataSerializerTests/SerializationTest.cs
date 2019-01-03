@@ -5,6 +5,7 @@ using Logic.DTGMapper;
 using Logic.MEF;
 using Logic.Model;
 using Logic.Services;
+using System;
 
 namespace DataSerializerTests
 {
@@ -32,12 +33,14 @@ namespace DataSerializerTests
             string xmlName = "\\test.xml";
             string fullFilePath = path + filename;
             string fullXmlPath = path + xmlName;
+            Console.WriteLine(path);
             AssemblyMetadata assemblyMetaData = DataService.LoadAssembly(fullFilePath);
             ISerialize xmlSerialize = Mef.Container.GetExportedValue<ISerialize>();
-            AssemblyMapper mp = new AssemblyMapper();
-            xmlSerialize.Write(mp.MapToDTGModel(assemblyMetaData), fullXmlPath);
-            AssemblyMetadata assemblyMetadata2 = mp.MapFromDTGModel(xmlSerialize.Read(fullXmlPath));
-            //Assert.AreEqual(assemblyMetaData.Name, assemblyMetadata2.Name);
+            xmlSerialize.Write(AssemblyMapper.MapToDTGModel(assemblyMetaData), fullXmlPath);
+            AssemblyMetadata assemblyMetadata2 = AssemblyMapper.MapToModel(xmlSerialize.Read(fullXmlPath));
+            Console.WriteLine(assemblyMetaData.Name);
+            Console.WriteLine(assemblyMetadata2.Name);
+            Assert.AreEqual(assemblyMetaData.Name, assemblyMetadata2.Name);
         }
     }
 }

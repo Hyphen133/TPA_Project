@@ -10,13 +10,11 @@ namespace Logic.DTGMapper
         {
             var m_NamespaceName = namespaceMetadata.NamespaceName;
             //May be even more beneficial to create all types from all namespaces beforehand
-            
             foreach (var type in namespaceMetadata.Types)
             {
-                HelperDictonaries.TypeDictonary[type] = TypeMapper.MapToDTGModel(type);
+                HelperDictonaries.TypeDictonaryForDTG[type] = TypeMapper.MapToDTGModel(type);
             }
-            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select TypeMapper.fillType(HelperDictonaries.TypeDictonary[type], type);
-            
+            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select TypeMapper.FillTypeDTG(HelperDictonaries.TypeDictonaryForDTG[type], type);
             DTG2NamespaceMetadata namespaceModel = new DTG2NamespaceMetadata {
                 NamespaceName = m_NamespaceName,
                 Types = m_Types
@@ -25,16 +23,22 @@ namespace Logic.DTGMapper
             return namespaceModel;
         }
 
-        /*public NamespaceMetadata MapFromDTGModel(DTGNamespaceModel model)
+        public static NamespaceMetadata MapToModel(DTG2NamespaceMetadata namespaceMetadata)
         {
-            NamespaceMetadata namespaceMetadata = new NamespaceMetadata
+            var m_NamespaceName = namespaceMetadata.NamespaceName;
+            //May be even more beneficial to create all types from all namespaces beforehand
+            foreach (var type in namespaceMetadata.Types)
             {
-                NamespaceName = model.NamespaceName
+                HelperDictonaries.TypeDictonaryForModel[type] = TypeMapper.MapToModel(type);
+            }
+            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select TypeMapper.FillTypeModel(HelperDictonaries.TypeDictonaryForModel[type], type);
+            NamespaceMetadata namespaceModel = new NamespaceMetadata
+            {
+                NamespaceName = m_NamespaceName,
+                Types = m_Types
             };
-            if (model.Types != null)
-                namespaceMetadata.Types = model.Types.Select(n => TypeMapper.EmitType((DTGTypeModel)n)).ToList();
-            return namespaceMetadata;
-        }*/
 
+            return namespaceModel;
+        }
     }
 }

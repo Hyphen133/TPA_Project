@@ -6,12 +6,16 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
 using DataTransferGraph2.Model;
+using System.Linq;
 
 namespace DataSerializer
 {
     [Export(typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
+        [Import]
+        SerializationAssemblyMapper am;
+
         //[Import]
         //static ITraceSource traceSource;
 
@@ -26,13 +30,14 @@ namespace DataSerializer
             {
                 model = (XMLAssemblyMetadata)dataContractSerializer.ReadObject(fileStream);
             }
-            //return Serial.MapToXMLModel(model);
-            return null;
+            var c = SerializationAssemblyMapper.MapToDTG(model);
+            var p = c.Namespaces.ToList();
+            return c;
         }
 
         public void Write(DTG2AssemblyMetadata assemblyModel, string path)
         {
-            XMLAssemblyMetadata assembly = SerializationAssemblyMapper.MapToXMLModel(assemblyModel);
+            XMLAssemblyMetadata assembly = SerializationAssemblyMapper.MapToXML(assemblyModel);
             List<Type> knownTypes = new List<Type>
             {
                 typeof(XMLTypeMetadata),

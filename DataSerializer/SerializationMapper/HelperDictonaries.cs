@@ -6,13 +6,18 @@ namespace DataSerializer.SerializationMapper
 {
     public class HelperDictonaries
     {
-        private static Dictionary<DTG2TypeMetadata, XMLTypeMetadata> typeDictonary = new Dictionary<DTG2TypeMetadata, XMLTypeMetadata>();
+        private static Dictionary<DTG2TypeMetadata, XMLTypeMetadata> typeDictonaryToXML = new Dictionary<DTG2TypeMetadata, XMLTypeMetadata>();
+        public static Dictionary<DTG2TypeMetadata, XMLTypeMetadata> TypeDictonaryToXML { get => typeDictonaryToXML; set => typeDictonaryToXML = value; }
 
-        public static Dictionary<DTG2TypeMetadata, XMLTypeMetadata> TypeDictonary { get => typeDictonary; set => typeDictonary = value; }
+        private static Dictionary<XMLTypeMetadata, DTG2TypeMetadata> typeDictonaryToDTG = new Dictionary<XMLTypeMetadata, DTG2TypeMetadata>();
+        public static Dictionary<XMLTypeMetadata, DTG2TypeMetadata> TypeDictonaryToDTG { get => typeDictonaryToDTG; set => typeDictonaryToDTG = value; }
+
+
 
         public static void ResetDictonaries()
         {
-            typeDictonary.Clear();
+            typeDictonaryToXML.Clear();
+            typeDictonaryToDTG.Clear();
         }
     }
 }

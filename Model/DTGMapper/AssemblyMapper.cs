@@ -20,5 +20,18 @@ namespace Logic.DTGMapper
             };
             return assemblyModel;
         }
+
+        public static AssemblyMetadata MapToModel(DTG2AssemblyMetadata assemblyMetadata)
+        {
+            HelperDictonaries.ResetDictonaries();
+
+            AssemblyMetadata assemblyModel = new AssemblyMetadata
+            {
+                Name = assemblyMetadata.Name,
+                Namespaces = from DTG2NamespaceMetadata _namespace in assemblyMetadata.Namespaces
+                             select NamespaceMapper.MapToModel(_namespace)
+            };
+            return assemblyModel;
+        }
     }
 }

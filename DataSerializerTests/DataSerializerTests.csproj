@@ -61,6 +61,10 @@
       <Project>{ac807132-f845-4430-9a26-71936ab5bbed}</Project>
       <Name>DataSerializer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataTransferGraph2\DataTransferGraph2.csproj">
+      <Project>{EACA7FAD-F20C-441F-995D-E8DE86E97215}</Project>
+      <Name>DataTransferGraph2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Logic.csproj">
       <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Logic</Name>

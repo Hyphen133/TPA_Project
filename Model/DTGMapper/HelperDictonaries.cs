@@ -6,22 +6,17 @@ namespace Logic.DTGMapper
 {
     public class HelperDictonaries
     {
-        private static Dictionary<TypeMetadata, DTG2TypeMetadata> typeDictonary = new Dictionary<TypeMetadata, DTG2TypeMetadata>();
+        private static Dictionary<TypeMetadata, DTG2TypeMetadata> typeDictonaryForDTG = new Dictionary<TypeMetadata, DTG2TypeMetadata>();
 
-        public static Dictionary<TypeMetadata, DTG2TypeMetadata> TypeDictonary { get => typeDictonary; set => typeDictonary = value; }
+        public static Dictionary<TypeMetadata, DTG2TypeMetadata> TypeDictonaryForDTG { get => typeDictonaryForDTG; set => typeDictonaryForDTG = value; }
+
+        private static Dictionary<DTG2TypeMetadata, TypeMetadata> typeDictonaryForModel = new Dictionary<DTG2TypeMetadata, TypeMetadata>();
+
+        public static Dictionary<DTG2TypeMetadata, TypeMetadata> TypeDictonaryForModel { get => typeDictonaryForModel; set => typeDictonaryForModel = value; }
 
         public static void ResetDictonaries()
         {
-            typeDictonary.Clear();
-        }
-
-        public static DTG2TypeMetadata CreateTypeMetadata(TypeMetadata type)
-        {
-            if (!typeDictonary.ContainsKey(type))
-            {
-                TypeDictonary[type] = TypeMapper.MapToDTGModel(type);
-            }
-            return TypeDictonary[type];
+            typeDictonaryForDTG.Clear();
         }
     }
 }
