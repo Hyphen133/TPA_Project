@@ -1,43 +1,48 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DataSerializer.SerializationMapper
 {
     public class SerializationMethodMapper
     {
-        public XMLMethodModel MapToUpper(DTGMethodModel model)
+        public static XMLMethodMetadata MapToXMLModel(DTG2MethodMetadata methodMetadata)
         {
-            XMLMethodModel methodMetadata = new XMLMethodModel
+            XMLMethodMetadata methodModel = new XMLMethodMetadata
             {
-                Name = model.Name,
-                Extension = model.Extension
+                Name = methodMetadata.Name,
+                GenericArguments = GetGenericArguments(methodMetadata),
+                ReturnType = EmitReturnType(methodMetadata),
+                Parameters = EmitParameters(methodMetadata.Parameters).ToList(),
             };
-            if (model.GenericArguments != null)
-                methodMetadata.GenericArguments = model.GenericArguments.Select(g => SerializationTypeMapper.EmitType(g)).ToList();
-            //methodMetadata.Modifiers = model.Modifiers;
-            if (model.Parameters != null)
-                methodMetadata.Parameters = model.Parameters.Select(p => new SerializationParameterMapper().MapToUpper(p)).ToList();
-            if (model.ReturnType != null)
-                methodMetadata.ReturnType = SerializationTypeMapper.EmitType(model.ReturnType);
-            return methodMetadata;
+            return methodModel;
         }
 
-        public DTGMethodModel MapToLower(XMLMethodModel model)
+        private static List<XMLTypeMetadata> GetGenericArguments(DTG2MethodMetadata methodMetadata)
         {
-            DTGMethodModel methodModel = new DTGMethodModel
-            {
-                Name = model.Name,
-                Extension = model.Extension
-            };
-            if (model.GenericArguments != null)
-                methodModel.GenericArguments = model.GenericArguments.Select(t => SerializationTypeMapper.EmitXMLType(t)).ToList();
-            //methodModel.Modifiers = model.Modifiers;
-            if (model.Parameters != null)
-                methodModel.Parameters = model.Parameters.Select(p => new SerializationParameterMapper().MapToLower(p)).ToList();
-            if (model.ReturnType != null)
-                methodModel.ReturnType = SerializationTypeMapper.EmitXMLType(model.ReturnType);
-            return methodModel;
+            if (methodMetadata.GenericArguments == null)
+                return null;
+            return SerializationTypeMapper.EmitGenericArguments(methodMetadata.GenericArguments).ToList();
+        }
+
+        internal static IEnumerable<XMLMethodMetadata> EmitMethods(IEnumerable<DTG2MethodMetadata> methods)
+        {
+            return from DTG2MethodMetadata _currentMethod in methods
+                   select MapToXMLModel(_currentMethod);
+        }
+
+        private static IEnumerable<XMLParameterMetadata> EmitParameters(IEnumerable<DTG2ParameterMetadata> parms)
+        {
+            return from parm in parms
+                   select SerializationParameterMapper.MapToXMLModel(parm);
+        }
+        private static XMLTypeMetadata EmitReturnType(DTG2MethodMetadata method)
+        {
+            DTG2MethodMetadata methodInfo = method as DTG2MethodMetadata;
+            if (methodInfo == null)
+                return null;
+            return SerializationTypeMapper.EmitReference(methodInfo.ReturnType);
         }
     }
 }

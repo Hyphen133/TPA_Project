@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelTests", "ViewModel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Model\Logic.csproj", "{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferGraph", "DataTransferGraph\DataTransferGraph.csproj", "{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferGraph2", "DataTransferGraph2\DataTransferGraph2.csproj", "{EACA7FAD-F20C-441F-995D-E8DE86E97215}"
 EndProject
 Global
@@ -61,10 +59,6 @@ Global
 		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2916C3E-D067-4A2D-87FE-DED5BAE0F994}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EACA7FAD-F20C-441F-995D-E8DE86E97215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EACA7FAD-F20C-441F-995D-E8DE86E97215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EACA7FAD-F20C-441F-995D-E8DE86E97215}.Release|Any CPU.ActiveCfg = Release|Any CPU

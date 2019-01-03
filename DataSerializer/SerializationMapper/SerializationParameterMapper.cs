@@ -1,29 +1,17 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
 
 namespace DataSerializer.SerializationMapper
 {
     public class SerializationParameterMapper
     {
-        public XMLParameterModel MapToUpper(DTGParameterModel model)
+        public static XMLParameterMetadata MapToXMLModel(DTG2ParameterMetadata parameterMetadata)
         {
-            XMLParameterModel parameterMetadata = new XMLParameterModel
+            XMLParameterMetadata parameterModel = new XMLParameterMetadata
             {
-                Name = model.Name
+                Name = parameterMetadata.Name,
+                TypeMetadata = SerializationTypeMapper.EmitReference(parameterMetadata.TypeMetadata),
             };
-            if (model.Type != null)
-                parameterMetadata.Type = SerializationTypeMapper.EmitType(model.Type);
-            return parameterMetadata;
-        }
-
-        public DTGParameterModel MapToLower(XMLParameterModel model)
-        {
-            DTGParameterModel parameterModel = new DTGParameterModel
-            {
-                Name = model.Name
-            };
-            if (model.Type != null)
-                parameterModel.Type = SerializationTypeMapper.EmitXMLType(model.Type);
             return parameterModel;
         }
     }

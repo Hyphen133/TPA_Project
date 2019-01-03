@@ -1,30 +1,26 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
 using System.Linq;
 
 namespace DataSerializer.SerializationMapper
 {
     public class SerializationNamespaceMapper
     {
-        public XMLNamespaceModel MapToUpper(DTGNamespaceModel model)
+        public static XMLNamespaceMetadata MapToDTGModel(DTG2NamespaceMetadata namespaceMetadata)
         {
-            XMLNamespaceModel namespaceMetadata = new XMLNamespaceModel
+            var m_NamespaceName = namespaceMetadata.NamespaceName;
+            //May be even more beneficial to create all types from all namespaces beforehand
+            foreach (var type in namespaceMetadata.Types)
             {
-                NamespaceName = model.NamespaceName
+                HelperDictonaries.TypeDictonary[type] = SerializationTypeMapper.MapToXMLModel(type);
+            }
+            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select SerializationTypeMapper.fillType(HelperDictonaries.TypeDictonary[type], type);
+            XMLNamespaceMetadata namespaceModel = new XMLNamespaceMetadata
+            {
+                NamespaceName = m_NamespaceName,
+                Types = m_Types.ToList()
             };
-            if (model.Types != null)
-                namespaceMetadata.Types = model.Types.Select(n => SerializationTypeMapper.EmitType(n)).ToList();
-            return namespaceMetadata;
-        }
 
-        public DTGNamespaceModel MapToLower(XMLNamespaceModel model)
-        {
-            DTGNamespaceModel namespaceModel = new DTGNamespaceModel
-            {
-                NamespaceName = model.NamespaceName
-            };
-            if (model.Types != null)
-                namespaceModel.Types = model.Types.Select(t => new SerializationTypeMapper().MapToLower(t)).ToList();
             return namespaceModel;
         }
     }

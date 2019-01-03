@@ -1,5 +1,5 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,93 +7,84 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationTypeMapper
     {
-        public static Dictionary<string, DTGTypeModel> DTGTypes = new Dictionary<string, DTGTypeModel>();
-        public static Dictionary<string, XMLTypeModel> XMLTypes = new Dictionary<string, XMLTypeModel>();
-
-        public static DTGTypeModel EmitXMLType(XMLTypeModel model)
+        public static XMLTypeMetadata MapToXMLModel(DTG2TypeMetadata typeMetadata)
         {
-            return new SerializationTypeMapper().MapToLower(model);
-        }
-
-        public static XMLTypeModel EmitType(DTGTypeModel model)
-        {
-            return new SerializationTypeMapper().MapToUpper(model);
-        }
-
-        private void FillDTGType(XMLTypeModel xmlModel, DTGTypeModel dtgModel)
-        {
-            dtgModel.Name = xmlModel.Name;
-            dtgModel.IsExternal = xmlModel.IsExternal;
-            dtgModel.IsGeneric = xmlModel.IsGeneric;
-            //typModel.Type = model.Type;
-            dtgModel.AssemblyName = xmlModel.Name;
-            //new Tuple4<AccessLevel, SealedEnum, AbstractEnum, StaticEnum>
-            //typModel.Modifiers = model.Modifiers ?? new TypeModifiers();
-
-            dtgModel.BaseType = EmitXMLType(xmlModel.BaseType);
-            dtgModel.DeclaringType = EmitXMLType(xmlModel.DeclaringType);
-
-            dtgModel.NestedTypes = xmlModel.NestedTypes?.Select(c => EmitXMLType(c)).ToList();
-            dtgModel.GenericArguments = xmlModel.GenericArguments?.Select(c => EmitXMLType(c)).ToList();
-            dtgModel.ImplementedInterfaces = xmlModel.ImplementedInterfaces?.Select(c => EmitXMLType(c)).ToList();
-
-            dtgModel.Fields = xmlModel.Fields?.Select(c => new SerializationParameterMapper().MapToLower(c)).ToList();
-            dtgModel.Methods = xmlModel.Methods?.Select(m => new SerializationMethodMapper().MapToLower(m)).ToList();
-            dtgModel.Constructors = xmlModel.Constructors?.Select(c => new SerializationMethodMapper().MapToLower(c)).ToList();
-            dtgModel.Properties = xmlModel.Properties?.Select(c => new SerializationPropertyMapper().MapToLower(c)).ToList();
-        }
-
-        private void FillXMLType(DTGTypeModel dtgModel, XMLTypeModel xmlModel)
-        {
-            if(dtgModel.Name == "ServiceB" || dtgModel.Name == "ServiceA" || dtgModel.Name == "ServiceC")
+            XMLTypeMetadata dTG2TypeMetadata = new XMLTypeMetadata
             {
-                string g = null;
+                TypeName = typeMetadata.TypeName,
+                DeclaringType = EmitDeclaringType(typeMetadata.DeclaringType),
+                Constructors = SerializationMethodMapper.EmitMethods(typeMetadata.Constructors).ToList(),
+                Methods = SerializationMethodMapper.EmitMethods(typeMetadata.Methods).ToList(),
+                NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes).ToList(),
+                ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces).ToList(),
+                IsGenericType = typeMetadata.IsGenericType,
+                BaseType = EmitExtends(typeMetadata.BaseType),
+                Properties = SerializationPropertyMapper.EmitProperties(typeMetadata.Properties).ToList(),
+            };
+
+            if(dTG2TypeMetadata.IsGenericType)
+            {
+                dTG2TypeMetadata.GenericArguments = EmitGenericArguments(typeMetadata.GenericArguments).ToList();
             }
-            xmlModel.Name = dtgModel.Name;
-            xmlModel.IsExternal = dtgModel.IsExternal;
-            xmlModel.IsGeneric = dtgModel.IsGeneric;
-            //typeModel.Type = model.Type;
-            xmlModel.Name = dtgModel.AssemblyName;
-            //typeModel.Modifiers = model.Modifiers ?? new TypeModifiers();
 
-            xmlModel.BaseType = EmitType(dtgModel.BaseType);
-            xmlModel.DeclaringType = EmitType(dtgModel.DeclaringType);
-
-            xmlModel.NestedTypes = dtgModel.NestedTypes?.Select(n => EmitType(n)).ToList();
-            xmlModel.GenericArguments = dtgModel.GenericArguments?.Select(g => EmitType(g)).ToList();
-            xmlModel.ImplementedInterfaces = dtgModel.ImplementedInterfaces?.Select(i => EmitType(i)).ToList();
-
-            xmlModel.Fields = dtgModel.Fields?.Select(g => new SerializationParameterMapper().MapToUpper(g)).ToList();
-            xmlModel.Methods = dtgModel.Methods?.Select(c => new SerializationMethodMapper().MapToUpper(c)).ToList();
-            xmlModel.Constructors = dtgModel.Constructors?.Select(c => new SerializationMethodMapper().MapToUpper(c)).ToList();
-            xmlModel.Properties = dtgModel.Properties?.Select(g => new SerializationPropertyMapper().MapToUpper(g)).ToList();
+            return dTG2TypeMetadata;
         }
 
-        public XMLTypeModel MapToUpper(DTGTypeModel model)
+        public static XMLTypeMetadata fillType(XMLTypeMetadata dtg2TypeMetadata, DTG2TypeMetadata typeMetadata)
         {
-            XMLTypeModel typeMetadata = new XMLTypeModel();
-            if (model == null)
-                return null;
+            dtg2TypeMetadata.TypeName = typeMetadata.TypeName;
+            dtg2TypeMetadata.DeclaringType = EmitDeclaringType(typeMetadata.DeclaringType);
+            dtg2TypeMetadata.Constructors = SerializationMethodMapper.EmitMethods(typeMetadata.Constructors).ToList();
+            dtg2TypeMetadata.Methods = SerializationMethodMapper.EmitMethods(typeMetadata.Methods).ToList();
+            dtg2TypeMetadata.NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes).ToList();
+            dtg2TypeMetadata.ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces).ToList();
+            dtg2TypeMetadata.IsGenericType = typeMetadata.IsGenericType;
+            if (typeMetadata.IsGenericType)
+                dtg2TypeMetadata.GenericArguments = EmitGenericArguments(typeMetadata.GenericArguments).ToList();
+            dtg2TypeMetadata.BaseType = EmitExtends(typeMetadata.BaseType);
+            dtg2TypeMetadata.Properties = SerializationPropertyMapper.EmitProperties(typeMetadata.Properties).ToList();
 
-            if (!XMLTypes.ContainsKey(model.Name))
-            {
-                XMLTypes.Add(model.Name, typeMetadata);
-                FillXMLType(model, typeMetadata);
-            }
-            return XMLTypes[model.Name];
+            return dtg2TypeMetadata;
         }
 
-        public DTGTypeModel MapToLower(XMLTypeModel model)
+        internal static XMLTypeMetadata EmitReference(DTG2TypeMetadata type)
         {
-            DTGTypeModel typeModel = new DTGTypeModel();
-            if (model == null)
-                return null;
-            if (!DTGTypes.ContainsKey(model.Name))
+            if (HelperDictonaries.TypeDictonary.ContainsKey(type))
             {
-                DTGTypes.Add(model.Name, typeModel);
-                FillDTGType(model, typeModel);
+                return HelperDictonaries.TypeDictonary[type];
             }
-            return DTGTypes[model.Name];
+
+            if (!type.IsGenericType)
+            {
+                HelperDictonaries.TypeDictonary[type] = MapToXMLModel(type);
+
+                return HelperDictonaries.TypeDictonary[type];
+            }
+            else
+                return MapToXMLModel(type);
+        }
+        internal static IEnumerable<XMLTypeMetadata> EmitGenericArguments(IEnumerable<DTG2TypeMetadata> arguments)
+        {
+            return from DTG2TypeMetadata _argument in arguments select EmitReference(_argument);
+        }
+
+        private static XMLTypeMetadata EmitDeclaringType(DTG2TypeMetadata declaringType)
+        {
+            return EmitReference(declaringType);
+        }
+        private static IEnumerable<XMLTypeMetadata> EmitNestedTypes(IEnumerable<DTG2TypeMetadata> nestedTypes)
+        {
+            return from _type in nestedTypes
+                   select MapToXMLModel(_type);
+        }
+        private static IEnumerable<XMLTypeMetadata> EmitImplements(IEnumerable<DTG2TypeMetadata> interfaces)
+        {
+            return from currentInterface in interfaces
+                   select EmitReference(currentInterface);
+        }
+        private static XMLTypeMetadata EmitExtends(DTG2TypeMetadata baseType)
+        {
+            return EmitReference(baseType);
         }
     }
 }

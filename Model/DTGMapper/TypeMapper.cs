@@ -17,11 +17,15 @@ namespace Logic.DTGMapper
                 Methods = MethodMapper.EmitMethods(typeMetadata.Methods),
                 NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes),
                 ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces),
-                GenericArguments = CheckGenericArguments(typeMetadata),
                 BaseType = EmitExtends(typeMetadata.BaseType),
                 Properties = PropertyMapper.EmitProperties(typeMetadata.Properties),
                 IsGenericType = typeMetadata.IsGenericType
             };
+
+            if(dTG2TypeMetadata.IsGenericType)
+            {
+                dTG2TypeMetadata.GenericArguments = EmitGenericArguments(typeMetadata.GenericArguments);
+            }
 
             return dTG2TypeMetadata;
         }
@@ -34,21 +38,13 @@ namespace Logic.DTGMapper
             dtg2TypeMetadata.Methods = MethodMapper.EmitMethods(typeMetadata.Methods);
             dtg2TypeMetadata.NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes);
             dtg2TypeMetadata.ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces);
-            if (typeMetadata.GenericArguments != null)
+            if (typeMetadata.IsGenericType)
                 dtg2TypeMetadata.GenericArguments = EmitGenericArguments(typeMetadata.GenericArguments);
-            else dtg2TypeMetadata.GenericArguments = null;
             //dtg2TypeMetadata.Modifiers = EmitModifiers(typeMetadata);
             dtg2TypeMetadata.BaseType = EmitExtends(typeMetadata.BaseType);
             dtg2TypeMetadata.Properties = PropertyMapper.EmitProperties(typeMetadata.Properties);
 
             return dtg2TypeMetadata;
-        }
-
-        public static IEnumerable<DTG2TypeMetadata> CheckGenericArguments(TypeMetadata typeMetadata)
-        {
-            if (typeMetadata.GenericArguments != null)
-                return EmitGenericArguments(typeMetadata.GenericArguments);
-            return null;
         }
 
         internal static DTG2TypeMetadata EmitReference(TypeMetadata type)
@@ -66,7 +62,7 @@ namespace Logic.DTGMapper
                 return HelperDictonaries.TypeDictonary[type];
             }
             else
-                return TypeMapper.MapToDTGModel(type);
+                return MapToDTGModel(type);
         }
         internal static IEnumerable<DTG2TypeMetadata> EmitGenericArguments(IEnumerable<TypeMetadata> arguments)
         {
