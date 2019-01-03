@@ -1,10 +1,10 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 
 namespace DataSerializer
 {
     public interface ISerialize
     {
-        DTGAssemblyModel Read(string path);
-        void Write(DTGAssemblyModel assemblyModel, string path);
+        DTG2AssemblyMetadata Read(string path);
+        void Write(DTG2AssemblyMetadata assemblyModel, string path);
     }
 }

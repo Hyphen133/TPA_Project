@@ -1,5 +1,5 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
 using System.ComponentModel.Composition;
 using System.Linq;
 
@@ -8,26 +8,17 @@ namespace DataSerializer.SerializationMapper
     [Export]
     class SerializationAssemblyMapper
     {
-        public DTGAssemblyModel MapToLower(XMLAssemblyMetadata model)
+        public static XMLAssemblyMetadata MapToXML(DTG2AssemblyMetadata assemblyMetadata)
         {
-            DTGAssemblyModel assemblyModel = new DTGAssemblyModel
-            {
-                Name = model.Name
-            };
-            if (model.Namespaces != null)
-                assemblyModel.Namespaces = model.Namespaces.Select(n => new SerializationNamespaceMapper().MapToLower(n)).ToList();
-            return assemblyModel;
-        }
+            HelperDictonaries.ResetDictonaries();
 
-        public XMLAssemblyMetadata MapToUpper(DTGAssemblyModel model)
-        {
-            XMLAssemblyMetadata assemblyMetadata = new XMLAssemblyMetadata
+            XMLAssemblyMetadata assemblyModel = new XMLAssemblyMetadata
             {
-                Name = model.Name
+                Name = assemblyMetadata.Name,
+                Namespaces = from DTG2NamespaceMetadata _namespace in assemblyMetadata.Namespaces
+                             select SerializationNamespaceMapper.MapToXML(_namespace)
             };
-            if (model.Namespaces != null)
-                assemblyMetadata.Namespaces = model.Namespaces.Select(n => new SerializationNamespaceMapper().MapToUpper(n)).ToList();
-            return assemblyMetadata;
+            return assemblyModel;
         }
     }
 }

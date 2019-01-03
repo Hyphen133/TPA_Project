@@ -1,30 +1,26 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DataSerializer.SerializationMapper
 {
     public class SerializationPropertyMapper
     {
-        public XMLPropertyMetadata MapToUpper(DTGPropertyModel model)
+        public static XMLPropertyMetadata MapToXML(DTG2PropertyMetadata propertyMetadata)
         {
-            XMLPropertyMetadata propertyMetadata = new XMLPropertyMetadata
+            XMLPropertyMetadata propertyModel = new XMLPropertyMetadata
             {
-                Name = model.Name
+                Name = propertyMetadata.Name,
+                TypeMetadata = SerializationTypeMapper.EmitReference(propertyMetadata.TypeMetadata)
             };
-            if (model.Type != null)
-                propertyMetadata.Type = SerializationTypeMapper.EmitType(model.Type);
-            return propertyMetadata;
+            return propertyModel;
         }
 
-        public DTGPropertyModel MapToLower(XMLPropertyMetadata model)
+        internal static IEnumerable<XMLPropertyMetadata> EmitProperties(IEnumerable<DTG2PropertyMetadata> props)
         {
-            DTGPropertyModel propertyModel = new DTGPropertyModel
-            {
-                Name = model.Name
-            };
-            if (model.Type != null)
-                propertyModel.Type = SerializationTypeMapper.EmitXMLType(model.Type);
-            return propertyModel;
+            return from prop in props
+                   select MapToXML(prop);
         }
     }
 }
