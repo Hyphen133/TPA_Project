@@ -53,6 +53,7 @@ namespace Logic.DTGMapper
 
         internal static DTG2TypeMetadata EmitReference(TypeMetadata type)
         {
+            if (type == null) return null;
             if (HelperDictonaries.TypeDictonary.ContainsKey(type))
             {
                 return HelperDictonaries.TypeDictonary[type];

@@ -53,6 +53,7 @@ namespace DataSerializer.SerializationMapper
 
         internal static XMLTypeMetadata EmitReferenceXML(DTG2TypeMetadata type)
         {
+            if (type == null) return null;
             if (HelperDictonaries.TypeDictonaryToXML.ContainsKey(type))
             {
                 return HelperDictonaries.TypeDictonaryToXML[type];
