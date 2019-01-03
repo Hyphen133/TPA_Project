@@ -6,6 +6,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
 using DataTransferGraph2.Model;
+using System.Linq;
 
 namespace DataSerializer
 {
@@ -22,15 +23,16 @@ namespace DataSerializer
 
         public DTG2AssemblyMetadata Read(string path)
         {
-            /*XMLAssemblyMetadata model;
+            XMLAssemblyMetadata model;
 
             DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyMetadata));
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
                 model = (XMLAssemblyMetadata)dataContractSerializer.ReadObject(fileStream);
             }
-            return am.MapToLower(model);*/
-            return null;
+            var c = SerializationAssemblyMapper.MapToDTG(model);
+            var p = c.Namespaces.ToList();
+            return c;
         }
 
         public void Write(DTG2AssemblyMetadata assemblyModel, string path)

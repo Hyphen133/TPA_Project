@@ -20,5 +20,18 @@ namespace DataSerializer.SerializationMapper
             };
             return assemblyModel;
         }
+
+        public static DTG2AssemblyMetadata MapToDTG(XMLAssemblyMetadata assemblyMetadata)
+        {
+            HelperDictonaries.ResetDictonaries();
+
+            DTG2AssemblyMetadata assemblyModel = new DTG2AssemblyMetadata
+            {
+                Name = assemblyMetadata.Name,
+                Namespaces = from XMLNamespaceMetadata _namespace in assemblyMetadata.Namespaces
+                             select SerializationNamespaceMapper.MapToDTG(_namespace)
+            };
+            return assemblyModel;
+        }
     }
 }

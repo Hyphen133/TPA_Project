@@ -10,7 +10,17 @@ namespace DataSerializer.SerializationMapper
             XMLParameterMetadata parameterModel = new XMLParameterMetadata
             {
                 Name = parameterMetadata.Name,
-                TypeMetadata = SerializationTypeMapper.EmitReference(parameterMetadata.TypeMetadata),
+                TypeMetadata = SerializationTypeMapper.EmitReferenceXML(parameterMetadata.TypeMetadata),
+            };
+            return parameterModel;
+        }
+
+        public static DTG2ParameterMetadata MapToDTG(XMLParameterMetadata parameterMetadata)
+        {
+            DTG2ParameterMetadata parameterModel = new DTG2ParameterMetadata
+            {
+                Name = parameterMetadata.Name,
+                TypeMetadata = SerializationTypeMapper.EmitReferenceDTG(parameterMetadata.TypeMetadata),
             };
             return parameterModel;
         }
