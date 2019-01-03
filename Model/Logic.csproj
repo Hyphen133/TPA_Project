@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTGMapper\AssemblyMapper.cs" />
+    <Compile Include="DTGMapper\HelperDictonaries.cs" />
     <Compile Include="DTGMapper\MethodMapper.cs" />
     <Compile Include="DTGMapper\NamespaceMapper.cs" />
     <Compile Include="DTGMapper\ParameterMapper.cs" />
@@ -93,13 +94,11 @@
       <Project>{ac807132-f845-4430-9a26-71936ab5bbed}</Project>
       <Name>DataSerializer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataTransferGraph\DataTransferGraph.csproj">
-      <Project>{d2916c3e-d067-4a2d-87fe-ded5bae0f994}</Project>
-      <Name>DataTransferGraph</Name>
+    <ProjectReference Include="..\DataTransferGraph2\DataTransferGraph2.csproj">
+      <Project>{eaca7fad-f20c-441f-995d-e8de86e97215}</Project>
+      <Name>DataTransferGraph2</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTGMapper2\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

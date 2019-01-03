@@ -1,4 +1,4 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 using Logic.Model;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -8,26 +8,17 @@ namespace Logic.DTGMapper
     [Export]
     public class AssemblyMapper
     {
-        public DTGAssemblyModel MapToDTGModel(AssemblyMetadata model)
+        public static DTG2AssemblyMetadata MapToDTGModel(AssemblyMetadata assemblyMetadata)
         {
-            DTGAssemblyModel assemblyModel = new DTGAssemblyModel
-            {
-                Name = model.Name
-            };
-            if (model.Namespaces != null)
-                assemblyModel.Namespaces = model.Namespaces.Select(n => new NamespaceMapper().MapToDTGModel(n)).ToList();
-            return assemblyModel;
-        }
+            HelperDictonaries.ResetDictonaries();
 
-        public AssemblyMetadata MapFromDTGModel(DTGAssemblyModel model)
-        {
-            AssemblyMetadata assemblyMetadata = new AssemblyMetadata
+            DTG2AssemblyMetadata assemblyModel = new DTG2AssemblyMetadata
             {
-                Name = model.Name
+                Name = assemblyMetadata.Name,
+                Namespaces = from NamespaceMetadata _namespace in assemblyMetadata.Namespaces
+                             select NamespaceMapper.MapToDTGModel(_namespace)
             };
-            if (((DTGAssemblyModel)model).Namespaces != null)
-                assemblyMetadata.Namespaces = ((DTGAssemblyModel)model).Namespaces.Select(n => new NamespaceMapper().MapFromDTGModel(n)).ToList();
-            return assemblyMetadata;
+            return assemblyModel;
         }
     }
 }

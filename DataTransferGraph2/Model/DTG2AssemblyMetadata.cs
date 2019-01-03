@@ -1,29 +1,9 @@
-﻿using Logic.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
 
 namespace DataTransferGraph2.Model
 {
     public class DTG2AssemblyMetadata
     {
-        public DTG2AssemblyMetadata()
-        {
-
-        }
-
-        public DTG2AssemblyMetadata(AssemblyMetadata assembly)
-        {
-            //Reseting dictonaries
-            DTG2HelperDictonaries.ResetDictonaries();
-
-            m_Name = assembly.Name;
-
-            m_Namespaces = from NamespaceMetadata _namespace in assembly.Namespaces
-                           select new DTG2NamespaceMetadata(_namespace.NamespaceName, _namespace.Types);
-        }
-
         private string m_Name;
         private IEnumerable<DTG2NamespaceMetadata> m_Namespaces;
 

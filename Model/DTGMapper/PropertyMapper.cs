@@ -1,33 +1,26 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 using Logic.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic.DTGMapper
 {
     public class PropertyMapper
     {
-        public DTGPropertyModel MapToDTGModel(PropertyMetadata model)
+        public static DTG2PropertyMetadata MapToDTGModel(PropertyMetadata propertyMetadata)
         {
-            DTGPropertyModel propertyModel = new DTGPropertyModel();
-            propertyModel.Name = model.Name;
-            if (model.TypeMetadata != null)
-                if (model.TypeMetadata.TypeName == "ServiceB")
-                {
-                    string g = null;
-                }
-            if (model.TypeMetadata != null)
-                propertyModel.Type = TypeMapper.EmitXMLType(model.TypeMetadata);
+            DTG2PropertyMetadata propertyModel = new DTG2PropertyMetadata
+            {
+                Name = propertyMetadata.Name,
+                TypeMetadata = TypeMapper.EmitReference(propertyMetadata.TypeMetadata)
+            };
             return propertyModel;
         }
 
-        public PropertyMetadata MapFromDTGModel(DTGPropertyModel model)
+        internal static IEnumerable<DTG2PropertyMetadata> EmitProperties(IEnumerable<PropertyMetadata> props)
         {
-            PropertyMetadata propertyMetadata = new PropertyMetadata
-            {
-                Name = model.Name
-            };
-            if (model.Type != null)
-                propertyMetadata.TypeMetadata = TypeMapper.EmitType(model.Type);
-            return propertyMetadata;
+            return from prop in props
+                   select MapToDTGModel(prop);
         }
     }
 }

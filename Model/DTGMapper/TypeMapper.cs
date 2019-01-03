@@ -1,6 +1,5 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 using Logic.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,99 +7,93 @@ namespace Logic.DTGMapper
 {
     public class TypeMapper
     {
-        public static Dictionary<string, DTGTypeModel> DTGTypes = new Dictionary<string, DTGTypeModel>();
-        public static Dictionary<string, TypeMetadata> Types = new Dictionary<string, TypeMetadata>();
-
-        public static DTGTypeModel EmitXMLType(TypeMetadata model)
+        public static DTG2TypeMetadata MapToDTGModel(TypeMetadata typeMetadata)
         {
-            return new TypeMapper().MapToDTGModel(model);
-        }
-
-        public static TypeMetadata EmitType(DTGTypeModel model)
-        {
-            return new TypeMapper().MapFromDTGModel(model);
-        }
-
-        private void FillDTGType(TypeMetadata pom, DTGTypeModel typModel)
-        {
-            var model = HelperDictonaries.TypeDictonary.Values.ToList<TypeMetadata>().Find(o => o.TypeName == pom.TypeName);
-            if(DTGTypes.ContainsKey(model.TypeName))
+            DTG2TypeMetadata dTG2TypeMetadata = new DTG2TypeMetadata
             {
-                typModel = DTGTypes[model.TypeName];
-            }
-            if (model.TypeName == "ServiceB")
+                TypeName = typeMetadata.TypeName,
+                DeclaringType = EmitDeclaringType(typeMetadata.DeclaringType),
+                Constructors = MethodMapper.EmitMethods(typeMetadata.Constructors),
+                Methods = MethodMapper.EmitMethods(typeMetadata.Methods),
+                NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes),
+                ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces),
+                GenericArguments = CheckGenericArguments(typeMetadata),
+                BaseType = EmitExtends(typeMetadata.BaseType),
+                Properties = PropertyMapper.EmitProperties(typeMetadata.Properties),
+                IsGenericType = typeMetadata.IsGenericType
+            };
+
+            return dTG2TypeMetadata;
+        }
+
+        public static DTG2TypeMetadata fillType(DTG2TypeMetadata dtg2TypeMetadata, TypeMetadata typeMetadata)
+        {
+            dtg2TypeMetadata.TypeName = typeMetadata.TypeName;
+            dtg2TypeMetadata.DeclaringType = EmitDeclaringType(typeMetadata.DeclaringType);
+            dtg2TypeMetadata.Constructors = MethodMapper.EmitMethods(typeMetadata.Constructors);
+            dtg2TypeMetadata.Methods = MethodMapper.EmitMethods(typeMetadata.Methods);
+            dtg2TypeMetadata.NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes);
+            dtg2TypeMetadata.ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces);
+            if (typeMetadata.GenericArguments != null)
+                dtg2TypeMetadata.GenericArguments = EmitGenericArguments(typeMetadata.GenericArguments);
+            else dtg2TypeMetadata.GenericArguments = null;
+            //dtg2TypeMetadata.Modifiers = EmitModifiers(typeMetadata);
+            dtg2TypeMetadata.BaseType = EmitExtends(typeMetadata.BaseType);
+            dtg2TypeMetadata.Properties = PropertyMapper.EmitProperties(typeMetadata.Properties);
+
+            return dtg2TypeMetadata;
+        }
+
+        public static IEnumerable<DTG2TypeMetadata> CheckGenericArguments(TypeMetadata typeMetadata)
+        {
+            if (typeMetadata.GenericArguments != null)
+                return EmitGenericArguments(typeMetadata.GenericArguments);
+            return null;
+        }
+
+        internal static DTG2TypeMetadata EmitReference(TypeMetadata type)
+        {
+            if (HelperDictonaries.TypeDictonary.ContainsKey(type))
             {
-                string g = null;
+                return HelperDictonaries.TypeDictonary[type];
             }
 
-            typModel.Name = model.TypeName;
-            //typModel.IsExternal = model.IsExternal;
-            //typModel.IsGeneric = model.IsGeneric;
-            //typModel.Type = model.Type;
-            //typModel.AssemblyName = model.Name;
-            //new Tuple4<AccessLevel, SealedEnum, AbstractEnum, StaticEnum>
-            //typModel.Modifiers = model.Modifiers ?? new TypeModifiers();
 
-            typModel.BaseType = EmitXMLType(model.BaseType);
-            typModel.DeclaringType = EmitXMLType(model.DeclaringType);
+            if (!type.IsGenericType)
+            {
+                HelperDictonaries.TypeDictonary[type] = MapToDTGModel(type);
 
-            typModel.NestedTypes = model.NestedTypes?.Select(c => EmitXMLType(c)).ToList();
-            typModel.GenericArguments = model.GenericArguments?.Select(c => EmitXMLType(c)).ToList();
-            typModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(c => EmitXMLType(c)).ToList();
-
-            //typModel.Fields = model.Fields?.Select(c => new ParameterMapper().MapToLower(c)).ToList();
-            typModel.Methods = model.Methods?.Select(m => new MethodMapper().MapToDTGModel(m)).ToList();
-            typModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapToDTGModel(c)).ToList();
-            typModel.Properties = model.Properties?.Select(c => new PropertyMapper().MapToDTGModel(c)).ToList();
+                return HelperDictonaries.TypeDictonary[type];
+            }
+            else
+                return TypeMapper.MapToDTGModel(type);
+        }
+        internal static IEnumerable<DTG2TypeMetadata> EmitGenericArguments(IEnumerable<TypeMetadata> arguments)
+        {
+            return from TypeMetadata _argument in arguments select EmitReference(_argument);
         }
 
-        private void FillType(DTGTypeModel model, TypeMetadata typeModel)
+        private static DTG2TypeMetadata EmitDeclaringType(TypeMetadata declaringType)
         {
-            typeModel.TypeName = model.Name;
-            //typeModel.IsExternal = model.IsExternal;
-            //typeModel.IsGeneric = model.IsGeneric;
-            //typeModel.Type = model.Type;
-            //typeModel.Name = model.AssemblyName;
-            //typeModel.Modifiers = model.Modifiers ?? new TypeModifiers();
-
-            typeModel.BaseType = EmitType(model.BaseType);
-            typeModel.DeclaringType = EmitType(model.DeclaringType);
-
-            typeModel.NestedTypes = model.NestedTypes?.Select(n => EmitType(n)).ToList();
-            typeModel.GenericArguments = model.GenericArguments?.Select(g => EmitType(g)).ToList();
-            typeModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(i => EmitType(i)).ToList();
-
-            //typeModel.Parameters = model.Fields?.Select(g => new ParameterMapper().MapFromDTGModel((DTGParameterModel)g)).ToList();
-            typeModel.Methods = model.Methods?.Select(c => new MethodMapper().MapFromDTGModel(c)).ToList();
-            typeModel.Constructors = model.Constructors?.Select(c => new MethodMapper().MapFromDTGModel(c)).ToList();
-            typeModel.Properties = model.Properties?.Select(g => new PropertyMapper().MapFromDTGModel(g)).ToList();
-        }
-
-        public TypeMetadata MapFromDTGModel(DTGTypeModel model)
-        {
-            Console.WriteLine("out");
-            TypeMetadata typeMetadata = new TypeMetadata();
-            if (model == null)
+            if (declaringType == null)
                 return null;
-            if (!Types.ContainsKey(model.Name))
-            {
-                Types.Add(model.Name, typeMetadata);
-                FillType(model, typeMetadata);
-            }
-            return Types[model.Name];
+            return EmitReference(declaringType);
         }
-
-        public DTGTypeModel MapToDTGModel(TypeMetadata model)
+        private static IEnumerable<DTG2TypeMetadata> EmitNestedTypes(IEnumerable<TypeMetadata> nestedTypes)
         {
-            DTGTypeModel typeModel = new DTGTypeModel();
-            if (model == null)
+            return from _type in nestedTypes
+                   select MapToDTGModel(_type);
+        }
+        private static IEnumerable<DTG2TypeMetadata> EmitImplements(IEnumerable<TypeMetadata> interfaces)
+        {
+            return from currentInterface in interfaces
+                   select EmitReference(currentInterface);
+        }
+        private static DTG2TypeMetadata EmitExtends(TypeMetadata baseType)
+        {
+            if (baseType == null)
                 return null;
-            if (!DTGTypes.ContainsKey(model.TypeName))
-            {
-                DTGTypes.Add(model.TypeName, typeModel);
-                FillDTGType(model, typeModel);
-            }
-            return DTGTypes[model.TypeName];
+            return EmitReference(baseType);
         }
     }
 }

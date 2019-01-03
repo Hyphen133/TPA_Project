@@ -1,31 +1,29 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 using Logic.Model;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Logic.DTGMapper
 {
     public class NamespaceMapper
     {
-        public DTGNamespaceModel MapToDTGModel(NamespaceMetadata model)
+        public static DTG2NamespaceMetadata MapToDTGModel(NamespaceMetadata namespaceMetadata)
         {
-            DTGNamespaceModel namespaceModel = new DTGNamespaceModel
+            var m_NamespaceName = namespaceMetadata.NamespaceName;
+            //May be even more beneficial to create all types from all namespaces beforehand
+            foreach (var type in namespaceMetadata.Types)
             {
-                NamespaceName = model.NamespaceName
-            };
-            if (model.Types != null)
-            {
-                List<DTGTypeModel> types = new List<DTGTypeModel>();
-                foreach (TypeMetadata type in model.Types)
-                {
-                    types.Add(new TypeMapper().MapToDTGModel(type));
-                }
-                namespaceModel.Types = types;
+                HelperDictonaries.TypeDictonary[type] = TypeMapper.MapToDTGModel(type);
             }
+            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select TypeMapper.fillType(HelperDictonaries.TypeDictonary[type], type);
+            DTG2NamespaceMetadata namespaceModel = new DTG2NamespaceMetadata {
+                NamespaceName = m_NamespaceName,
+                Types = m_Types
+            };
+            
             return namespaceModel;
         }
 
-        public NamespaceMetadata MapFromDTGModel(DTGNamespaceModel model)
+        /*public NamespaceMetadata MapFromDTGModel(DTGNamespaceModel model)
         {
             NamespaceMetadata namespaceMetadata = new NamespaceMetadata
             {
@@ -34,7 +32,7 @@ namespace Logic.DTGMapper
             if (model.Types != null)
                 namespaceMetadata.Types = model.Types.Select(n => TypeMapper.EmitType((DTGTypeModel)n)).ToList();
             return namespaceMetadata;
-        }
+        }*/
 
     }
 }

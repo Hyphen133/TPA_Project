@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using ViewModel.TreeView;
+using Logic.DTGMapper;
 
 namespace ViewModel
 {
@@ -70,7 +71,7 @@ namespace ViewModel
 
         private void Serialize()
         {
-            DTG2AssemblyMetadata m = new DTG2AssemblyMetadata(assembly);
+            DTG2AssemblyMetadata m = AssemblyMapper.MapToDTGModel(assembly);
             var c = m.Namespaces.ElementAt(0).Types.ToList();
             string path = browse.GetFolderPath();
             Serialization.Serialize(assembly, path);

@@ -1,43 +1,41 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 using Logic.Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Logic.DTGMapper
 {
     public class MethodMapper
     {
-        public DTGMethodModel MapToDTGModel(MethodMetadata model)
+        public static DTG2MethodMetadata MapToDTGModel(MethodMetadata methodMetadata)
         {
-            DTGMethodModel methodModel = new DTGMethodModel
+            DTG2MethodMetadata methodModel = new DTG2MethodMetadata
             {
-                Name = model.Name,
-                Extension = model.Extension
+                Name = methodMetadata.Name,
+                GenericArguments = TypeMapper.EmitGenericArguments(methodMetadata.GenericArguments),
+                ReturnType = EmitReturnType(methodMetadata),
+                Parameters = EmitParameters(methodMetadata.Parameters),
             };
-            if (model.GenericArguments != null)
-                methodModel.GenericArguments = model.GenericArguments.Select(t => TypeMapper.EmitXMLType(t)).ToList();
-            //methodModel.Modifiers = model.Modifiers;
-            if (model.Parameters != null)
-                methodModel.Parameters = model.Parameters.Select(p => new ParameterMapper().MapToDTGModel(p)).ToList();
-            if (model.ReturnType != null)
-                methodModel.ReturnType = TypeMapper.EmitXMLType(model.ReturnType);
             return methodModel;
         }
 
-        public MethodMetadata MapFromDTGModel(DTGMethodModel model)
+        internal static IEnumerable<DTG2MethodMetadata> EmitMethods(IEnumerable<MethodMetadata> methods)
         {
-            MethodMetadata methodMetadata = new MethodMetadata
-            {
-                Name = model.Name,
-                Extension = model.Extension
-            };
-            if (model.GenericArguments != null)
-                methodMetadata.GenericArguments = model.GenericArguments.Select(g => TypeMapper.EmitType((DTGTypeModel)g)).ToList();
-            //methodMetadata.Modifiers = model.Modifiers;
-            if (model.Parameters != null)
-                methodMetadata.Parameters = model.Parameters.Select(p => new ParameterMapper().MapFromDTGModel((DTGParameterModel)p)).ToList();
-            if (model.ReturnType != null)
-                methodMetadata.ReturnType = TypeMapper.EmitType((DTGTypeModel)model.ReturnType);
-            return methodMetadata;
+            return from MethodMetadata _currentMethod in methods
+                   select MapToDTGModel(_currentMethod);
+        }
+
+        private static IEnumerable<DTG2ParameterMetadata> EmitParameters(IEnumerable<ParameterMetadata> parms)
+        {
+            return from parm in parms
+                   select ParameterMapper.MapToDTGModel(parm);
+        }
+        private static DTG2TypeMetadata EmitReturnType(MethodMetadata method)
+        {
+            MethodMetadata methodInfo = method as MethodMetadata;
+            if (methodInfo == null)
+                return null;
+            return TypeMapper.EmitReference(methodInfo.ReturnType);
         }
     }
 }

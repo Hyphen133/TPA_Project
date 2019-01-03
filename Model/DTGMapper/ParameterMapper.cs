@@ -1,25 +1,17 @@
-﻿using DataTransferGraph.Model;
+﻿using DataTransferGraph2.Model;
 using Logic.Model;
 
 namespace Logic.DTGMapper
 {
     public class ParameterMapper
     {
-        public ParameterMetadata MapFromDTGModel(DTGParameterModel model)
+        public static DTG2ParameterMetadata MapToDTGModel(ParameterMetadata parameterMetadata)
         {
-            ParameterMetadata parameterMetadata = new ParameterMetadata();
-            parameterMetadata.Name = model.Name;
-            if (model.Type != null)
-                parameterMetadata.TypeMetadata = TypeMapper.EmitType((DTGTypeModel)model.Type);
-            return parameterMetadata;
-        }
-
-        public DTGParameterModel MapToDTGModel(ParameterMetadata model)
-        {
-            DTGParameterModel parameterModel = new DTGParameterModel();
-            parameterModel.Name = model.Name;
-            if (model.TypeMetadata != null)
-                parameterModel.Type = TypeMapper.EmitXMLType(model.TypeMetadata);
+            DTG2ParameterMetadata parameterModel = new DTG2ParameterMetadata
+            {
+                Name = parameterMetadata.Name,
+                TypeMetadata = TypeMapper.EmitReference(parameterMetadata.TypeMetadata),
+            };
             return parameterModel;
         }
     }

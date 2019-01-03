@@ -1,9 +1,10 @@
-﻿using Logic.Model;
+﻿using DataTransferGraph2.Model;
+using Logic.Model;
 using System.Collections.Generic;
 
-namespace DataTransferGraph2.Model
+namespace Logic.DTGMapper
 {
-    public class DTG2HelperDictonaries
+    public class HelperDictonaries
     {
         private static Dictionary<TypeMetadata, DTG2TypeMetadata> typeDictonary = new Dictionary<TypeMetadata, DTG2TypeMetadata>();
 
@@ -18,8 +19,7 @@ namespace DataTransferGraph2.Model
         {
             if (!typeDictonary.ContainsKey(type))
             {
-                TypeDictonary[type] = new DTG2TypeMetadata(type);
-
+                TypeDictonary[type] = TypeMapper.MapToDTGModel(type);
             }
             return TypeDictonary[type];
         }

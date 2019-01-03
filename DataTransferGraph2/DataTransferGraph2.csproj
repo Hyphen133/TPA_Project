@@ -41,19 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\DTG2AssemblyMetadata.cs" />
-    <Compile Include="Model\DTG2HelperDictonaries.cs" />
     <Compile Include="Model\DTG2MethodMetadata.cs" />
     <Compile Include="Model\DTG2NamespaceMetadata.cs" />
     <Compile Include="Model\DTG2ParameterMetadata.cs" />
     <Compile Include="Model\DTG2PropertyMetadata.cs" />
     <Compile Include="Model\DTG2TypeMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Logic.csproj">
-      <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
-      <Name>Logic</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
