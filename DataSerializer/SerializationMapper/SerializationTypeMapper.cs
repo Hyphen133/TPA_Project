@@ -149,6 +149,7 @@ namespace DataSerializer.SerializationMapper
 
         internal static DTG2TypeMetadata EmitReferenceDTG(XMLTypeMetadata type)
         {
+            if (type == null) return null;
             if (HelperDictonaries.TypeDictonaryToDTG.ContainsKey(type))
             {
                 return HelperDictonaries.TypeDictonaryToDTG[type];
@@ -178,11 +179,13 @@ namespace DataSerializer.SerializationMapper
         }
         private static IEnumerable<DTG2TypeMetadata> EmitNestedTypesDTG(IEnumerable<XMLTypeMetadata> nestedTypes)
         {
+            if (nestedTypes == null) return null;
             return from _type in nestedTypes
                    select MapToDTG(_type);
         }
         private static IEnumerable<DTG2TypeMetadata> EmitImplementsDTG(IEnumerable<XMLTypeMetadata> interfaces)
         {
+            if (interfaces == null) return null;
             return from currentInterface in interfaces
                    select EmitReferenceDTG(currentInterface);
         }

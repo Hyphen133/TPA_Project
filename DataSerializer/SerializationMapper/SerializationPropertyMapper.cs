@@ -36,6 +36,7 @@ namespace DataSerializer.SerializationMapper
 
         internal static IEnumerable<DTG2PropertyMetadata> EmitPropertiesDTG(IEnumerable<XMLPropertyMetadata> props)
         {
+            if (props == null) return null;
             return from prop in props
                    select MapToDTG(prop);
         }

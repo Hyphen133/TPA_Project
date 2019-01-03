@@ -52,6 +52,7 @@ namespace DataSerializer.SerializationMapper
 
         internal static IEnumerable<DTG2MethodMetadata> EmitMethodsDTG(IEnumerable<XMLMethodMetadata> methods)
         {
+            if (methods == null) return null;
             return from XMLMethodMetadata _currentMethod in methods
                    select MapToDTG(_currentMethod);
         }

@@ -35,6 +35,7 @@ namespace Logic.DTGMapper
 
         internal static IEnumerable<PropertyMetadata> EmitPropertiesModel(IEnumerable<DTG2PropertyMetadata> props)
         {
+            if (props == null) return null;
             return from prop in props
                    select MapToModel(prop);
         }
