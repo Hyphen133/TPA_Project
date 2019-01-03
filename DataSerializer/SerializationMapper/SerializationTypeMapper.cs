@@ -20,49 +20,53 @@ namespace DataSerializer.SerializationMapper
             return new SerializationTypeMapper().MapToUpper(model);
         }
 
-        private void FillDTGType(XMLTypeModel model, DTGTypeModel typModel)
+        private void FillDTGType(XMLTypeModel xmlModel, DTGTypeModel dtgModel)
         {
-            typModel.Name = model.Name;
-            //typModel.IsExternal = model.IsExternal;
-            //typModel.IsGeneric = model.IsGeneric;
+            dtgModel.Name = xmlModel.Name;
+            dtgModel.IsExternal = xmlModel.IsExternal;
+            dtgModel.IsGeneric = xmlModel.IsGeneric;
             //typModel.Type = model.Type;
-            //typModel.AssemblyName = model.Name;
+            dtgModel.AssemblyName = xmlModel.Name;
             //new Tuple4<AccessLevel, SealedEnum, AbstractEnum, StaticEnum>
             //typModel.Modifiers = model.Modifiers ?? new TypeModifiers();
 
-            typModel.BaseType = EmitXMLType(model.BaseType);
-            typModel.DeclaringType = EmitXMLType(model.DeclaringType);
+            dtgModel.BaseType = EmitXMLType(xmlModel.BaseType);
+            dtgModel.DeclaringType = EmitXMLType(xmlModel.DeclaringType);
 
-            typModel.NestedTypes = model.NestedTypes?.Select(c => EmitXMLType(c)).ToList();
-            typModel.GenericArguments = model.GenericArguments?.Select(c => EmitXMLType(c)).ToList();
-            typModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(c => EmitXMLType(c)).ToList();
+            dtgModel.NestedTypes = xmlModel.NestedTypes?.Select(c => EmitXMLType(c)).ToList();
+            dtgModel.GenericArguments = xmlModel.GenericArguments?.Select(c => EmitXMLType(c)).ToList();
+            dtgModel.ImplementedInterfaces = xmlModel.ImplementedInterfaces?.Select(c => EmitXMLType(c)).ToList();
 
-            //typModel.Fields = model.Fields?.Select(c => new ParameterMapper().MapToLower(c)).ToList();
-            typModel.Methods = model.Methods?.Select(m => new SerializationMethodMapper().MapToLower(m)).ToList();
-            typModel.Constructors = model.Constructors?.Select(c => new SerializationMethodMapper().MapToLower(c)).ToList();
-            typModel.Properties = model.Properties?.Select(c => new SerializationPropertyMapper().MapToLower(c)).ToList();
+            dtgModel.Fields = xmlModel.Fields?.Select(c => new SerializationParameterMapper().MapToLower(c)).ToList();
+            dtgModel.Methods = xmlModel.Methods?.Select(m => new SerializationMethodMapper().MapToLower(m)).ToList();
+            dtgModel.Constructors = xmlModel.Constructors?.Select(c => new SerializationMethodMapper().MapToLower(c)).ToList();
+            dtgModel.Properties = xmlModel.Properties?.Select(c => new SerializationPropertyMapper().MapToLower(c)).ToList();
         }
 
-        private void FillXMLType(DTGTypeModel model, XMLTypeModel typeModel)
+        private void FillXMLType(DTGTypeModel dtgModel, XMLTypeModel xmlModel)
         {
-            typeModel.Name = model.Name;
-            typeModel.IsExternal = model.IsExternal;
-            typeModel.IsGeneric = model.IsGeneric;
+            if(dtgModel.Name == "ServiceB" || dtgModel.Name == "ServiceA" || dtgModel.Name == "ServiceC")
+            {
+                string g = null;
+            }
+            xmlModel.Name = dtgModel.Name;
+            xmlModel.IsExternal = dtgModel.IsExternal;
+            xmlModel.IsGeneric = dtgModel.IsGeneric;
             //typeModel.Type = model.Type;
-            typeModel.Name = model.AssemblyName;
+            xmlModel.Name = dtgModel.AssemblyName;
             //typeModel.Modifiers = model.Modifiers ?? new TypeModifiers();
 
-            typeModel.BaseType = EmitType(model.BaseType);
-            typeModel.DeclaringType = EmitType(model.DeclaringType);
+            xmlModel.BaseType = EmitType(dtgModel.BaseType);
+            xmlModel.DeclaringType = EmitType(dtgModel.DeclaringType);
 
-            typeModel.NestedTypes = model.NestedTypes?.Select(n => EmitType(n)).ToList();
-            typeModel.GenericArguments = model.GenericArguments?.Select(g => EmitType(g)).ToList();
-            typeModel.ImplementedInterfaces = model.ImplementedInterfaces?.Select(i => EmitType(i)).ToList();
+            xmlModel.NestedTypes = dtgModel.NestedTypes?.Select(n => EmitType(n)).ToList();
+            xmlModel.GenericArguments = dtgModel.GenericArguments?.Select(g => EmitType(g)).ToList();
+            xmlModel.ImplementedInterfaces = dtgModel.ImplementedInterfaces?.Select(i => EmitType(i)).ToList();
 
-            //typeModel.Parameters = model.Fields?.Select(g => new ParameterMapper().MapToUpper((SerializableParameterModel)g)).ToList();
-            typeModel.Methods = model.Methods?.Select(c => new SerializationMethodMapper().MapToUpper(c)).ToList();
-            typeModel.Constructors = model.Constructors?.Select(c => new SerializationMethodMapper().MapToUpper(c)).ToList();
-            typeModel.Properties = model.Properties?.Select(g => new SerializationPropertyMapper().MapToUpper(g)).ToList();
+            xmlModel.Fields = dtgModel.Fields?.Select(g => new SerializationParameterMapper().MapToUpper(g)).ToList();
+            xmlModel.Methods = dtgModel.Methods?.Select(c => new SerializationMethodMapper().MapToUpper(c)).ToList();
+            xmlModel.Constructors = dtgModel.Constructors?.Select(c => new SerializationMethodMapper().MapToUpper(c)).ToList();
+            xmlModel.Properties = dtgModel.Properties?.Select(g => new SerializationPropertyMapper().MapToUpper(g)).ToList();
         }
 
         public XMLTypeModel MapToUpper(DTGTypeModel model)
@@ -77,7 +81,6 @@ namespace DataSerializer.SerializationMapper
                 FillXMLType(model, typeMetadata);
             }
             return XMLTypes[model.Name];
-
         }
 
         public DTGTypeModel MapToLower(XMLTypeModel model)

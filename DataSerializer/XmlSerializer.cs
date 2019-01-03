@@ -45,7 +45,7 @@ namespace DataSerializer
             };
 
             DataContractSerializer dataContractSerializer =
-                new DataContractSerializer(typeof(XMLAssemblyModel), knownTypes);
+                new DataContractSerializer(typeof(XMLAssemblyModel));
 
             try
             {

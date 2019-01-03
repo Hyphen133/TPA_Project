@@ -22,7 +22,6 @@ namespace ViewWPF
             };
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                MessageBox.Show("You selected: " + dialog.FileName);
                 return dialog.FileName;
             }
             else

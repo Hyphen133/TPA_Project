@@ -10,6 +10,11 @@ namespace Logic.DTGMapper
             DTGPropertyModel propertyModel = new DTGPropertyModel();
             propertyModel.Name = model.Name;
             if (model.TypeMetadata != null)
+                if (model.TypeMetadata.TypeName == "ServiceB")
+                {
+                    string g = null;
+                }
+            if (model.TypeMetadata != null)
                 propertyModel.Type = TypeMapper.EmitXMLType(model.TypeMetadata);
             return propertyModel;
         }

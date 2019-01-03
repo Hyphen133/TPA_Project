@@ -5,10 +5,12 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/TP
 //____________________________________________________________________________
 
+using DataTransferGraph2.Model;
 using Logic;
 using Logic.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using ViewModel.TreeView;
 
@@ -58,6 +60,7 @@ namespace ViewModel
         private void LoadDLL()
         {
             assembly = DllLoader.LoadDLL(PathVariable, HierarchicalAreas);
+            string g = null;
         }
 
         private void Browse()
@@ -67,6 +70,8 @@ namespace ViewModel
 
         private void Serialize()
         {
+            DTG2AssemblyMetadata m = new DTG2AssemblyMetadata(assembly);
+            var c = m.Namespaces.ElementAt(0).Types.ToList();
             string path = browse.GetFolderPath();
             Serialization.Serialize(assembly, path);
         }

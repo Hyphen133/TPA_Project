@@ -1,5 +1,6 @@
 ﻿using DataTransferGraph.Model;
 using Logic.Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Logic.DTGMapper
@@ -13,7 +14,14 @@ namespace Logic.DTGMapper
                 NamespaceName = model.NamespaceName
             };
             if (model.Types != null)
-                namespaceModel.Types = model.Types.Select(t => new TypeMapper().MapToDTGModel(t)).ToList();
+            {
+                List<DTGTypeModel> types = new List<DTGTypeModel>();
+                foreach (TypeMetadata type in model.Types)
+                {
+                    types.Add(new TypeMapper().MapToDTGModel(type));
+                }
+                namespaceModel.Types = types;
+            }
             return namespaceModel;
         }
 

@@ -22,6 +22,8 @@ namespace Logic.Model
             m_BaseType = EmitExtends(type.BaseType);
             m_Properties = PropertyMetadata.EmitProperties(type.GetProperties());
             m_TypeKind = GetTypeKind(type);
+            m_isGenericType = type.IsGenericType;
+
         }
 
         public static TypeMetadata fillType(TypeMetadata typeMetadata, Type type)
@@ -36,7 +38,7 @@ namespace Logic.Model
             typeMetadata.Modifiers = EmitModifiers(type);
             typeMetadata.BaseType = EmitExtends(type.BaseType);
             typeMetadata.Properties = PropertyMetadata.EmitProperties(type.GetProperties());
-
+            typeMetadata.IsGenericType = type.IsGenericType;
             return typeMetadata;
         }
         #endregion
@@ -61,7 +63,9 @@ namespace Logic.Model
                 return HelperDictonaries.TypeDictonary[type];
             }
             else
+            {
                 return new TypeMetadata(type.Name, type.Namespace, EmitGenericArguments(type.GetGenericArguments()));
+            }
         }
         internal static IEnumerable<TypeMetadata> EmitGenericArguments(IEnumerable<Type> arguments)
         {
@@ -76,6 +80,7 @@ namespace Logic.Model
         private IEnumerable<TypeMetadata> m_GenericArguments;
         private Tuple<AccessLevel, SealedEnum, AbstractEnum> m_Modifiers;
         private TypeKind m_TypeKind;
+        private bool m_isGenericType;
         private IEnumerable<TypeMetadata> m_ImplementedInterfaces;
         private IEnumerable<TypeMetadata> m_NestedTypes;
         private IEnumerable<PropertyMetadata> m_Properties;
@@ -89,6 +94,7 @@ namespace Logic.Model
         public IEnumerable<TypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
         public Tuple<AccessLevel, SealedEnum, AbstractEnum> Modifiers { get => m_Modifiers; set => m_Modifiers = value; }
         public TypeKind TypeKind1 { get => m_TypeKind; set => m_TypeKind = value; }
+        public bool IsGenericType { get => m_isGenericType; set => m_isGenericType = value; }
         public IEnumerable<TypeMetadata> ImplementedInterfaces { get => m_ImplementedInterfaces; set => m_ImplementedInterfaces = value; }
         public IEnumerable<TypeMetadata> NestedTypes { get => m_NestedTypes; set => m_NestedTypes = value; }
         public IEnumerable<PropertyMetadata> Properties { get => m_Properties; set => m_Properties = value; }

@@ -1,5 +1,6 @@
 ﻿using DataTransferGraph.Model;
 using Logic.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,8 +21,18 @@ namespace Logic.DTGMapper
             return new TypeMapper().MapFromDTGModel(model);
         }
 
-        private void FillDTGType(TypeMetadata model, DTGTypeModel typModel)
+        private void FillDTGType(TypeMetadata pom, DTGTypeModel typModel)
         {
+            var model = HelperDictonaries.TypeDictonary.Values.ToList<TypeMetadata>().Find(o => o.TypeName == pom.TypeName);
+            if(DTGTypes.ContainsKey(model.TypeName))
+            {
+                typModel = DTGTypes[model.TypeName];
+            }
+            if (model.TypeName == "ServiceB")
+            {
+                string g = null;
+            }
+
             typModel.Name = model.TypeName;
             //typModel.IsExternal = model.IsExternal;
             //typModel.IsGeneric = model.IsGeneric;
@@ -65,29 +76,25 @@ namespace Logic.DTGMapper
             typeModel.Properties = model.Properties?.Select(g => new PropertyMapper().MapFromDTGModel(g)).ToList();
         }
 
-
-        #region IModelMapper
-
         public TypeMetadata MapFromDTGModel(DTGTypeModel model)
         {
+            Console.WriteLine("out");
             TypeMetadata typeMetadata = new TypeMetadata();
-            //if (model == null)
-                //return null;
-
+            if (model == null)
+                return null;
             if (!Types.ContainsKey(model.Name))
             {
                 Types.Add(model.Name, typeMetadata);
                 FillType(model, typeMetadata);
             }
             return Types[model.Name];
-
         }
 
         public DTGTypeModel MapToDTGModel(TypeMetadata model)
         {
             DTGTypeModel typeModel = new DTGTypeModel();
-            //if (model == null)
-                //return null;
+            if (model == null)
+                return null;
             if (!DTGTypes.ContainsKey(model.TypeName))
             {
                 DTGTypes.Add(model.TypeName, typeModel);
@@ -95,7 +102,5 @@ namespace Logic.DTGMapper
             }
             return DTGTypes[model.TypeName];
         }
-
-        #endregion
     }
 }
