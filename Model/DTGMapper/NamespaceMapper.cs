@@ -10,11 +10,13 @@ namespace Logic.DTGMapper
         {
             var m_NamespaceName = namespaceMetadata.NamespaceName;
             //May be even more beneficial to create all types from all namespaces beforehand
+            
             foreach (var type in namespaceMetadata.Types)
             {
                 HelperDictonaries.TypeDictonary[type] = TypeMapper.MapToDTGModel(type);
             }
             var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select TypeMapper.fillType(HelperDictonaries.TypeDictonary[type], type);
+            
             DTG2NamespaceMetadata namespaceModel = new DTG2NamespaceMetadata {
                 NamespaceName = m_NamespaceName,
                 Types = m_Types

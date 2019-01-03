@@ -9,9 +9,9 @@ namespace DataSerializer.Model
         [DataMember]
         private string m_NamespaceName;
         [DataMember]
-        private List<XMLTypeMetadata> m_Types;
+        private IEnumerable<XMLTypeMetadata> m_Types;
 
         public string NamespaceName { get => m_NamespaceName; set => m_NamespaceName = value; }
-        public List<XMLTypeMetadata> Types { get => m_Types; set => m_Types = value; }
+        public IEnumerable<XMLTypeMetadata> Types { get => m_Types; set => m_Types = value; }
     }
 }

@@ -14,14 +14,5 @@ namespace DataSerializer.SerializationMapper
         {
             typeDictonary.Clear();
         }
-
-        public static XMLTypeMetadata CreateTypeMetadata(DTG2TypeMetadata type)
-        {
-            if (!typeDictonary.ContainsKey(type))
-            {
-                TypeDictonary[type] = SerializationTypeMapper.MapToXMLModel(type);
-            }
-            return TypeDictonary[type];
-        }
     }
 }

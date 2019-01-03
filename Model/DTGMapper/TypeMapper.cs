@@ -12,10 +12,9 @@ namespace Logic.DTGMapper
             DTG2TypeMetadata dTG2TypeMetadata = new DTG2TypeMetadata
             {
                 TypeName = typeMetadata.TypeName,
-                DeclaringType = EmitDeclaringType(typeMetadata.DeclaringType),
-                Constructors = MethodMapper.EmitMethods(typeMetadata.Constructors),
-                Methods = MethodMapper.EmitMethods(typeMetadata.Methods),
-                NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes),
+                //Constructors = MethodMapper.EmitMethods(typeMetadata.Constructors),
+                //Methods = MethodMapper.EmitMethods(typeMetadata.Methods),
+                //NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes),
                 ImplementedInterfaces = EmitImplements(typeMetadata.ImplementedInterfaces),
                 BaseType = EmitExtends(typeMetadata.BaseType),
                 Properties = PropertyMapper.EmitProperties(typeMetadata.Properties),
@@ -33,7 +32,6 @@ namespace Logic.DTGMapper
         public static DTG2TypeMetadata fillType(DTG2TypeMetadata dtg2TypeMetadata, TypeMetadata typeMetadata)
         {
             dtg2TypeMetadata.TypeName = typeMetadata.TypeName;
-            dtg2TypeMetadata.DeclaringType = EmitDeclaringType(typeMetadata.DeclaringType);
             dtg2TypeMetadata.Constructors = MethodMapper.EmitMethods(typeMetadata.Constructors);
             dtg2TypeMetadata.Methods = MethodMapper.EmitMethods(typeMetadata.Methods);
             dtg2TypeMetadata.NestedTypes = EmitNestedTypes(typeMetadata.NestedTypes);
@@ -49,6 +47,10 @@ namespace Logic.DTGMapper
 
         internal static DTG2TypeMetadata EmitReference(TypeMetadata type)
         {
+            if(type == null)
+            {
+                return null;
+            }
             if (HelperDictonaries.TypeDictonary.ContainsKey(type))
             {
                 return HelperDictonaries.TypeDictonary[type];

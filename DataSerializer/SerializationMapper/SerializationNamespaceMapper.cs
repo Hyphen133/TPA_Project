@@ -15,10 +15,11 @@ namespace DataSerializer.SerializationMapper
                 HelperDictonaries.TypeDictonary[type] = SerializationTypeMapper.MapToXMLModel(type);
             }
             var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select SerializationTypeMapper.fillType(HelperDictonaries.TypeDictonary[type], type);
+            
             XMLNamespaceMetadata namespaceModel = new XMLNamespaceMetadata
             {
                 NamespaceName = m_NamespaceName,
-                Types = m_Types.ToList()
+                Types = m_Types
             };
 
             return namespaceModel;

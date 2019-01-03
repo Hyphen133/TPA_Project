@@ -12,11 +12,20 @@ namespace Logic.DTGMapper
             DTG2MethodMetadata methodModel = new DTG2MethodMetadata
             {
                 Name = methodMetadata.Name,
-                GenericArguments = TypeMapper.EmitGenericArguments(methodMetadata.GenericArguments),
+                GenericArguments = GetGenericArguments(methodMetadata),
                 ReturnType = EmitReturnType(methodMetadata),
                 Parameters = EmitParameters(methodMetadata.Parameters),
             };
             return methodModel;
+        }
+
+        private static IEnumerable<DTG2TypeMetadata> GetGenericArguments(MethodMetadata methodMetadata)
+        {
+            if (methodMetadata.GenericArguments != null)
+            {
+                return TypeMapper.EmitGenericArguments(methodMetadata.GenericArguments);
+            }
+            return null;
         }
 
         internal static IEnumerable<DTG2MethodMetadata> EmitMethods(IEnumerable<MethodMetadata> methods)

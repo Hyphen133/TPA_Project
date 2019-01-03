@@ -14,7 +14,7 @@ namespace DataSerializer.SerializationMapper
                 Name = methodMetadata.Name,
                 GenericArguments = GetGenericArguments(methodMetadata),
                 ReturnType = EmitReturnType(methodMetadata),
-                Parameters = EmitParameters(methodMetadata.Parameters).ToList(),
+                Parameters = EmitParameters(methodMetadata.Parameters),
             };
             return methodModel;
         }
