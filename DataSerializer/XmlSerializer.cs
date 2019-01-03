@@ -5,47 +5,45 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
-using DataTransferGraph.Model;
+using DataTransferGraph2.Model;
 
 namespace DataSerializer
 {
     [Export(typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
-        [Import]
-        SerializationAssemblyMapper am;
-
         //[Import]
         //static ITraceSource traceSource;
 
         //public static ITraceSource TraceSource { get => traceSource; set => traceSource = value; }
 
-        public DTGAssemblyModel Read(string path)
+        public DTG2AssemblyMetadata Read(string path)
         {
-            XMLAssemblyModel model;
+            XMLAssemblyMetadata model;
 
-            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyModel));
+            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyMetadata));
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
-                model = (XMLAssemblyModel)dataContractSerializer.ReadObject(fileStream);
+                model = (XMLAssemblyMetadata)dataContractSerializer.ReadObject(fileStream);
             }
-            return am.MapToLower(model);
+            //return Serial.MapToXMLModel(model);
+            return null;
         }
 
-        public void Write(DTGAssemblyModel assemblyModel, string path)
+        public void Write(DTG2AssemblyMetadata assemblyModel, string path)
         {
-            XMLAssemblyModel assembly = am.MapToUpper(assemblyModel);
+            XMLAssemblyMetadata assembly = SerializationAssemblyMapper.MapToXMLModel(assemblyModel);
             List<Type> knownTypes = new List<Type>
             {
-                typeof(XMLTypeModel),
-                typeof(XMLNamespaceModel),
-                typeof(XMLMethodModel),
-                typeof(XMLParameterModel),
-                typeof(XMLPropertyModel)
+                typeof(XMLTypeMetadata),
+                typeof(XMLNamespaceMetadata),
+                typeof(XMLMethodMetadata),
+                typeof(XMLParameterMetadata),
+                typeof(XMLPropertyMetadata)
             };
 
             DataContractSerializer dataContractSerializer =
-                new DataContractSerializer(typeof(XMLAssemblyModel));
+                new DataContractSerializer(typeof(XMLAssemblyMetadata));
 
             try
             {

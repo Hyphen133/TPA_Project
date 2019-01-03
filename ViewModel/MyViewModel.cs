@@ -71,8 +71,8 @@ namespace ViewModel
 
         private void Serialize()
         {
-            DTG2AssemblyMetadata m = AssemblyMapper.MapToDTGModel(assembly);
-            var c = m.Namespaces.ElementAt(0).Types.ToList();
+            //DTG2AssemblyMetadata m = AssemblyMapper.MapToDTGModel(assembly);
+            //var c = m.Namespaces.ElementAt(0).Types.ToList();
             string path = browse.GetFolderPath();
             Serialization.Serialize(assembly, path);
         }
