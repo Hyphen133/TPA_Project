@@ -6,9 +6,9 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationNamespaceMapper
     {
-        public XMLNamespaceModel MapToUpper(DTGNamespaceModel model)
+        public XMLNamespaceMetadata MapToUpper(DTGNamespaceModel model)
         {
-            XMLNamespaceModel namespaceMetadata = new XMLNamespaceModel
+            XMLNamespaceMetadata namespaceMetadata = new XMLNamespaceMetadata
             {
                 NamespaceName = model.NamespaceName
             };
@@ -17,7 +17,7 @@ namespace DataSerializer.SerializationMapper
             return namespaceMetadata;
         }
 
-        public DTGNamespaceModel MapToLower(XMLNamespaceModel model)
+        public DTGNamespaceModel MapToLower(XMLNamespaceMetadata model)
         {
             DTGNamespaceModel namespaceModel = new DTGNamespaceModel
             {

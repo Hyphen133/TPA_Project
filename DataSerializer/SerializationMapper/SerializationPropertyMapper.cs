@@ -5,9 +5,9 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationPropertyMapper
     {
-        public XMLPropertyModel MapToUpper(DTGPropertyModel model)
+        public XMLPropertyMetadata MapToUpper(DTGPropertyModel model)
         {
-            XMLPropertyModel propertyMetadata = new XMLPropertyModel
+            XMLPropertyMetadata propertyMetadata = new XMLPropertyMetadata
             {
                 Name = model.Name
             };
@@ -16,7 +16,7 @@ namespace DataSerializer.SerializationMapper
             return propertyMetadata;
         }
 
-        public DTGPropertyModel MapToLower(XMLPropertyModel model)
+        public DTGPropertyModel MapToLower(XMLPropertyMetadata model)
         {
             DTGPropertyModel propertyModel = new DTGPropertyModel
             {

@@ -8,19 +8,19 @@ namespace DataSerializer.SerializationMapper
     public class SerializationTypeMapper
     {
         public static Dictionary<string, DTGTypeModel> DTGTypes = new Dictionary<string, DTGTypeModel>();
-        public static Dictionary<string, XMLTypeModel> XMLTypes = new Dictionary<string, XMLTypeModel>();
+        public static Dictionary<string, XMLTypeMetadata> XMLTypes = new Dictionary<string, XMLTypeMetadata>();
 
-        public static DTGTypeModel EmitXMLType(XMLTypeModel model)
+        public static DTGTypeModel EmitXMLType(XMLTypeMetadata model)
         {
             return new SerializationTypeMapper().MapToLower(model);
         }
 
-        public static XMLTypeModel EmitType(DTGTypeModel model)
+        public static XMLTypeMetadata EmitType(DTGTypeModel model)
         {
             return new SerializationTypeMapper().MapToUpper(model);
         }
 
-        private void FillDTGType(XMLTypeModel xmlModel, DTGTypeModel dtgModel)
+        private void FillDTGType(XMLTypeMetadata xmlModel, DTGTypeModel dtgModel)
         {
             dtgModel.Name = xmlModel.Name;
             dtgModel.IsExternal = xmlModel.IsExternal;
@@ -43,7 +43,7 @@ namespace DataSerializer.SerializationMapper
             dtgModel.Properties = xmlModel.Properties?.Select(c => new SerializationPropertyMapper().MapToLower(c)).ToList();
         }
 
-        private void FillXMLType(DTGTypeModel dtgModel, XMLTypeModel xmlModel)
+        private void FillXMLType(DTGTypeModel dtgModel, XMLTypeMetadata xmlModel)
         {
             if(dtgModel.Name == "ServiceB" || dtgModel.Name == "ServiceA" || dtgModel.Name == "ServiceC")
             {
@@ -69,9 +69,9 @@ namespace DataSerializer.SerializationMapper
             xmlModel.Properties = dtgModel.Properties?.Select(g => new SerializationPropertyMapper().MapToUpper(g)).ToList();
         }
 
-        public XMLTypeModel MapToUpper(DTGTypeModel model)
+        public XMLTypeMetadata MapToUpper(DTGTypeModel model)
         {
-            XMLTypeModel typeMetadata = new XMLTypeModel();
+            XMLTypeMetadata typeMetadata = new XMLTypeMetadata();
             if (model == null)
                 return null;
 
@@ -83,7 +83,7 @@ namespace DataSerializer.SerializationMapper
             return XMLTypes[model.Name];
         }
 
-        public DTGTypeModel MapToLower(XMLTypeModel model)
+        public DTGTypeModel MapToLower(XMLTypeMetadata model)
         {
             DTGTypeModel typeModel = new DTGTypeModel();
             if (model == null)

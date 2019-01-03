@@ -8,7 +8,7 @@ namespace DataSerializer.SerializationMapper
     [Export]
     class SerializationAssemblyMapper
     {
-        public DTGAssemblyModel MapToLower(XMLAssemblyModel model)
+        public DTGAssemblyModel MapToLower(XMLAssemblyMetadata model)
         {
             DTGAssemblyModel assemblyModel = new DTGAssemblyModel
             {
@@ -19,9 +19,9 @@ namespace DataSerializer.SerializationMapper
             return assemblyModel;
         }
 
-        public XMLAssemblyModel MapToUpper(DTGAssemblyModel model)
+        public XMLAssemblyMetadata MapToUpper(DTGAssemblyModel model)
         {
-            XMLAssemblyModel assemblyMetadata = new XMLAssemblyModel
+            XMLAssemblyMetadata assemblyMetadata = new XMLAssemblyMetadata
             {
                 Name = model.Name
             };

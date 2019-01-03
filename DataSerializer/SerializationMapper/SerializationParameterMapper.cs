@@ -5,9 +5,9 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationParameterMapper
     {
-        public XMLParameterModel MapToUpper(DTGParameterModel model)
+        public XMLParameterMetadata MapToUpper(DTGParameterModel model)
         {
-            XMLParameterModel parameterMetadata = new XMLParameterModel
+            XMLParameterMetadata parameterMetadata = new XMLParameterMetadata
             {
                 Name = model.Name
             };
@@ -16,7 +16,7 @@ namespace DataSerializer.SerializationMapper
             return parameterMetadata;
         }
 
-        public DTGParameterModel MapToLower(XMLParameterModel model)
+        public DTGParameterModel MapToLower(XMLParameterMetadata model)
         {
             DTGParameterModel parameterModel = new DTGParameterModel
             {

@@ -22,30 +22,30 @@ namespace DataSerializer
 
         public DTGAssemblyModel Read(string path)
         {
-            XMLAssemblyModel model;
+            XMLAssemblyMetadata model;
 
-            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyModel));
+            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyMetadata));
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
-                model = (XMLAssemblyModel)dataContractSerializer.ReadObject(fileStream);
+                model = (XMLAssemblyMetadata)dataContractSerializer.ReadObject(fileStream);
             }
             return am.MapToLower(model);
         }
 
         public void Write(DTGAssemblyModel assemblyModel, string path)
         {
-            XMLAssemblyModel assembly = am.MapToUpper(assemblyModel);
+            XMLAssemblyMetadata assembly = am.MapToUpper(assemblyModel);
             List<Type> knownTypes = new List<Type>
             {
-                typeof(XMLTypeModel),
-                typeof(XMLNamespaceModel),
-                typeof(XMLMethodModel),
-                typeof(XMLParameterModel),
-                typeof(XMLPropertyModel)
+                typeof(XMLTypeMetadata),
+                typeof(XMLNamespaceMetadata),
+                typeof(XMLMethodMetadata),
+                typeof(XMLParameterMetadata),
+                typeof(XMLPropertyMetadata)
             };
 
             DataContractSerializer dataContractSerializer =
-                new DataContractSerializer(typeof(XMLAssemblyModel));
+                new DataContractSerializer(typeof(XMLAssemblyMetadata));
 
             try
             {

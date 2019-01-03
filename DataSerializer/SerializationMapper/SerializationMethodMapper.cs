@@ -6,9 +6,9 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationMethodMapper
     {
-        public XMLMethodModel MapToUpper(DTGMethodModel model)
+        public XMLMethodMetadata MapToUpper(DTGMethodModel model)
         {
-            XMLMethodModel methodMetadata = new XMLMethodModel
+            XMLMethodMetadata methodMetadata = new XMLMethodMetadata
             {
                 Name = model.Name,
                 Extension = model.Extension
@@ -23,7 +23,7 @@ namespace DataSerializer.SerializationMapper
             return methodMetadata;
         }
 
-        public DTGMethodModel MapToLower(XMLMethodModel model)
+        public DTGMethodModel MapToLower(XMLMethodMetadata model)
         {
             DTGMethodModel methodModel = new DTGMethodModel
             {
