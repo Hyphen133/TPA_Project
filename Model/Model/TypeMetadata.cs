@@ -12,6 +12,7 @@ namespace Logic.Model
         public TypeMetadata(Type type)
         {
             m_typeName = type.Name;
+            m_DeclaringType = EmitDeclaringType(type.DeclaringType);
             m_Constructors = MethodMetadata.EmitMethods(type.GetConstructors());
             m_Methods = MethodMetadata.EmitMethods(type.GetMethods());
             m_NestedTypes = EmitNestedTypes(type.GetNestedTypes());
@@ -28,6 +29,7 @@ namespace Logic.Model
         public static TypeMetadata fillType(TypeMetadata typeMetadata, Type type)
         {
             typeMetadata.TypeName = type.Name;
+            typeMetadata.DeclaringType = EmitDeclaringType(type.DeclaringType);
             typeMetadata.Constructors = MethodMetadata.EmitMethods(type.GetConstructors());
             typeMetadata.Methods = MethodMetadata.EmitMethods(type.GetMethods());
             typeMetadata.NestedTypes = EmitNestedTypes(type.GetNestedTypes());
@@ -82,6 +84,7 @@ namespace Logic.Model
         private IEnumerable<TypeMetadata> m_ImplementedInterfaces;
         private IEnumerable<TypeMetadata> m_NestedTypes;
         private IEnumerable<PropertyMetadata> m_Properties;
+        private TypeMetadata m_DeclaringType;
         private IEnumerable<MethodMetadata> m_Methods;
         private IEnumerable<MethodMetadata> m_Constructors;
 
@@ -95,6 +98,7 @@ namespace Logic.Model
         public IEnumerable<TypeMetadata> ImplementedInterfaces { get => m_ImplementedInterfaces; set => m_ImplementedInterfaces = value; }
         public IEnumerable<TypeMetadata> NestedTypes { get => m_NestedTypes; set => m_NestedTypes = value; }
         public IEnumerable<PropertyMetadata> Properties { get => m_Properties; set => m_Properties = value; }
+        public TypeMetadata DeclaringType { get => m_DeclaringType; set => m_DeclaringType = value; }
         public IEnumerable<MethodMetadata> Methods { get => m_Methods; set => m_Methods = value; }
         public IEnumerable<MethodMetadata> Constructors { get => m_Constructors; set => m_Constructors = value; }
 
