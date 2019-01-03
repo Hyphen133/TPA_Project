@@ -22,8 +22,10 @@ namespace DataSerializer.Model
 
         public string Name { get => m_Name; set => m_Name = value; }
         public IEnumerable<XMLTypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
+        public List<XMLTypeMetadata> GenericArgumentsL { get => l_GenericArguments; set => l_GenericArguments = value; }
         public XMLTypeMetadata ReturnType { get => m_ReturnType; set => m_ReturnType = value; }
         public IEnumerable<XMLParameterMetadata> Parameters { get => m_Parameters; set => m_Parameters = value; }
+        public List<XMLParameterMetadata> ParametersL { get => l_Parameters; set => l_Parameters = value; }
 
         public void SetValue()
         {

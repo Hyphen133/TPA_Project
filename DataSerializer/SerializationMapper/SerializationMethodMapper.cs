@@ -43,9 +43,9 @@ namespace DataSerializer.SerializationMapper
             DTG2MethodMetadata methodModel = new DTG2MethodMetadata
             {
                 Name = methodMetadata.Name,
-                GenericArguments = SerializationTypeMapper.EmitGenericArgumentsDTG(methodMetadata.GenericArguments),
+                GenericArguments = SerializationTypeMapper.EmitGenericArgumentsDTG(methodMetadata.GenericArgumentsL),
                 ReturnType = EmitReturnTypeDTG(methodMetadata),
-                Parameters = EmitParametersDTG(methodMetadata.Parameters),
+                Parameters = EmitParametersDTG(methodMetadata.ParametersL),
             };
             return methodModel;
         }

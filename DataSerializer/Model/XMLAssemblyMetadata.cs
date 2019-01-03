@@ -14,6 +14,7 @@ namespace DataSerializer.Model
         private IEnumerable<XMLNamespaceMetadata> m_Namespaces;
 
         public IEnumerable<XMLNamespaceMetadata> Namespaces { get => m_Namespaces; set => m_Namespaces = value; }
+        public List<XMLNamespaceMetadata> NamespacesL { get => l_Namespaces; set => l_Namespaces = value; }
         public string Name { get => m_Name; set => m_Name = value; }
 
         public void SetValues()

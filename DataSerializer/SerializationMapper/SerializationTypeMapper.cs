@@ -12,15 +12,15 @@ namespace DataSerializer.SerializationMapper
             XMLTypeMetadata xmlTypeMetadata = new XMLTypeMetadata
             {
                 TypeName = typeMetadata.TypeName,
-                //DeclaringType = EmitDeclaringTypeXML(typeMetadata.DeclaringType),
-                //Constructors = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Constructors),
-                //Methods = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Methods),
-                //NestedTypes = EmitNestedTypesXML(typeMetadata.NestedTypes),
-                //ImplementedInterfaces = EmitImplementsXML(typeMetadata.ImplementedInterfaces),
-                //GenericArguments = CheckGenericArgumentsXML(typeMetadata),
-                //BaseType = EmitExtendsXML(typeMetadata.BaseType),
-                //Properties = SerializationPropertyMapper.EmitPropertiesXML(typeMetadata.Properties),
-                //IsGenericType = typeMetadata.IsGenericType
+                DeclaringType = EmitDeclaringTypeXML(typeMetadata.DeclaringType),
+                Constructors = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Constructors),
+                Methods = SerializationMethodMapper.EmitMethodsXML(typeMetadata.Methods),
+                NestedTypes = EmitNestedTypesXML(typeMetadata.NestedTypes),
+                ImplementedInterfaces = EmitImplementsXML(typeMetadata.ImplementedInterfaces),
+                GenericArguments = CheckGenericArgumentsXML(typeMetadata),
+                BaseType = EmitExtendsXML(typeMetadata.BaseType),
+                Properties = SerializationPropertyMapper.EmitPropertiesXML(typeMetadata.Properties),
+                IsGenericType = typeMetadata.IsGenericType
             };
 
             return xmlTypeMetadata;
@@ -109,13 +109,13 @@ namespace DataSerializer.SerializationMapper
             {
                 TypeName = typeMetadata.TypeName,
                 DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType),
-                Constructors = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.Constructors),
-                Methods = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.Methods),
-                NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypes),
-                ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfaces),
+                Constructors = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.ConstructorsL),
+                Methods = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.MethodsL),
+                NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypesL),
+                ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfacesL),
                 GenericArguments = CheckGenericArgumentsDTG(typeMetadata),
                 BaseType = EmitExtendsDTG(typeMetadata.BaseType),
-                Properties = SerializationPropertyMapper.EmitPropertiesDTG(typeMetadata.Properties),
+                Properties = SerializationPropertyMapper.EmitPropertiesDTG(typeMetadata.PropertiesL),
                 IsGenericType = typeMetadata.IsGenericType
             };
 
@@ -126,24 +126,24 @@ namespace DataSerializer.SerializationMapper
         {
             dtg2TypeMetadata.TypeName = typeMetadata.TypeName;
             dtg2TypeMetadata.DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType);
-            dtg2TypeMetadata.Constructors = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.Constructors);
-            dtg2TypeMetadata.Methods = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.Methods);
-            dtg2TypeMetadata.NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypes);
-            dtg2TypeMetadata.ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfaces);
+            dtg2TypeMetadata.Constructors = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.ConstructorsL);
+            dtg2TypeMetadata.Methods = SerializationMethodMapper.EmitMethodsDTG(typeMetadata.MethodsL);
+            dtg2TypeMetadata.NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypesL);
+            dtg2TypeMetadata.ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfacesL);
             if (typeMetadata.GenericArguments != null)
                 dtg2TypeMetadata.GenericArguments = EmitGenericArgumentsDTG(typeMetadata.GenericArguments);
             else dtg2TypeMetadata.GenericArguments = null;
             //dtg2TypeMetadata.Modifiers = EmitModifiers(typeMetadata);
             dtg2TypeMetadata.BaseType = EmitExtendsDTG(typeMetadata.BaseType);
-            dtg2TypeMetadata.Properties = SerializationPropertyMapper.EmitPropertiesDTG(typeMetadata.Properties);
+            dtg2TypeMetadata.Properties = SerializationPropertyMapper.EmitPropertiesDTG(typeMetadata.PropertiesL);
 
             return dtg2TypeMetadata;
         }
 
         public static IEnumerable<DTG2TypeMetadata> CheckGenericArgumentsDTG(XMLTypeMetadata typeMetadata)
         {
-            if (typeMetadata.GenericArguments != null)
-                return EmitGenericArgumentsDTG(typeMetadata.GenericArguments);
+            if (typeMetadata.GenericArgumentsL != null)
+                return EmitGenericArgumentsDTG(typeMetadata.GenericArgumentsL);
             return null;
         }
 

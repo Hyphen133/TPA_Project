@@ -29,7 +29,7 @@ namespace DataSerializer.SerializationMapper
             DTG2AssemblyMetadata assemblyModel = new DTG2AssemblyMetadata
             {
                 Name = assemblyMetadata.Name,
-                Namespaces = from XMLNamespaceMetadata _namespace in assemblyMetadata.Namespaces
+                Namespaces = from XMLNamespaceMetadata _namespace in assemblyMetadata.NamespacesL
                              select SerializationNamespaceMapper.MapToDTG(_namespace)
             };
             return assemblyModel;

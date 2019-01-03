@@ -28,11 +28,11 @@ namespace DataSerializer.SerializationMapper
         {
             var m_NamespaceName = namespaceMetadata.NamespaceName;
             //May be even more beneficial to create all types from all namespaces beforehand
-            foreach (var type in namespaceMetadata.Types)
+            foreach (var type in namespaceMetadata.TypesL)
             {
                 HelperDictonaries.TypeDictonaryToDTG[type] = SerializationTypeMapper.MapToDTG(type);
             }
-            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select SerializationTypeMapper.fillType(HelperDictonaries.TypeDictonaryToDTG[type], type);
+            var m_Types = from type in namespaceMetadata.TypesL orderby type.TypeName select SerializationTypeMapper.fillType(HelperDictonaries.TypeDictonaryToDTG[type], type);
             DTG2NamespaceMetadata namespaceModel = new DTG2NamespaceMetadata
             {
                 NamespaceName = m_NamespaceName,
