@@ -166,6 +166,7 @@ namespace DataSerializer.SerializationMapper
         }
         internal static IEnumerable<DTG2TypeMetadata> EmitGenericArgumentsDTG(IEnumerable<XMLTypeMetadata> arguments)
         {
+            if (arguments == null) return null;
             return from XMLTypeMetadata _argument in arguments select EmitReferenceDTG(_argument);
         }
 

@@ -10,7 +10,17 @@ namespace Logic.DTGMapper
             DTG2ParameterMetadata parameterModel = new DTG2ParameterMetadata
             {
                 Name = parameterMetadata.Name,
-                TypeMetadata = TypeMapper.EmitReference(parameterMetadata.TypeMetadata),
+                TypeMetadata = TypeMapper.EmitReferenceDTG(parameterMetadata.TypeMetadata),
+            };
+            return parameterModel;
+        }
+
+        public static ParameterMetadata MapToModel(DTG2ParameterMetadata parameterMetadata)
+        {
+            ParameterMetadata parameterModel = new ParameterMetadata
+            {
+                Name = parameterMetadata.Name,
+                TypeMetadata = TypeMapper.EmitReferenceModel(parameterMetadata.TypeMetadata),
             };
             return parameterModel;
         }
