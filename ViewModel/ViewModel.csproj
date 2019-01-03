@@ -57,10 +57,6 @@
     <Compile Include="TreeView\TypeTreeViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataTransferGraph2\DataTransferGraph2.csproj">
-      <Project>{eaca7fad-f20c-441f-995d-e8de86e97215}</Project>
-      <Name>DataTransferGraph2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Logic.csproj">
       <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Logic</Name>
