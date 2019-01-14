@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Model\Logic.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferGraph2", "DataTransferGraph2\DataTransferGraph2.csproj", "{EACA7FAD-F20C-441F-995D-E8DE86E97215}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{EACA7FAD-F20C-441F-995D-E8DE86E97215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EACA7FAD-F20C-441F-995D-E8DE86E97215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EACA7FAD-F20C-441F-995D-E8DE86E97215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
