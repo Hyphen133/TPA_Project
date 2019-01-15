@@ -6,6 +6,7 @@ using Logic.MEF;
 using Logic.Model;
 using Logic.Services;
 using System;
+using DataTransferGraph.Model;
 
 namespace DataSerializerTests
 {

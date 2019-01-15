@@ -1,5 +1,5 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph2.Model;
+using DataTransferGraph.Model;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +7,7 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationMethodMapper
     {
-        public static XMLMethodMetadata MapToXML(DTG2MethodMetadata methodMetadata)
+        public static XMLMethodMetadata MapToXML(DTGMethodMetadata methodMetadata)
         {
             XMLMethodMetadata methodModel = new XMLMethodMetadata
             {
@@ -19,28 +19,28 @@ namespace DataSerializer.SerializationMapper
             return methodModel;
         }
 
-        internal static IEnumerable<XMLMethodMetadata> EmitMethodsXML(IEnumerable<DTG2MethodMetadata> methods)
+        internal static IEnumerable<XMLMethodMetadata> EmitMethodsXML(IEnumerable<DTGMethodMetadata> methods)
         {
-            return from DTG2MethodMetadata _currentMethod in methods
+            return from DTGMethodMetadata _currentMethod in methods
                    select MapToXML(_currentMethod);
         }
 
-        private static IEnumerable<XMLParameterMetadata> EmitParametersXML(IEnumerable<DTG2ParameterMetadata> parms)
+        private static IEnumerable<XMLParameterMetadata> EmitParametersXML(IEnumerable<DTGParameterMetadata> parms)
         {
             return from parm in parms
                    select SerializationParameterMapper.MapToXML(parm);
         }
-        private static XMLTypeMetadata EmitReturnTypeXML(DTG2MethodMetadata method)
+        private static XMLTypeMetadata EmitReturnTypeXML(DTGMethodMetadata method)
         {
-            DTG2MethodMetadata methodInfo = method as DTG2MethodMetadata;
+            DTGMethodMetadata methodInfo = method as DTGMethodMetadata;
             if (methodInfo == null)
                 return null;
             return SerializationTypeMapper.EmitReferenceXML(methodInfo.ReturnType);
         }
 
-        public static DTG2MethodMetadata MapToDTG(XMLMethodMetadata methodMetadata)
+        public static DTGMethodMetadata MapToDTG(XMLMethodMetadata methodMetadata)
         {
-            DTG2MethodMetadata methodModel = new DTG2MethodMetadata
+            DTGMethodMetadata methodModel = new DTGMethodMetadata
             {
                 Name = methodMetadata.Name,
                 GenericArguments = SerializationTypeMapper.EmitGenericArgumentsDTG(methodMetadata.GenericArgumentsL),
@@ -50,19 +50,19 @@ namespace DataSerializer.SerializationMapper
             return methodModel;
         }
 
-        internal static IEnumerable<DTG2MethodMetadata> EmitMethodsDTG(IEnumerable<XMLMethodMetadata> methods)
+        internal static IEnumerable<DTGMethodMetadata> EmitMethodsDTG(IEnumerable<XMLMethodMetadata> methods)
         {
             if (methods == null) return null;
             return from XMLMethodMetadata _currentMethod in methods
                    select MapToDTG(_currentMethod);
         }
 
-        private static IEnumerable<DTG2ParameterMetadata> EmitParametersDTG(IEnumerable<XMLParameterMetadata> parms)
+        private static IEnumerable<DTGParameterMetadata> EmitParametersDTG(IEnumerable<XMLParameterMetadata> parms)
         {
             return from parm in parms
                    select SerializationParameterMapper.MapToDTG(parm);
         }
-        private static DTG2TypeMetadata EmitReturnTypeDTG(XMLMethodMetadata method)
+        private static DTGTypeMetadata EmitReturnTypeDTG(XMLMethodMetadata method)
         {
             XMLMethodMetadata methodInfo = method as XMLMethodMetadata;
             if (methodInfo == null)

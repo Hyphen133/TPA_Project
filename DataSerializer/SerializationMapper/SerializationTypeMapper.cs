@@ -1,5 +1,5 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph2.Model;
+using DataTransferGraph.Model;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +7,7 @@ namespace DataSerializer.SerializationMapper
 {
     public class SerializationTypeMapper
     {
-        public static XMLTypeMetadata MapToXML(DTG2TypeMetadata typeMetadata)
+        public static XMLTypeMetadata MapToXML(DTGTypeMetadata typeMetadata)
         {
             XMLTypeMetadata xmlTypeMetadata = new XMLTypeMetadata
             {
@@ -26,7 +26,7 @@ namespace DataSerializer.SerializationMapper
             return xmlTypeMetadata;
         }
 
-        public static XMLTypeMetadata FillTypeXML(XMLTypeMetadata dtg2TypeMetadata, DTG2TypeMetadata typeMetadata)
+        public static XMLTypeMetadata FillTypeXML(XMLTypeMetadata dtg2TypeMetadata, DTGTypeMetadata typeMetadata)
         {
             dtg2TypeMetadata.TypeName = typeMetadata.TypeName;
             dtg2TypeMetadata.DeclaringType = EmitDeclaringTypeXML(typeMetadata.DeclaringType);
@@ -44,14 +44,14 @@ namespace DataSerializer.SerializationMapper
             return dtg2TypeMetadata;
         }
 
-        public static IEnumerable<XMLTypeMetadata> CheckGenericArgumentsXML(DTG2TypeMetadata typeMetadata)
+        public static IEnumerable<XMLTypeMetadata> CheckGenericArgumentsXML(DTGTypeMetadata typeMetadata)
         {
             if (typeMetadata.GenericArguments != null)
                 return EmitGenericArgumentsXML(typeMetadata.GenericArguments);
             return null;
         }
 
-        internal static XMLTypeMetadata EmitReferenceXML(DTG2TypeMetadata type)
+        internal static XMLTypeMetadata EmitReferenceXML(DTGTypeMetadata type)
         {
             if (type == null) return null;
             if (HelperDictonaries.TypeDictonaryToXML.ContainsKey(type))
@@ -69,29 +69,29 @@ namespace DataSerializer.SerializationMapper
             else
                 return MapToXML(type);
         }
-        internal static IEnumerable<XMLTypeMetadata> EmitGenericArgumentsXML(IEnumerable<DTG2TypeMetadata> arguments)
+        internal static IEnumerable<XMLTypeMetadata> EmitGenericArgumentsXML(IEnumerable<DTGTypeMetadata> arguments)
         {
             if (arguments == null) return null;
-            return from DTG2TypeMetadata _argument in arguments select EmitReferenceXML(_argument);
+            return from DTGTypeMetadata _argument in arguments select EmitReferenceXML(_argument);
         }
 
-        private static XMLTypeMetadata EmitDeclaringTypeXML(DTG2TypeMetadata declaringType)
+        private static XMLTypeMetadata EmitDeclaringTypeXML(DTGTypeMetadata declaringType)
         {
             if (declaringType == null)
                 return null;
             return EmitReferenceXML(declaringType);
         }
-        private static IEnumerable<XMLTypeMetadata> EmitNestedTypesXML(IEnumerable<DTG2TypeMetadata> nestedTypes)
+        private static IEnumerable<XMLTypeMetadata> EmitNestedTypesXML(IEnumerable<DTGTypeMetadata> nestedTypes)
         {
             return from _type in nestedTypes
                    select MapToXML(_type);
         }
-        private static IEnumerable<XMLTypeMetadata> EmitImplementsXML(IEnumerable<DTG2TypeMetadata> interfaces)
+        private static IEnumerable<XMLTypeMetadata> EmitImplementsXML(IEnumerable<DTGTypeMetadata> interfaces)
         {
             return from currentInterface in interfaces
                    select EmitReferenceXML(currentInterface);
         }
-        private static XMLTypeMetadata EmitExtendsXML(DTG2TypeMetadata baseType)
+        private static XMLTypeMetadata EmitExtendsXML(DTGTypeMetadata baseType)
         {
             if (baseType == null)
                 return null;
@@ -103,9 +103,9 @@ namespace DataSerializer.SerializationMapper
 
 
         
-        public static DTG2TypeMetadata MapToDTG(XMLTypeMetadata typeMetadata)
+        public static DTGTypeMetadata MapToDTG(XMLTypeMetadata typeMetadata)
         {
-            DTG2TypeMetadata xmlTypeMetadata = new DTG2TypeMetadata
+            DTGTypeMetadata xmlTypeMetadata = new DTGTypeMetadata
             {
                 TypeName = typeMetadata.TypeName,
                 DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType),
@@ -122,7 +122,7 @@ namespace DataSerializer.SerializationMapper
             return xmlTypeMetadata;
         }
 
-        public static DTG2TypeMetadata fillType(DTG2TypeMetadata dtg2TypeMetadata, XMLTypeMetadata typeMetadata)
+        public static DTGTypeMetadata fillType(DTGTypeMetadata dtg2TypeMetadata, XMLTypeMetadata typeMetadata)
         {
             dtg2TypeMetadata.TypeName = typeMetadata.TypeName;
             dtg2TypeMetadata.DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType);
@@ -140,14 +140,14 @@ namespace DataSerializer.SerializationMapper
             return dtg2TypeMetadata;
         }
 
-        public static IEnumerable<DTG2TypeMetadata> CheckGenericArgumentsDTG(XMLTypeMetadata typeMetadata)
+        public static IEnumerable<DTGTypeMetadata> CheckGenericArgumentsDTG(XMLTypeMetadata typeMetadata)
         {
             if (typeMetadata.GenericArgumentsL != null)
                 return EmitGenericArgumentsDTG(typeMetadata.GenericArgumentsL);
             return null;
         }
 
-        internal static DTG2TypeMetadata EmitReferenceDTG(XMLTypeMetadata type)
+        internal static DTGTypeMetadata EmitReferenceDTG(XMLTypeMetadata type)
         {
             if (type == null) return null;
             if (HelperDictonaries.TypeDictonaryToDTG.ContainsKey(type))
@@ -165,31 +165,31 @@ namespace DataSerializer.SerializationMapper
             else
                 return MapToDTG(type);
         }
-        internal static IEnumerable<DTG2TypeMetadata> EmitGenericArgumentsDTG(IEnumerable<XMLTypeMetadata> arguments)
+        internal static IEnumerable<DTGTypeMetadata> EmitGenericArgumentsDTG(IEnumerable<XMLTypeMetadata> arguments)
         {
             if (arguments == null) return null;
             return from XMLTypeMetadata _argument in arguments select EmitReferenceDTG(_argument);
         }
 
-        private static DTG2TypeMetadata EmitDeclaringTypeDTG(XMLTypeMetadata declaringType)
+        private static DTGTypeMetadata EmitDeclaringTypeDTG(XMLTypeMetadata declaringType)
         {
             if (declaringType == null)
                 return null;
             return EmitReferenceDTG(declaringType);
         }
-        private static IEnumerable<DTG2TypeMetadata> EmitNestedTypesDTG(IEnumerable<XMLTypeMetadata> nestedTypes)
+        private static IEnumerable<DTGTypeMetadata> EmitNestedTypesDTG(IEnumerable<XMLTypeMetadata> nestedTypes)
         {
             if (nestedTypes == null) return null;
             return from _type in nestedTypes
                    select MapToDTG(_type);
         }
-        private static IEnumerable<DTG2TypeMetadata> EmitImplementsDTG(IEnumerable<XMLTypeMetadata> interfaces)
+        private static IEnumerable<DTGTypeMetadata> EmitImplementsDTG(IEnumerable<XMLTypeMetadata> interfaces)
         {
             if (interfaces == null) return null;
             return from currentInterface in interfaces
                    select EmitReferenceDTG(currentInterface);
         }
-        private static DTG2TypeMetadata EmitExtendsDTG(XMLTypeMetadata baseType)
+        private static DTGTypeMetadata EmitExtendsDTG(XMLTypeMetadata baseType)
         {
             if (baseType == null)
                 return null;

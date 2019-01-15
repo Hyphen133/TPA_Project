@@ -58,7 +58,6 @@ namespace ViewModel
         private void LoadDLL()
         {
             assembly = DllLoader.LoadDLL(PathVariable, HierarchicalAreas);
-            string g = null;
         }
 
         private void Browse()

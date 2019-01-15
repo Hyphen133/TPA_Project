@@ -1,11 +1,11 @@
 ﻿using DataSerializer.Model;
-using DataTransferGraph2.Model;
+using DataTransferGraph.Model;
 
 namespace DataSerializer.SerializationMapper
 {
     public class SerializationParameterMapper
     {
-        public static XMLParameterMetadata MapToXML(DTG2ParameterMetadata parameterMetadata)
+        public static XMLParameterMetadata MapToXML(DTGParameterMetadata parameterMetadata)
         {
             XMLParameterMetadata parameterModel = new XMLParameterMetadata
             {
@@ -15,9 +15,9 @@ namespace DataSerializer.SerializationMapper
             return parameterModel;
         }
 
-        public static DTG2ParameterMetadata MapToDTG(XMLParameterMetadata parameterMetadata)
+        public static DTGParameterMetadata MapToDTG(XMLParameterMetadata parameterMetadata)
         {
-            DTG2ParameterMetadata parameterModel = new DTG2ParameterMetadata
+            DTGParameterMetadata parameterModel = new DTGParameterMetadata
             {
                 Name = parameterMetadata.Name,
                 TypeMetadata = SerializationTypeMapper.EmitReferenceDTG(parameterMetadata.TypeMetadata),

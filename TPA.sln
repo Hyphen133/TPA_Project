@@ -11,15 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSerializer", "DataSerializer\DataSerializer.csproj", "{AC807132-F845-4430-9A26-71936AB5BBED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTests", "ModelTests\ModelTests.csproj", "{9E083801-CD64-4F07-9C68-BD6AED8879EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTests", "LogicTests\LogicTests.csproj", "{9E083801-CD64-4F07-9C68-BD6AED8879EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSerializerTests", "DataSerializerTests\DataSerializerTests.csproj", "{E095754C-CDAC-45C2-9101-27E0202174F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModelTests", "ViewModelTests\ViewModelTests.csproj", "{2022A9D8-BC89-4144-A4BB-C09BB6493D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Model\Logic.csproj", "{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferGraph2", "DataTransferGraph2\DataTransferGraph2.csproj", "{EACA7FAD-F20C-441F-995D-E8DE86E97215}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferGraph", "DataTransferGraph\DataTransferGraph.csproj", "{EACA7FAD-F20C-441F-995D-E8DE86E97215}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}"
 EndProject

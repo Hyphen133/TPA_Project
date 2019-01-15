@@ -1,21 +1,21 @@
-﻿using DataSerializer.Model;
+﻿using Database.Model;
 using DataTransferGraph.Model;
 using System.Linq;
 
-namespace DataSerializer.SerializationMapper
+namespace Database.DatabaseMapper
 {
-    public class SerializationNamespaceMapper
+    public class DatabaseNamespaceMapper
     {
-        public static XMLNamespaceMetadata MapToXML(DTGNamespaceMetadata namespaceMetadata)
+        public static DatabaseNamespaceMetadata MapToDatabase(DTGNamespaceMetadata namespaceMetadata)
         {
             var m_NamespaceName = namespaceMetadata.NamespaceName;
             //May be even more beneficial to create all types from all namespaces beforehand
             foreach (var type in namespaceMetadata.Types)
             {
-                HelperDictonaries.TypeDictonaryToXML[type] = SerializationTypeMapper.MapToXML(type);
+                HelperDictonaries.TypeDictonaryToDatabase[type] = SerializationTypeMapper.MapToDatabase(type);
             }
-            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select SerializationTypeMapper.FillTypeXML(HelperDictonaries.TypeDictonaryToXML[type], type);
-            XMLNamespaceMetadata namespaceModel = new XMLNamespaceMetadata
+            var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select SerializationTypeMapper.FillTypeDatabase(HelperDictonaries.TypeDictonaryToDatabase[type], type);
+            DatabaseNamespaceMetadata namespaceModel = new DatabaseNamespaceMetadata
             {
                 NamespaceName = m_NamespaceName,
                 Types = m_Types
@@ -24,7 +24,7 @@ namespace DataSerializer.SerializationMapper
             return namespaceModel;
         }
 
-        public static DTGNamespaceMetadata MapToDTG(XMLNamespaceMetadata namespaceMetadata)
+        public static DTGNamespaceMetadata MapToDTG(DatabaseNamespaceMetadata namespaceMetadata)
         {
             var m_NamespaceName = namespaceMetadata.NamespaceName;
             //May be even more beneficial to create all types from all namespaces beforehand

@@ -57,7 +57,7 @@
     <Compile Include="TreeView\TypeTreeViewItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Logic.csproj">
+    <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Logic</Name>
     </ProjectReference>

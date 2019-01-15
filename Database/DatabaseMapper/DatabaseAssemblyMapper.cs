@@ -1,36 +1,36 @@
-﻿using DataSerializer.Model;
+﻿using Database.Model;
 using DataTransferGraph.Model;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace DataSerializer.SerializationMapper
+namespace Database.DatabaseMapper
 {
     [Export]
-    class SerializationAssemblyMapper
+    class DatabaseAssemblyMapper
     {
-        public static XMLAssemblyMetadata MapToXML(DTGAssemblyMetadata assemblyMetadata)
+        public static DatabaseAssemblyMetadata MapToDatabase(DTGAssemblyMetadata assemblyMetadata)
         {
             HelperDictonaries.ResetDictonaries();
 
-            XMLAssemblyMetadata assemblyModel = new XMLAssemblyMetadata
+            DatabaseAssemblyMetadata assemblyModel = new DatabaseAssemblyMetadata
             {
                 Name = assemblyMetadata.Name,
                 Namespaces = from DTGNamespaceMetadata _namespace in assemblyMetadata.Namespaces
-                             select SerializationNamespaceMapper.MapToXML(_namespace)
+                             select DatabaseNamespaceMapper.MapToDatabase(_namespace)
             };
             assemblyModel.SetValues();
             return assemblyModel;
         }
 
-        public static DTGAssemblyMetadata MapToDTG(XMLAssemblyMetadata assemblyMetadata)
+        public static DTGAssemblyMetadata MapToDTG(DatabaseAssemblyMetadata assemblyMetadata)
         {
             HelperDictonaries.ResetDictonaries();
 
             DTGAssemblyMetadata assemblyModel = new DTGAssemblyMetadata
             {
                 Name = assemblyMetadata.Name,
-                Namespaces = from XMLNamespaceMetadata _namespace in assemblyMetadata.NamespacesL
-                             select SerializationNamespaceMapper.MapToDTG(_namespace)
+                Namespaces = from DatabaseNamespaceMetadata _namespace in assemblyMetadata.NamespacesL
+                             select DatabaseNamespaceMapper.MapToDTG(_namespace)
             };
             return assemblyModel;
         }

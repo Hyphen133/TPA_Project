@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E095754C-CDAC-45C2-9101-27E0202174F0}</ProjectGuid>
+    <ProjectGuid>{9E083801-CD64-4F07-9C68-BD6AED8879EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataSerializerTests</RootNamespace>
-    <AssemblyName>DataSerializerTests</AssemblyName>
+    <RootNamespace>ModelTests</RootNamespace>
+    <AssemblyName>ModelTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,7 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SerializationTest.cs" />
+    <Compile Include="ModelReflectionTest.cs" />
+    <Compile Include="ModelTracingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,14 +58,6 @@
     <None Include="TPA.ApplicationArchitecture.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataSerializer\DataSerializer.csproj">
-      <Project>{ac807132-f845-4430-9a26-71936ab5bbed}</Project>
-      <Name>DataSerializer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataTransferGraph\DataTransferGraph.csproj">
-      <Project>{eaca7fad-f20c-441f-995d-e8de86e97215}</Project>
-      <Name>DataTransferGraph</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Logic</Name>

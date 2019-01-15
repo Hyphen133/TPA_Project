@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
-using DataTransferGraph2.Model;
+using DataTransferGraph.Model;
 using System.Linq;
 
 namespace DataSerializer
@@ -21,7 +21,7 @@ namespace DataSerializer
 
         //public static ITraceSource TraceSource { get => traceSource; set => traceSource = value; }
 
-        public DTG2AssemblyMetadata Read(string path)
+        public DTGAssemblyMetadata Read(string path)
         {
             XMLAssemblyMetadata model;
 
@@ -35,7 +35,7 @@ namespace DataSerializer
             return c;
         }
 
-        public void Write(DTG2AssemblyMetadata assemblyModel, string path)
+        public void Write(DTGAssemblyMetadata assemblyModel, string path)
         {
             XMLAssemblyMetadata assembly = SerializationAssemblyMapper.MapToXML(assemblyModel);
             List<Type> knownTypes = new List<Type>
