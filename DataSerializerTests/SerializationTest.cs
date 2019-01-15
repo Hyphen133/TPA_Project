@@ -37,7 +37,7 @@ namespace DataSerializerTests
             Console.WriteLine(path);
             AssemblyMetadata assemblyMetaData = DataService.LoadAssembly(fullFilePath);
             ISerialize xmlSerialize = Mef.Container.GetExportedValue<ISerialize>();
-            xmlSerialize.Write(AssemblyMapper.MapToDTGModel(assemblyMetaData), fullXmlPath);
+            xmlSerialize.Save(AssemblyMapper.MapToDTGModel(assemblyMetaData), fullXmlPath);
             AssemblyMetadata assemblyMetadata2 = AssemblyMapper.MapToModel(xmlSerialize.Read(fullXmlPath));
             Console.WriteLine(assemblyMetaData.Name);
             Console.WriteLine(assemblyMetadata2.Name);

@@ -4,7 +4,8 @@ using System.Linq;
 namespace Database.Model
 {
     public class DatabaseTypeMetadata
-    {        
+    {
+        private int m_TypeID;
         private string m_typeName;        
         private string m_NamespaceName;        
         private DatabaseTypeMetadata m_BaseType;        
@@ -25,6 +26,7 @@ namespace Database.Model
         private List<DatabaseMethodMetadata> l_Constructors;
         private IEnumerable<DatabaseMethodMetadata> m_Constructors;
 
+        public int TypeID { get => m_TypeID; set => m_TypeID = value; }
         public string TypeName { get => m_typeName; set => m_typeName = value; }
         public string NamespaceName { get => m_NamespaceName; set => m_NamespaceName = value; }
         public DatabaseTypeMetadata BaseType { get => m_BaseType; set => m_BaseType = value; }

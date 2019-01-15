@@ -12,7 +12,7 @@ namespace Logic
         {
             ISerialize serializer = Mef.Container.GetExportedValue<ISerialize>();
             DTGAssemblyMetadata pom = AssemblyMapper.MapToDTGModel(assembly);
-            serializer.Write(pom, path + "\\test.xml");
+            serializer.Save(pom, path + "\\test.xml");
         }
 
         public static AssemblyMetadata Deserialize(string path)

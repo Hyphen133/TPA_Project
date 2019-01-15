@@ -35,7 +35,7 @@ namespace DataSerializer
             return c;
         }
 
-        public void Write(DTGAssemblyMetadata assemblyModel, string path)
+        public void Save(DTGAssemblyMetadata assemblyModel, string path)
         {
             XMLAssemblyMetadata assembly = SerializationAssemblyMapper.MapToXML(assemblyModel);
             List<Type> knownTypes = new List<Type>

@@ -5,6 +5,7 @@ namespace Database.Model
 {
     public class DatabaseMethodMetadata
     {
+        private int m_MethodID;
         private string m_Name;
         private List<DatabaseTypeMetadata> l_GenericArguments;
         private IEnumerable<DatabaseTypeMetadata> m_GenericArguments;
@@ -13,6 +14,7 @@ namespace Database.Model
         private List<DatabaseParameterMetadata> l_Parameters;
         private IEnumerable<DatabaseParameterMetadata> m_Parameters;
 
+        public int MethodID { get => m_MethodID; set => m_MethodID = value; }
         public string Name { get => m_Name; set => m_Name = value; }
         public IEnumerable<DatabaseTypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
         public List<DatabaseTypeMetadata> GenericArgumentsL { get => l_GenericArguments; set => l_GenericArguments = value; }

@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISerialize.cs" />
     <Compile Include="Model\XMLAssemblyMetadata.cs" />
     <Compile Include="Model\XMLMethodMetadata.cs" />
     <Compile Include="Model\XMLNamespaceMetadata.cs" />
