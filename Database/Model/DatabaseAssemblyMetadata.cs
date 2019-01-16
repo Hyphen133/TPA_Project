@@ -1,25 +1,26 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Runtime.Serialization;
 
 namespace Database.Model
 {
+    [Table("Assemblies")]
     public class DatabaseAssemblyMetadata
     {
-        private int m_AssemblyID;
-        private string m_Name;
-        private List<DatabaseNamespaceMetadata> l_Namespaces;
-        private IEnumerable<DatabaseNamespaceMetadata> m_Namespaces;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int AssemblyID { get; set; }
 
-        public int AssemblyID { get => m_AssemblyID; set => m_AssemblyID = value; }
-        public IEnumerable<DatabaseNamespaceMetadata> Namespaces { get => m_Namespaces; set => m_Namespaces = value; }
-        public List<DatabaseNamespaceMetadata> NamespacesL { get => l_Namespaces; set => l_Namespaces = value; }
-        public string Name { get => m_Name; set => m_Name = value; }
+        [NotMapped]
+        public IEnumerable<DatabaseNamespaceMetadata> Namespaces { get; set; }
+        public List<DatabaseNamespaceMetadata> NamespacesL { get; set; }
+        public string Name { get; set; }
 
         public void SetValues()
         {
-            l_Namespaces = m_Namespaces.ToList();
-            foreach(var n in l_Namespaces)
+            NamespacesL = Namespaces.ToList();
+            foreach (var n in NamespacesL)
             {
                 n.SetValues();
             }

@@ -1,4 +1,5 @@
-﻿using DataSerializer;
+﻿using Database;
+using DataSerializer;
 using DataTransferGraph.Model;
 using Logic.DTGMapper;
 using Logic.MEF;
@@ -10,7 +11,7 @@ namespace Logic
     {
         public static void Serialize(AssemblyMetadata assembly, string path)
         {
-            ISerialize serializer = Mef.Container.GetExportedValue<ISerialize>();
+            ISerialize serializer = new DatabaseOperations();//Mef.Container.GetExportedValue<ISerialize>();
             DTGAssemblyMetadata pom = AssemblyMapper.MapToDTGModel(assembly);
             serializer.Save(pom, path + "\\test.xml");
         }

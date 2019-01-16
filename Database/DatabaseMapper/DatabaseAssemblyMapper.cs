@@ -1,12 +1,13 @@
 ﻿using Database.Model;
 using DataTransferGraph.Model;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace Database.DatabaseMapper
 {
     [Export]
-    class DatabaseAssemblyMapper
+    public class DatabaseAssemblyMapper
     {
         public static DatabaseAssemblyMetadata MapToDatabase(DTGAssemblyMetadata assemblyMetadata)
         {
@@ -19,6 +20,10 @@ namespace Database.DatabaseMapper
                              select DatabaseNamespaceMapper.MapToDatabase(_namespace)
             };
             assemblyModel.SetValues();
+            using (var context = new DatabaseModelContext(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30"))
+            {
+                FeedContext(context, assemblyModel);
+            }
             return assemblyModel;
         }
 
@@ -34,5 +39,11 @@ namespace Database.DatabaseMapper
             };
             return assemblyModel;
         }
-    }
+
+        private static void FeedContext(DatabaseModelContext context, DatabaseAssemblyMetadata databaseAssemblyMetadata)
+        {
+            context.Assemblies.Add(databaseAssemblyMetadata);
+            context.SaveChanges();
+        }
+    }    
 }

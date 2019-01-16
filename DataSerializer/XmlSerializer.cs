@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace DataSerializer
 {
-    [Export(typeof(ISerialize))]
+    //[Export(typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
         [Import]

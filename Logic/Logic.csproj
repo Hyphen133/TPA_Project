@@ -90,6 +90,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{0e0e6037-9fb3-484c-80c2-7ff2da8721a6}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataSerializer\DataSerializer.csproj">
       <Project>{ac807132-f845-4430-9a26-71936ab5bbed}</Project>
       <Name>DataSerializer</Name>

@@ -1,43 +1,46 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Database.Model
 {
+    [Table("Methods")]
     public class DatabaseMethodMetadata
     {
-        private int m_MethodID;
-        private string m_Name;
-        private List<DatabaseTypeMetadata> l_GenericArguments;
-        private IEnumerable<DatabaseTypeMetadata> m_GenericArguments;
-        private DatabaseTypeMetadata m_ReturnType;
-        private bool m_Extension;
-        private List<DatabaseParameterMetadata> l_Parameters;
-        private IEnumerable<DatabaseParameterMetadata> m_Parameters;
-
-        public int MethodID { get => m_MethodID; set => m_MethodID = value; }
-        public string Name { get => m_Name; set => m_Name = value; }
-        public IEnumerable<DatabaseTypeMetadata> GenericArguments { get => m_GenericArguments; set => m_GenericArguments = value; }
-        public List<DatabaseTypeMetadata> GenericArgumentsL { get => l_GenericArguments; set => l_GenericArguments = value; }
-        public DatabaseTypeMetadata ReturnType { get => m_ReturnType; set => m_ReturnType = value; }
-        public IEnumerable<DatabaseParameterMetadata> Parameters { get => m_Parameters; set => m_Parameters = value; }
-        public List<DatabaseParameterMetadata> ParametersL { get => l_Parameters; set => l_Parameters = value; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int MethodID { get; set; }
+        
+        [Column("Name")]
+        public string Name { get; set; }
+        [NotMapped]
+        public IEnumerable<DatabaseTypeMetadata> GenericArguments { get; set; }
+        [Column("GenericArguments")]
+        public List<DatabaseTypeMetadata> GenericArgumentsL { get; set; }
+        [Column("ReturnType")]
+        public DatabaseTypeMetadata ReturnType { get; set; }
+        [NotMapped]
+        public IEnumerable<DatabaseParameterMetadata> Parameters { get; set; }
+        [Column("Parameters")]
+        public List<DatabaseParameterMetadata> ParametersL { get; set; }
 
         public void SetValue()
         {
-            if (m_GenericArguments == null)
+            if (GenericArguments == null)
             {
-                l_GenericArguments = null;
+                GenericArgumentsL = null;
             }
             else
             {
-                l_GenericArguments = m_GenericArguments.ToList();
-                foreach (var i in l_GenericArguments)
+                GenericArgumentsL = GenericArguments.ToList();
+                foreach (var i in GenericArgumentsL)
                 {
                     i.SetValue();
                 }
             }
 
-            l_Parameters = m_Parameters.ToList();
+            ParametersL = Parameters.ToList();
         }
     }
 }

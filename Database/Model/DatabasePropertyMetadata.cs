@@ -1,13 +1,18 @@
-﻿namespace Database.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Database.Model
 {
+    [Table("Properties")]
     public class DatabasePropertyMetadata
     {
-        private int m_PropertyID;
-        private string m_Name;
-        private DatabaseTypeMetadata m_TypeMetadata;
-
-        public int PropertyID { get => m_PropertyID; set => m_PropertyID = value; }
-        public string Name { get => m_Name; set => m_Name = value; }
-        public DatabaseTypeMetadata TypeMetadata { get => m_TypeMetadata; set => m_TypeMetadata = value; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PropertyID { get; set; }
+        public string Name { get; set; }
+        //[Column("PropertyType")]
+        [NotMapped]
+        public DatabaseTypeMetadata TypeMetadata { get; set; }
+        //public int TypeID { get; set; }
     }
 }

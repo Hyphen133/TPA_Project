@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Database.Model
 {
+    [Table("Namespaces")]
     public class DatabaseNamespaceMetadata
     {
-        private int m_NamespaceID;
-        private string m_NamespaceName;
-        private List<DatabaseTypeMetadata> l_Types;
-        private IEnumerable<DatabaseTypeMetadata> m_Types;
-
-        public int NamespaceID { get => m_NamespaceID; set => m_NamespaceID = value; }
-        public string NamespaceName { get => m_NamespaceName; set => m_NamespaceName = value; }
-        public IEnumerable<DatabaseTypeMetadata> Types { get => m_Types; set => m_Types = value; }
-        public List<DatabaseTypeMetadata> TypesL { get => l_Types; set => l_Types = value; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int NamespaceID { get; set; }
+        public string NamespaceName { get; set; }
+        [NotMapped]
+        public IEnumerable<DatabaseTypeMetadata> Types { get; set; }
+        public List<DatabaseTypeMetadata> TypesL { get; set; }
 
         public void SetValues()
         {
-            l_Types = m_Types.ToList();
-            foreach (var i in l_Types)
+            TypesL = Types.ToList();
+            foreach (var i in TypesL)
             {
                 i.SetValue();
             }
