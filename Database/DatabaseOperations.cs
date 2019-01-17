@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Database
 {
-    [Export(typeof(ISerialize))]
+    [Export("Database", typeof(ISerialize))]
     public class DatabaseOperations : ISerialize
     {
         public static string Path;

@@ -22,7 +22,7 @@ namespace Logic
 
         public static AssemblyMetadata Read(string address)
         {
-            ISerialize deserializer = Mef.Container.GetExportedValue<ISerialize>();
+            ISerialize deserializer = Mef.Container.GetExportedValue<ISerialize>(Configuration.configuredValues[typeof(ISerialize)]);
             return AssemblyMapper.MapToModel(deserializer.Read(address));
         }
     }
