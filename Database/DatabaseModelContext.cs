@@ -17,27 +17,35 @@ namespace Database
         public DbSet<DatabaseTypeMetadata> Types { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        { 
-            modelBuilder.Entity<DatabaseAssemblyMetadata>()
-                .HasMany<DatabaseNamespaceMetadata>(a => a.NamespacesL);
-
-            modelBuilder.Entity<DatabaseNamespaceMetadata>()
-                .HasMany<DatabaseTypeMetadata>(n => n.TypesL);
+        {
+            modelBuilder.Entity<DatabaseTypeMetadata>()
+                .HasMany<DatabasePropertyMetadata>(s => s.PropertiesL)
+                .WithMany(c => c.TypesProperties)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("TypeRefId");
+                    cs.MapRightKey("PropertyRefId");
+                    cs.ToTable("TypeProperty");
+                });
+            modelBuilder.Entity<DatabaseMethodMetadata>()
+                .HasMany<DatabaseTypeMetadata>(s => s.GenericArgumentsL)
+                .WithMany(c => c.MethodsL)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("MethodRefId");
+                    cs.MapRightKey("GenericArgumentsRefId");
+                    cs.ToTable("MethodGenericArguments");
+                });
 
             modelBuilder.Entity<DatabaseTypeMetadata>()
-                .HasMany<DatabasePropertyMetadata>(n => n.PropertiesL);
+                .HasMany(x => x.NestedTypesL)
+                .WithMany()
+                .Map(x => x.ToTable("NestedTypes"));
 
             modelBuilder.Entity<DatabaseTypeMetadata>()
-                .HasOptional<DatabaseTypeMetadata>(t => t.ImplementedInterface)
-                .WithMany(t => t.ImplementedInterfacesL)
-                .HasForeignKey(t => t.ImplementedInterfaceID);
-
-            //modelBuilder.Entity<DatabasePropertyMetadata>()
-            //  .HasRequired(p => p.TypeMetadata)
-            //.WithMany(t => t.PropertiesL)
-            //.HasForeignKey(p => p.TypeID);
-
-
+                .HasMany(x => x.ImplementedInterfacesL)
+                .WithMany()
+                .Map(x => x.ToTable("Implemented interfaces"));
         }
     }
 }

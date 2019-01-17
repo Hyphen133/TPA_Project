@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database.Model
@@ -10,9 +11,8 @@ namespace Database.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PropertyID { get; set; }
         public string Name { get; set; }
-        //[Column("PropertyType")]
-        [NotMapped]
+        //[NotMapped]
         public DatabaseTypeMetadata TypeMetadata { get; set; }
-        //public int TypeID { get; set; }
+        public ICollection<DatabaseTypeMetadata> TypesProperties { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Logic
 
         public static AssemblyMetadata Deserialize(string path)
         {
-            ISerialize deserializer = Mef.Container.GetExportedValue<ISerialize>();
+            ISerialize deserializer = new DatabaseOperations();//= Mef.Container.GetExportedValue<ISerialize>();
             return AssemblyMapper.MapToModel(deserializer.Read(path));
         }
     }

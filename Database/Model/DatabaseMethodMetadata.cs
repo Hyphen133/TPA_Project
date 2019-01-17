@@ -10,8 +10,7 @@ namespace Database.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int MethodID { get; set; }
-        
+        public int MethodID { get; set; }        
         [Column("Name")]
         public string Name { get; set; }
         [NotMapped]
