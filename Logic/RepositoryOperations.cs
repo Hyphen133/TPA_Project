@@ -16,7 +16,7 @@ namespace Logic
             ISerialize serializer = Mef.Container.GetExportedValue<ISerialize>(Configuration.configuredValues[typeof(ISerialize)]);
             ITraceSource trace = Mef.Container.GetExportedValue<ITraceSource>(Configuration.configuredValues[typeof(ITraceSource)]);
             DTGAssemblyMetadata pom = AssemblyMapper.MapToDTGModel(assembly);
-            serializer.Save(pom, address);
+            serializer.Save(pom, address);           
             trace.TraceData(System.Diagnostics.TraceEventType.Information, 1, "Serialization Succeded");
         }
 

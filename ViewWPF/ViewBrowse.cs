@@ -23,7 +23,7 @@ namespace ViewWPF
             };
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                return dialog.FileName;
+                return dialog.FileName + "\\test.xml";
             }
             else
             {

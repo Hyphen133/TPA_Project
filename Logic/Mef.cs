@@ -16,8 +16,6 @@ namespace Logic.MEF
                 if (container == null)
                 {
                     var catalog = new DirectoryCatalog(".", "*");
-                    //catalog.Catalogs.
-
                     container = new CompositionContainer(catalog);
                 }
 
