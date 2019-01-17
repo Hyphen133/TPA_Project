@@ -12,7 +12,7 @@ namespace Database.DatabaseMapper
             DatabaseMethodMetadata methodModel = new DatabaseMethodMetadata
             {
                 Name = methodMetadata.Name,
-                GenericArguments = SerializationTypeMapper.EmitGenericArgumentsDatabase(methodMetadata.GenericArguments),
+                GenericArguments = DatabaseTypeMapper.EmitGenericArgumentsDatabase(methodMetadata.GenericArguments),
                 ReturnType = EmitReturnTypeDatabase(methodMetadata),
                 Parameters = EmitParametersDatabase(methodMetadata.Parameters),
             };
@@ -35,7 +35,7 @@ namespace Database.DatabaseMapper
             DTGMethodMetadata methodInfo = method as DTGMethodMetadata;
             if (methodInfo == null)
                 return null;
-            return SerializationTypeMapper.EmitReferenceDatabase(methodInfo.ReturnType);
+            return DatabaseTypeMapper.EmitReferenceDatabase(methodInfo.ReturnType);
         }
 
         public static DTGMethodMetadata MapToDTG(DatabaseMethodMetadata methodMetadata)
@@ -43,7 +43,7 @@ namespace Database.DatabaseMapper
             DTGMethodMetadata methodModel = new DTGMethodMetadata
             {
                 Name = methodMetadata.Name,
-                GenericArguments = SerializationTypeMapper.EmitGenericArgumentsDTG(methodMetadata.GenericArgumentsL),
+                GenericArguments = DatabaseTypeMapper.EmitGenericArgumentsDTG(methodMetadata.GenericArgumentsL),
                 ReturnType = EmitReturnTypeDTG(methodMetadata),
                 Parameters = EmitParametersDTG(methodMetadata.ParametersL),
             };
@@ -67,7 +67,7 @@ namespace Database.DatabaseMapper
             DatabaseMethodMetadata methodInfo = method as DatabaseMethodMetadata;
             if (methodInfo == null)
                 return null;
-            return SerializationTypeMapper.EmitReferenceDTG(methodInfo.ReturnType);
+            return DatabaseTypeMapper.EmitReferenceDTG(methodInfo.ReturnType);
         }
     }
 }

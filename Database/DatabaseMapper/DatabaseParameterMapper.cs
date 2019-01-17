@@ -10,7 +10,7 @@ namespace Database.DatabaseMapper
             DatabaseParameterMetadata parameterModel = new DatabaseParameterMetadata
             {
                 Name = parameterMetadata.Name,
-                TypeMetadata = SerializationTypeMapper.EmitReferenceDatabase(parameterMetadata.TypeMetadata),
+                TypeMetadata = DatabaseTypeMapper.EmitReferenceDatabase(parameterMetadata.TypeMetadata),
             };
             return parameterModel;
         }
@@ -20,7 +20,7 @@ namespace Database.DatabaseMapper
             DTGParameterMetadata parameterModel = new DTGParameterMetadata
             {
                 Name = parameterMetadata.Name,
-                TypeMetadata = SerializationTypeMapper.EmitReferenceDTG(parameterMetadata.TypeMetadata),
+                TypeMetadata = DatabaseTypeMapper.EmitReferenceDTG(parameterMetadata.TypeMetadata),
             };
             return parameterModel;
         }

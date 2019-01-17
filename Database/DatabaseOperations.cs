@@ -15,12 +15,10 @@ namespace Database
     {
         public DTGAssemblyMetadata Read(string path)
         {
-            using (var context = new DatabaseModelContext(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30"))
+            using (var context = new DatabaseModelContext())
             {
-                context.Configuration.LazyLoadingEnabled = false;
-                context.Configuration.ProxyCreationEnabled = false;
-                var a = context.Namespaces.ToList();
-                return DatabaseAssemblyMapper.MapToDTG(context.Assemblies.ToList()[0]);                
+                var ret = DatabaseAssemblyMapper.MapToDTG(context.Assemblies.ToList()[0]);
+                return ret;             
             }
         }
 

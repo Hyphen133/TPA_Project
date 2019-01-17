@@ -6,8 +6,19 @@ namespace Database
 {
     public class DatabaseModelContext : DbContext
     {
+        private static string connection = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30";
+
         public DatabaseModelContext(string connectionString) : base(connectionString)
-        { }
+        {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+        }
+
+        public DatabaseModelContext() : base(connection)
+        {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+        }
 
         public DbSet<DatabaseAssemblyMetadata> Assemblies { get; set; }
         public DbSet<DatabaseMethodMetadata> Methods { get; set; }

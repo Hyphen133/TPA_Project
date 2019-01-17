@@ -20,7 +20,7 @@ namespace Database.DatabaseMapper
                              select DatabaseNamespaceMapper.MapToDatabase(_namespace)
             };
             assemblyModel.SetValues();
-            using (var context = new DatabaseModelContext(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30"))
+            using (var context = new DatabaseModelContext())
             {
                 FeedContext(context, assemblyModel);
             }
@@ -31,13 +31,17 @@ namespace Database.DatabaseMapper
         {
             HelperDictonaries.ResetDictonaries();
 
-            DTGAssemblyMetadata assemblyModel = new DTGAssemblyMetadata
+            using (var context = new DatabaseModelContext())
             {
-                Name = assemblyMetadata.Name,
-                Namespaces = from DatabaseNamespaceMetadata _namespace in assemblyMetadata.NamespacesL
-                             select DatabaseNamespaceMapper.MapToDTG(_namespace)
-            };
-            return assemblyModel;
+                var ns = context.Namespaces.Include(n => n.TypesL).ToList();
+                DTGAssemblyMetadata assemblyModel = new DTGAssemblyMetadata
+                {
+                    Name = assemblyMetadata.Name,
+                    Namespaces = from DatabaseNamespaceMetadata _namespace in ns
+                                 select DatabaseNamespaceMapper.MapToDTG(_namespace)
+                };
+                return assemblyModel;
+            }
         }
 
         private static void FeedContext(DatabaseModelContext context, DatabaseAssemblyMetadata databaseAssemblyMetadata)

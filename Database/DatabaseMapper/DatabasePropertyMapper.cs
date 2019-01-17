@@ -12,7 +12,7 @@ namespace Database.DatabaseMapper
             DatabasePropertyMetadata propertyModel = new DatabasePropertyMetadata
             {
                 Name = propertyMetadata.Name,
-                TypeMetadata = SerializationTypeMapper.EmitReferenceDatabase(propertyMetadata.TypeMetadata)
+                TypeMetadata = DatabaseTypeMapper.EmitReferenceDatabase(propertyMetadata.TypeMetadata)
             };
             return propertyModel;
         }
@@ -29,7 +29,7 @@ namespace Database.DatabaseMapper
             DTGPropertyMetadata propertyModel = new DTGPropertyMetadata
             {
                 Name = propertyMetadata.Name,
-                TypeMetadata = SerializationTypeMapper.EmitReferenceDTG(propertyMetadata.TypeMetadata)
+                TypeMetadata = DatabaseTypeMapper.EmitReferenceDTG(propertyMetadata.TypeMetadata)
             };
             return propertyModel;
         }

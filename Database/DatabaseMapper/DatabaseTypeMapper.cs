@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace Database.DatabaseMapper
 {
-    public class SerializationTypeMapper
+    #region to database
+    public class DatabaseTypeMapper
     {
         public static DatabaseTypeMetadata MapToDatabase(DTGTypeMetadata typeMetadata)
         {
@@ -97,25 +98,21 @@ namespace Database.DatabaseMapper
                 return null;
             return EmitReferenceDatabase(baseType);
         }
-
-
-
-
-
+        #endregion
 
         public static DTGTypeMetadata MapToDTG(DatabaseTypeMetadata typeMetadata)
         {
             DTGTypeMetadata DatabaseTypeMetadata = new DTGTypeMetadata
             {
                 TypeName = typeMetadata.TypeName,
-                DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType),
-                Constructors = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.ConstructorsL),
-                Methods = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.MethodsL),
-                NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypesL),
-                ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfacesL),
-                GenericArguments = CheckGenericArgumentsDTG(typeMetadata),
-                BaseType = EmitExtendsDTG(typeMetadata.BaseType),
-                Properties = DatabasePropertyMapper.EmitPropertiesDTG(typeMetadata.PropertiesL),
+                //DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType),
+                //Constructors = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.ConstructorsL),
+                //Methods = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.MethodsL),
+                //NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypesL),
+                //ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfacesL),
+                //GenericArguments = CheckGenericArgumentsDTG(typeMetadata),
+                //BaseType = EmitExtendsDTG(typeMetadata.BaseType),
+                //Properties = DatabasePropertyMapper.EmitPropertiesDTG(typeMetadata.PropertiesL),
                 IsGenericType = typeMetadata.IsGenericType
             };
 
