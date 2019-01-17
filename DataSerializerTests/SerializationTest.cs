@@ -7,6 +7,7 @@ using Logic.Model;
 using Logic.Services;
 using System;
 using DataTransferGraph.Model;
+using DataTransferGraph;
 
 namespace DataSerializerTests
 {

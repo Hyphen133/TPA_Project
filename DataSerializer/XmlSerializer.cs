@@ -7,17 +7,13 @@ using System.IO;
 using System.Runtime.Serialization;
 using DataTransferGraph.Model;
 using System.Linq;
+using DataTransferGraph;
 
 namespace DataSerializer
 {
-    //[Export(typeof(ISerialize))]
+    [Export("XML", typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
-        //[Import]
-        //static ITraceSource traceSource;
-
-        //public static ITraceSource TraceSource { get => traceSource; set => traceSource = value; }
-
         public DTGAssemblyMetadata Read(string path)
         {
             XMLAssemblyMetadata model;

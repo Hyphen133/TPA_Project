@@ -1,6 +1,6 @@
 ﻿using DataTransferGraph.Model;
 
-namespace DataSerializer
+namespace DataTransferGraph
 {
     public interface ISerialize
     {

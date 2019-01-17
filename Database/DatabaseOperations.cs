@@ -1,8 +1,9 @@
 ﻿using Database.DatabaseMapper;
-using DataSerializer;
+using DataTransferGraph;
 using DataTransferGraph.Model;
 using System.ComponentModel.Composition;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 
 namespace Database
@@ -10,9 +11,11 @@ namespace Database
     [Export(typeof(ISerialize))]
     public class DatabaseOperations : ISerialize
     {
+        public static string Path;
+
         public DTGAssemblyMetadata Read(string path)
         {
-            using (var context = new DatabaseModelContext())
+            using (var context = new DatabaseModelContext(Path))
             {
                 context.Assemblies.Load();
                 context.Namespaces.Load();
@@ -26,8 +29,12 @@ namespace Database
         }
 
         public void Save(DTGAssemblyMetadata assemblyModel, string path)
-        {
-            DatabaseAssemblyMapper.MapToDatabase(assemblyModel);
+        {           
+            using (var context = new DatabaseModelContext(Path))
+            {
+                context.Assemblies.Add(DatabaseAssemblyMapper.MapToDatabase(assemblyModel));
+                context.SaveChanges();
+            }
         }
     }
 }

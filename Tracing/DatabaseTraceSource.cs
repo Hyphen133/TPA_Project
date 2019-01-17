@@ -1,12 +1,12 @@
 ﻿using Database;
 using DataTransferGraph2;
 using System;
-using System.Composition;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 
 namespace Tracing
 {
-    [Export(typeof(ITraceSource))]
+    [Export("DatabaseTraceSource",typeof(ITraceSource))]
     public class DatabaseTraceSource : ITraceSource
     {
         public void TraceData(TraceEventType eventType, int id, object data)

@@ -21,5 +21,10 @@ namespace Logic.MEF
                 return container;
             }
         }
+
+        public static T Inject<T>(string name)
+        {
+            return Container.GetExportedValue<T>(name);
+        }
     }
 }

@@ -5,10 +5,10 @@ using System.IO;
 
 namespace Tracing
 {
-    //[Export(typeof(ITraceSource))]
+    [Export("FileTraceSource", typeof(ITraceSource))]
     public class FileTraceSource : ITraceSource
     {
-        private String filepath = "";
+        public static string filepath = "";
 
         public string Filepath
         {

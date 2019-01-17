@@ -1,5 +1,6 @@
 ﻿using Database;
 using DataSerializer;
+using DataTransferGraph;
 using DataTransferGraph.Model;
 using Logic.DTGMapper;
 using Logic.MEF;
@@ -11,17 +12,17 @@ namespace Logic
     public class RepositoryOperations
     {
         public static void Save(AssemblyMetadata assembly, string address)
-        {
-            ISerialize serializer = new DatabaseOperations();// Mef.Container.GetExportedValue<ISerialize>();
-            ITraceSource trace = new DatabaseTraceSource();
+        {          
+            ISerialize serializer = Mef.Container.GetExportedValue<ISerialize>(Configuration.configuredValues[typeof(ISerialize)]);
+            ITraceSource trace = Mef.Container.GetExportedValue<ITraceSource>(Configuration.configuredValues[typeof(ITraceSource)]);
             DTGAssemblyMetadata pom = AssemblyMapper.MapToDTGModel(assembly);
-            serializer.Save(pom, address + "\\test.xml");
+            serializer.Save(pom, address);
             trace.TraceData(System.Diagnostics.TraceEventType.Information, 1, "Serialization Succeded");
         }
 
         public static AssemblyMetadata Read(string address)
         {
-            ISerialize deserializer = new DatabaseOperations();// = Mef.Container.GetExportedValue<ISerialize>();
+            ISerialize deserializer = Mef.Container.GetExportedValue<ISerialize>();
             return AssemblyMapper.MapToModel(deserializer.Read(address));
         }
     }

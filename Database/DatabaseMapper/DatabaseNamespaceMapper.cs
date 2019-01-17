@@ -15,7 +15,7 @@ namespace Database.DatabaseMapper
                 HelperDictonaries.TypeDictonaryToDatabase[type] = DatabaseTypeMapper.MapToDatabase(type);
             }
             var m_Types = from type in namespaceMetadata.Types orderby type.TypeName select DatabaseTypeMapper.FillTypeDatabase(HelperDictonaries.TypeDictonaryToDatabase[type], type);
-            foreach(var t in m_Types)
+            foreach (var t in m_Types)
             {
                 t.NamespaceName = m_NamespaceName;
             }
@@ -32,28 +32,17 @@ namespace Database.DatabaseMapper
         {
             var m_NamespaceName = namespaceMetadata.NamespaceName;
             //May be even more beneficial to create all types from all namespaces beforehand
-            using (var context = new DatabaseModelContext())
+            foreach (var type in namespaceMetadata.TypesL)
             {
-                if(namespaceMetadata.TypesL == null)
-                {
-                    var temp = from t in context.Types
-                               where t.NamespaceName == m_NamespaceName
-                               select t;
-                    namespaceMetadata.TypesL = temp.ToList();
-                }
-                foreach (var type in namespaceMetadata.TypesL)
-                {
-                    HelperDictonaries.TypeDictonaryToDTG[type] = DatabaseTypeMapper.MapToDTG(type);
-                }
-                var m_Types = from type in namespaceMetadata.TypesL orderby type.TypeName select DatabaseTypeMapper.fillType(HelperDictonaries.TypeDictonaryToDTG[type], type);
-                DTGNamespaceMetadata namespaceModel = new DTGNamespaceMetadata
-                {
-                    NamespaceName = m_NamespaceName,
-                    Types = m_Types
-                };
-
-                return namespaceModel;
+                HelperDictonaries.TypeDictonaryToDTG[type] = DatabaseTypeMapper.MapToDTG(type);
             }
+            var m_Types = from type in namespaceMetadata.TypesL orderby type.TypeName select DatabaseTypeMapper.fillType(HelperDictonaries.TypeDictonaryToDTG[type], type);
+            DTGNamespaceMetadata namespaceModel = new DTGNamespaceMetadata
+            {
+                NamespaceName = m_NamespaceName,
+                Types = m_Types
+            };
+            return namespaceModel;
         }
     }
 }

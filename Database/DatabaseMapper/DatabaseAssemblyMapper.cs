@@ -20,10 +20,6 @@ namespace Database.DatabaseMapper
                              select DatabaseNamespaceMapper.MapToDatabase(_namespace)
             };
             assemblyModel.SetValues();
-            using (var context = new DatabaseModelContext())
-            {
-                FeedContext(context, assemblyModel);
-            }
             return assemblyModel;
         }
 
@@ -37,12 +33,6 @@ namespace Database.DatabaseMapper
                              select DatabaseNamespaceMapper.MapToDTG(_namespace)
             };
             return assemblyModel;
-        }
-
-        private static void FeedContext(DatabaseModelContext context, DatabaseAssemblyMetadata databaseAssemblyMetadata)
-        {
-            context.Assemblies.Add(databaseAssemblyMetadata);
-            context.SaveChanges();
         }
     }
 }
