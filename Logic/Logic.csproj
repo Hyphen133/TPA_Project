@@ -80,10 +80,8 @@
     <Compile Include="Model\TypeMetadata.cs" />
     <Compile Include="Model\VirtualEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization.cs" />
+    <Compile Include="RepositoryOperations.cs" />
     <Compile Include="Services\DataService.cs" />
-    <Compile Include="Tracing\FileTraceSource.cs" />
-    <Compile Include="Tracing\ITraceSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -101,6 +99,10 @@
     <ProjectReference Include="..\DataTransferGraph\DataTransferGraph.csproj">
       <Project>{eaca7fad-f20c-441f-995d-e8de86e97215}</Project>
       <Name>DataTransferGraph</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tracing\Tracing.csproj">
+      <Project>{23f09c3c-113a-4817-b8ab-3d32a17c449f}</Project>
+      <Name>Tracing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

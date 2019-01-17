@@ -68,13 +68,13 @@ namespace ViewModel
         private void Serialize()
         {
             string path = browse.GetFolderPath();
-            Serialization.Serialize(assembly, path);
+            RepositoryOperations.Save(assembly, path);
         }
 
         private void Deserialize()
         {
             string path = browse.GetFilePath();
-            BaseTreeViewItem rootItem = new AssemblyTreeViewItem(Serialization.Deserialize(path));
+            BaseTreeViewItem rootItem = new AssemblyTreeViewItem(RepositoryOperations.Read(path));
             HierarchicalAreas.Clear();
             HierarchicalAreas.Add(rootItem);
         }

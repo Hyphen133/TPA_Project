@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferGraph", "DataTr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracing", "Tracing\Tracing.csproj", "{23F09C3C-113A-4817-B8AB-3D32A17C449F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E0E6037-9FB3-484C-80C2-7FF2DA8721A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23F09C3C-113A-4817-B8AB-3D32A17C449F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23F09C3C-113A-4817-B8AB-3D32A17C449F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23F09C3C-113A-4817-B8AB-3D32A17C449F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23F09C3C-113A-4817-B8AB-3D32A17C449F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

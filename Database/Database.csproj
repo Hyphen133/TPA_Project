@@ -151,6 +151,8 @@
     <Compile Include="DatabaseMapper\DatabaseTypeMapper.cs" />
     <Compile Include="DatabaseModelContext.cs" />
     <Compile Include="DatabaseOperations.cs" />
+    <Compile Include="DatabaseMessage.cs" />
+    <Compile Include="MessageRepository.cs" />
     <Compile Include="Model\DatabaseAssemblyMetadata.cs" />
     <Compile Include="Model\DatabaseMethodMetadata.cs" />
     <Compile Include="Model\DatabaseNamespaceMetadata.cs" />

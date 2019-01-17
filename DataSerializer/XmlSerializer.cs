@@ -13,9 +13,6 @@ namespace DataSerializer
     //[Export(typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
-        [Import]
-        SerializationAssemblyMapper am;
-
         //[Import]
         //static ITraceSource traceSource;
 

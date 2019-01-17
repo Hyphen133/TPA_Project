@@ -26,6 +26,7 @@ namespace Database
         public DbSet<DatabaseParameterMetadata> Parameters { get; set; }
         public DbSet<DatabasePropertyMetadata> Properties { get; set; }
         public DbSet<DatabaseTypeMetadata> Types { get; set; }
+        public DbSet<DatabaseMessage> Messages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
