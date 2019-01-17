@@ -1,12 +1,9 @@
 ﻿using Database.DatabaseMapper;
 using DataSerializer;
 using DataTransferGraph.Model;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Database
 {
@@ -17,8 +14,14 @@ namespace Database
         {
             using (var context = new DatabaseModelContext())
             {
-                var ret = DatabaseAssemblyMapper.MapToDTG(context.Assemblies.ToList()[0]);
-                return ret;             
+                context.Assemblies.Load();
+                context.Namespaces.Load();
+                context.Methods.Load();
+                context.Parameters.Load();
+                context.Properties.Load();
+                context.Types.Load();                
+                var ret = context.Assemblies.First();
+                return DatabaseAssemblyMapper.MapToDTG(ret);             
             }
         }
 

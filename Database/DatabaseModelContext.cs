@@ -29,7 +29,7 @@ namespace Database
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DatabaseTypeMetadata>()
+            /*modelBuilder.Entity<DatabaseTypeMetadata>()
                 .HasMany<DatabasePropertyMetadata>(s => s.PropertiesL)
                 .WithMany(c => c.TypesProperties)
                 .Map(cs =>
@@ -56,7 +56,7 @@ namespace Database
             modelBuilder.Entity<DatabaseTypeMetadata>()
                 .HasMany(x => x.ImplementedInterfacesL)
                 .WithMany()
-                .Map(x => x.ToTable("Implemented interfaces"));
+                .Map(x => x.ToTable("Implemented interfaces"));*/
         }
     }
 }

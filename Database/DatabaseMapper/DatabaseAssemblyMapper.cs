@@ -30,18 +30,13 @@ namespace Database.DatabaseMapper
         public static DTGAssemblyMetadata MapToDTG(DatabaseAssemblyMetadata assemblyMetadata)
         {
             HelperDictonaries.ResetDictonaries();
-
-            using (var context = new DatabaseModelContext())
+            DTGAssemblyMetadata assemblyModel = new DTGAssemblyMetadata
             {
-                var ns = context.Namespaces.Include(n => n.TypesL).ToList();
-                DTGAssemblyMetadata assemblyModel = new DTGAssemblyMetadata
-                {
-                    Name = assemblyMetadata.Name,
-                    Namespaces = from DatabaseNamespaceMetadata _namespace in ns
-                                 select DatabaseNamespaceMapper.MapToDTG(_namespace)
-                };
-                return assemblyModel;
-            }
+                Name = assemblyMetadata.Name,
+                Namespaces = from DatabaseNamespaceMetadata _namespace in assemblyMetadata.NamespacesL
+                             select DatabaseNamespaceMapper.MapToDTG(_namespace)
+            };
+            return assemblyModel;
         }
 
         private static void FeedContext(DatabaseModelContext context, DatabaseAssemblyMetadata databaseAssemblyMetadata)
@@ -49,5 +44,5 @@ namespace Database.DatabaseMapper
             context.Assemblies.Add(databaseAssemblyMetadata);
             context.SaveChanges();
         }
-    }    
+    }
 }

@@ -105,14 +105,14 @@ namespace Database.DatabaseMapper
             DTGTypeMetadata DatabaseTypeMetadata = new DTGTypeMetadata
             {
                 TypeName = typeMetadata.TypeName,
-                //DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType),
-                //Constructors = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.ConstructorsL),
-                //Methods = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.MethodsL),
-                //NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypesL),
-                //ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfacesL),
-                //GenericArguments = CheckGenericArgumentsDTG(typeMetadata),
-                //BaseType = EmitExtendsDTG(typeMetadata.BaseType),
-                //Properties = DatabasePropertyMapper.EmitPropertiesDTG(typeMetadata.PropertiesL),
+                DeclaringType = EmitDeclaringTypeDTG(typeMetadata.DeclaringType),
+                Constructors = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.ConstructorsL),
+                Methods = DatabaseMethodMapper.EmitMethodsDTG(typeMetadata.MethodsL),
+                NestedTypes = EmitNestedTypesDTG(typeMetadata.NestedTypesL),
+                ImplementedInterfaces = EmitImplementsDTG(typeMetadata.ImplementedInterfacesL),
+                GenericArguments = CheckGenericArgumentsDTG(typeMetadata),
+                BaseType = EmitExtendsDTG(typeMetadata.BaseType),
+                Properties = DatabasePropertyMapper.EmitPropertiesDTG(typeMetadata.PropertiesL),
                 IsGenericType = typeMetadata.IsGenericType
             };
 
