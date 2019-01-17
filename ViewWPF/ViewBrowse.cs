@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Logic;
+using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System.Windows;
 using ViewModel;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Logic.Tracing;
+using Tracing;
 using Logic.MEF;
 
 namespace ModelTests
@@ -13,7 +13,7 @@ namespace ModelTests
         public void TracingTest_WhenPathIsWrong_ShouldThrowexception()
         {
             string wrongPath = "IAmWrongPath";
-            ITraceSource tracing = Mef.Container.GetExportedValue<ITraceSource>();
+            ITraceSource tracing = new FileTraceSource();
             ((FileTraceSource)tracing).Filepath = wrongPath;
         }
 
@@ -31,7 +31,7 @@ namespace ModelTests
             string fullFilePath = path + filename;
             string fullXmlPath = path + xmlName;
 
-            ITraceSource tracing = Mef.Container.GetExportedValue<ITraceSource>();
+            ITraceSource tracing = new FileTraceSource();
             ((FileTraceSource)tracing).Filepath = fullFilePath;
         }
     }

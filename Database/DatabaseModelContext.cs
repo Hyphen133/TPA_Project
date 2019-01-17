@@ -6,17 +6,9 @@ namespace Database
 {
     public class DatabaseModelContext : DbContext
     {
-        private static string connection = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30";
-        private static string connection21 = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = ";
-        private static string connection22 = @"; Integrated Security = True; Connect Timeout = 30";
+        //private static string connection = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30";
 
-        public DatabaseModelContext(string connectionString) : base(connection21 + connectionString + connection22)
-        {
-            Configuration.LazyLoadingEnabled = false;
-            Configuration.ProxyCreationEnabled = false;
-        }
-
-        public DatabaseModelContext() : base(connection)
+        public DatabaseModelContext(string connectionString) : base(connectionString)
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;

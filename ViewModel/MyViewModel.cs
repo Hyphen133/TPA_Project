@@ -27,17 +27,18 @@ namespace ViewModel
         public ICommand Click_Deserialize { get; }
 
         private AssemblyMetadata assembly;
+        private Configuration c;
 
         #region constructors
         public MyViewModel(IBrowse browse)
         {
+            c = new Configuration();
             this.browse = browse;
             HierarchicalAreas = new ObservableCollection<BaseTreeViewItem>();
             Click_Button = new RelayCommand(LoadDLL);
             Click_Browse = new RelayCommand(Browse);
             Click_Serialize = new RelayCommand(Serialize);
             Click_Deserialize = new RelayCommand(Deserialize);
-            Configuration c = new Configuration();
         }
         #endregion
 
@@ -68,13 +69,21 @@ namespace ViewModel
 
         private void Serialize()
         {
-            string path = browse.GetFolderPath();
+            string path = "";
+            if(Configuration.Repository != "Database")
+            {
+                path = browse.GetFolderPath();
+            }
             RepositoryOperations.Save(assembly, path);
         }
 
         private void Deserialize()
         {
-            string path = browse.GetFilePath();
+            string path = "";
+            if (Configuration.Repository != "Database")
+            {
+                path = browse.GetFilePath();
+            }
             BaseTreeViewItem rootItem = new AssemblyTreeViewItem(RepositoryOperations.Read(path));
             HierarchicalAreas.Clear();
             HierarchicalAreas.Add(rootItem);

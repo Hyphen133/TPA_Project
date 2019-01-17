@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace Logic.DTGMapper
 {
-    [Export]
     public class AssemblyMapper
     {
         public static DTGAssemblyMetadata MapToDTGModel(AssemblyMetadata assemblyMetadata)

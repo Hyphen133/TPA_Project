@@ -10,7 +10,7 @@ namespace Database
             {
                 MessageString = dTGMessage.MessageString
             };
-            using (var context = new DatabaseModelContext())
+            using (var context = new DatabaseModelContext(DatabaseOperations.Path))
             {
                 context.Messages.Add(databaseMessage);
                 context.SaveChanges();

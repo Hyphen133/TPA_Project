@@ -19,11 +19,5 @@ namespace Tests
         {
             Assert.IsTrue(myViewModel.Click_Browse.CanExecute(null));
         }
-
-        [TestMethod]
-        public void ViewModelLoadDLLButtonTest_IfEverythinIsOk_ShouldBeOk()
-        {
-            Assert.IsTrue(myViewModel.Click_Button.CanExecute(null));
-        }
     }
 }

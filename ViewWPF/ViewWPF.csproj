@@ -112,6 +112,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj">
       <Project>{d3a41646-f523-4717-88a8-81d9046b351b}</Project>
       <Name>ViewModel</Name>

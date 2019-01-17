@@ -6,26 +6,22 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
 using DataTransferGraph.Model;
-using System.Linq;
 using DataTransferGraph;
 
 namespace DataSerializer
 {
-    [Export("XML", typeof(ISerialize))]
+    [Export("File", typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
         public DTGAssemblyMetadata Read(string path)
         {
             XMLAssemblyMetadata model;
-
             DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(XMLAssemblyMetadata));
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
                 model = (XMLAssemblyMetadata)dataContractSerializer.ReadObject(fileStream);
             }
-            var c = SerializationAssemblyMapper.MapToDTG(model);
-            var p = c.Namespaces.ToList();
-            return c;
+            return SerializationAssemblyMapper.MapToDTG(model);
         }
 
         public void Save(DTGAssemblyMetadata assemblyModel, string path)
@@ -52,10 +48,7 @@ namespace DataSerializer
             }
             catch (Exception)
             {
-                //if (traceSource != null)
-                //{
-                //    traceSource.TraceData(System.Diagnostics.TraceEventType.Error, 1, "Serialization failed");
-                //}
+                
             }
         }
     }

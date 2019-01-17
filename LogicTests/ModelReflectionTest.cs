@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Logic.Model;
 using Logic.Services;
+using System;
 
 namespace ModelTests
 {
@@ -21,13 +22,15 @@ namespace ModelTests
         public void AssemblyMetaData_WhenIsOk_ShouldBeOk()
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string root = "Tests";
+            string root = "LogicTests";
             while (!(path.Substring(path.Length - root.Length) == root))
             {
+                Console.WriteLine(path);
                 path = path.Remove(path.Length - 1);
             }
             string filename = "\\TPA.ApplicationArchitecture.dll";
             string fullFilePath = path + filename;
+            Console.WriteLine(fullFilePath);
             AssemblyMetadata assemblyMetaData = DataService.LoadAssembly(fullFilePath);
             Assert.IsNotNull(assemblyMetaData);
         }
@@ -36,7 +39,7 @@ namespace ModelTests
         public void NamespacesInAssembly_WhenAssemblyIsOk_ThereShouldBeAtLeastOneNamespace()
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string root = "Tests";
+            string root = "LogicTests";
             while (!(path.Substring(path.Length - root.Length) == root))
             {
                 path = path.Remove(path.Length - 1);
@@ -52,7 +55,7 @@ namespace ModelTests
         public void TypesInNamespace_WhenNamespaceIsOk_ThereShouldBeAtLeastOneType()
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).ToString();
-            string root = "Tests";
+            string root = "LogicTests";
             while (!(path.Substring(path.Length - root.Length) == root))
             {
                 path = path.Remove(path.Length - 1);

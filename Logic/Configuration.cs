@@ -10,6 +10,7 @@ namespace Logic
     public class Configuration
     {
         public static Dictionary<Type, string> configuredValues = new Dictionary<Type, string>();
+        public static string Repository { get; set; }
 
         public Configuration()
         {
@@ -39,7 +40,7 @@ namespace Logic
             configuredValues.Add(typeof(ITraceSource), logging);
             DatabaseOperations.Path = connectionstring;
             FileTraceSource.filepath = filepath;
-
+            Repository = repository;
         }
     }
 }

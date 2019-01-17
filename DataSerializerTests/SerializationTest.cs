@@ -29,6 +29,7 @@ namespace DataSerializerTests
             string root = "Tests";
             while(!(path.Substring(path.Length - root.Length) == root))
             {
+                Console.WriteLine(path);
                 path = path.Remove(path.Length - 1);
             }
             string filename = "\\TPA.ApplicationArchitecture.dll";
@@ -37,7 +38,7 @@ namespace DataSerializerTests
             string fullXmlPath = path + xmlName;
             Console.WriteLine(path);
             AssemblyMetadata assemblyMetaData = DataService.LoadAssembly(fullFilePath);
-            ISerialize xmlSerialize = Mef.Container.GetExportedValue<ISerialize>();
+            ISerialize xmlSerialize = new XmlSerialize();
             xmlSerialize.Save(AssemblyMapper.MapToDTGModel(assemblyMetaData), fullXmlPath);
             AssemblyMetadata assemblyMetadata2 = AssemblyMapper.MapToModel(xmlSerialize.Read(fullXmlPath));
             Console.WriteLine(assemblyMetaData.Name);

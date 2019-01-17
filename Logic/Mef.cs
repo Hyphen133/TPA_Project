@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
+using System.Reflection;
 
 namespace Logic.MEF
 {
@@ -12,8 +14,12 @@ namespace Logic.MEF
             {
                 if (container == null)
                 {
-                    var catalog =
-                        new DirectoryCatalog(".", "*");
+                    var catalog = new AggregateCatalog(
+                new ComposablePartCatalog[]
+                {
+                    new AssemblyCatalog(Assembly.GetExecutingAssembly()),
+                        new DirectoryCatalog(".")
+                });
 
                     container = new CompositionContainer(catalog);
                 }

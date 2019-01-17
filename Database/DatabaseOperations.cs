@@ -3,7 +3,6 @@ using DataTransferGraph;
 using DataTransferGraph.Model;
 using System.ComponentModel.Composition;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 
 namespace Database

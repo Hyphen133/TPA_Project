@@ -63,6 +63,10 @@
       <Project>{4b4c09a2-c6cd-43a5-a7a3-56f7d92736c6}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tracing\Tracing.csproj">
+      <Project>{23f09c3c-113a-4817-b8ab-3d32a17c449f}</Project>
+      <Name>Tracing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

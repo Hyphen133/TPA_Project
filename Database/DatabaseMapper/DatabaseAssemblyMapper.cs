@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Database.DatabaseMapper
 {
-    [Export]
     public class DatabaseAssemblyMapper
     {
         public static DatabaseAssemblyMetadata MapToDatabase(DTGAssemblyMetadata assemblyMetadata)
