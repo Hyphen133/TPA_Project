@@ -5,8 +5,7 @@ using System.Linq;
 
 namespace DataSerializer.SerializationMapper
 {
-    [Export]
-    class SerializationAssemblyMapper
+    public class SerializationAssemblyMapper
     {
         public static XMLAssemblyMetadata MapToXML(DTGAssemblyMetadata assemblyMetadata)
         {

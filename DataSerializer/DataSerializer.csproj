@@ -81,13 +81,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TPA.ApplicationArchitecture.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DataTransferGraph\DataTransferGraph.csproj">
       <Project>{eaca7fad-f20c-441f-995d-e8de86e97215}</Project>
       <Name>DataTransferGraph</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TPA.ApplicationArchitecture.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

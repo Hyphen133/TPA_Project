@@ -2,15 +2,15 @@
 using DataSerializer.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Runtime.Serialization;
 using DataTransferGraph.Model;
 using DataTransferGraph;
 
-namespace DataSerializer
+namespace Serialization
 {
-    [System.ComponentModel.Composition.PartCreationPolicy(System.ComponentModel.Composition.CreationPolicy.Shared)]
-    [System.ComponentModel.Composition.Export("File", typeof(ISerialize))]
+    [Export("FileSerializer", typeof(ISerialize))]
     public class XmlSerialize : ISerialize
     {
 
