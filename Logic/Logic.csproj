@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs" />
     <Compile Include="DTGMapper\AssemblyMapper.cs" />
     <Compile Include="DTGMapper\HelperDictonaries.cs" />
     <Compile Include="DTGMapper\MethodMapper.cs" />
@@ -105,6 +106,8 @@
       <Name>Tracing</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Config.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

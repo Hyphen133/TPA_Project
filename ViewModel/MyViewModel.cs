@@ -37,6 +37,7 @@ namespace ViewModel
             Click_Browse = new RelayCommand(Browse);
             Click_Serialize = new RelayCommand(Serialize);
             Click_Deserialize = new RelayCommand(Deserialize);
+            Configuration c = new Configuration();
         }
         #endregion
 

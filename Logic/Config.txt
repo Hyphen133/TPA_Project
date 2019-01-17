@@ -1,0 +1,4 @@
+﻿repository|db
+logging|db
+connectionstring|Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Radioaktywny\Desktop\TPA_Project\Database\Database.mdf; Integrated Security = True; Connect Timeout = 30
+filepath|
