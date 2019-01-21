@@ -112,10 +112,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataSerializer\DataSerializer.csproj">
-      <Project>{ac807132-f845-4430-9a26-71936ab5bbed}</Project>
-      <Name>DataSerializer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logic\Logic.csproj">
       <Project>{4B4C09A2-C6CD-43A5-A7A3-56F7D92736C6}</Project>
       <Name>Logic</Name>
@@ -126,4 +122,8 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(SolutionDir)\DataSerializer\bin\Debug\DataSerializer.dll" "$(SolutionDir)\ViewWPF\bin\Debug\DataSerializer.dll"
+copy "$(SolutionDir)\DataSerializer\bin\Debug\DataSerializer.pdb" "$(SolutionDir)\ViewWPF\bin\Debug\DataSerializer.pdb"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
