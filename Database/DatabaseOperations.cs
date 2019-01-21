@@ -10,11 +10,9 @@ namespace Database
     [Export("Database", typeof(ISerialize))]
     public class DatabaseOperations : ISerialize
     {
-        public static string Path;
-
         public DTGAssemblyMetadata Read(string path)
         {
-            using (var context = new DatabaseModelContext(Path))
+            using (var context = new DatabaseModelContext(path))
             {
                 context.Assemblies.Load();
                 context.Namespaces.Load();
@@ -29,7 +27,7 @@ namespace Database
 
         public void Save(DTGAssemblyMetadata assemblyModel, string path)
         {           
-            using (var context = new DatabaseModelContext(Path))
+            using (var context = new DatabaseModelContext(path))
             {
                 context.Assemblies.Add(DatabaseAssemblyMapper.MapToDatabase(assemblyModel));
                 context.SaveChanges();

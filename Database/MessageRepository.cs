@@ -1,4 +1,5 @@
 ﻿using DataTransferGraph2;
+using System.Configuration;
 
 namespace Database
 {
@@ -10,7 +11,7 @@ namespace Database
             {
                 MessageString = dTGMessage.MessageString
             };
-            using (var context = new DatabaseModelContext(DatabaseOperations.Path))
+            using (var context = new DatabaseModelContext(ConfigurationManager.AppSettings["connectionstring"]))
             {
                 context.Messages.Add(databaseMessage);
                 context.SaveChanges();

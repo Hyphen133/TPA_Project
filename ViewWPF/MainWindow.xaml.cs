@@ -3,17 +3,17 @@ using ViewModel;
 
 namespace ViewWPF
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MyViewModel(new ViewBrowse());
+            var viewModel = new MyViewModel(new ViewBrowse());
+            DataContext = viewModel;
+            Closing += viewModel.OnWindowClosing;
         }
-       
     }
 }

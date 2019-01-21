@@ -1,28 +1,16 @@
-﻿using Database;
-using DataSerializer;
-using DataTransferGraph;
-using DataTransferGraph.Model;
+﻿using DataTransferGraph;
 using Logic.DTGMapper;
 using Logic.MEF;
 using Logic.Model;
-using Tracing;
+using System.Configuration;
 
 namespace Logic
 {
     public class RepositoryOperations
     {
-        public static void Save(AssemblyMetadata assembly, string address)
-        {          
-            ISerialize serializer = Mef.Container.GetExportedValue<ISerialize>(Configuration.configuredValues[typeof(ISerialize)]);
-            ITraceSource trace = Mef.Container.GetExportedValue<ITraceSource>(Configuration.configuredValues[typeof(ITraceSource)]);
-            DTGAssemblyMetadata pom = AssemblyMapper.MapToDTGModel(assembly);
-            serializer.Save(pom, address);           
-            trace.TraceData(System.Diagnostics.TraceEventType.Information, 1, "Serialization Succeded");
-        }
-
         public static AssemblyMetadata Read(string address)
         {
-            ISerialize deserializer = Mef.Container.GetExportedValue<ISerialize>(Configuration.configuredValues[typeof(ISerialize)]);
+            ISerialize deserializer = Mef.Container.GetExportedValue<ISerialize>(ConfigurationManager.AppSettings["repository"]);
             return AssemblyMapper.MapToModel(deserializer.Read(address));
         }
     }

@@ -7,7 +7,7 @@ namespace Logic.MEF
 {
     public class Mef
     {
-        private static CompositionContainer container;
+        private static CompositionContainer container = null;
 
         public static CompositionContainer Container
         {
@@ -18,14 +18,8 @@ namespace Logic.MEF
                     var catalog = new DirectoryCatalog(".", "*");
                     container = new CompositionContainer(catalog);
                 }
-
                 return container;
             }
-        }
-
-        public static T Inject<T>(string name)
-        {
-            return Container.GetExportedValue<T>(name);
         }
     }
 }

@@ -6,11 +6,13 @@
 //____________________________________________________________________________
 
 using Logic;
+using Logic.MEF;
 using Logic.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using ViewModel.TreeView;
+using System.Configuration;
 
 namespace ViewModel
 {
@@ -20,25 +22,28 @@ namespace ViewModel
     /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
     public class MyViewModel : INotifyPropertyChanged
     {
-
         public ICommand Click_Browse { get; }
         public ICommand Click_Button { get; }
         public ICommand Click_Serialize { get; }
         public ICommand Click_Deserialize { get; }
-
         private AssemblyMetadata assembly;
-        private Configuration c;
 
         #region constructors
         public MyViewModel(IBrowse browse)
         {
-            c = new Configuration();
             this.browse = browse;
             HierarchicalAreas = new ObservableCollection<BaseTreeViewItem>();
             Click_Button = new RelayCommand(LoadDLL);
             Click_Browse = new RelayCommand(Browse);
             Click_Serialize = new RelayCommand(Serialize);
             Click_Deserialize = new RelayCommand(Deserialize);
+        }
+        #endregion
+
+        #region Dispose MEF Container
+        public void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            Mef.Container.Dispose();
         }
         #endregion
 
@@ -69,18 +74,18 @@ namespace ViewModel
 
         private void Serialize()
         {
-            string path = "";
-            if(Configuration.Repository != "Database")
+            string path = ConfigurationManager.AppSettings["connectionstring"];
+            if (ConfigurationManager.AppSettings["repository"] != "Database")
             {
                 path = browse.GetFolderPath();
             }
-            RepositoryOperations.Save(assembly, path);
+            assembly.Save(path);
         }
 
         private void Deserialize()
         {
-            string path = "";
-            if (Configuration.Repository != "Database")
+            string path = ConfigurationManager.AppSettings["connectionstring"];
+            if (ConfigurationManager.AppSettings["repository"] != "Database")
             {
                 path = browse.GetFilePath();
             }
