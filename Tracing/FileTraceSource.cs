@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 
@@ -8,7 +9,7 @@ namespace Tracing
     [Export("FileTraceSource", typeof(ITraceSource))]
     public class FileTraceSource : ITraceSource
     {
-        public static string filepath = "";
+        public static string filepath = ConfigurationManager.AppSettings["filepath"];
 
         public string Filepath
         {
