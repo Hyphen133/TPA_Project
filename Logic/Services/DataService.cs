@@ -7,7 +7,7 @@ namespace Logic.Services
     {
         public static AssemblyMetadata LoadAssembly(string PathValue)
         {
-            Assembly assembly = Assembly.LoadFrom(PathValue);
+            Assembly assembly = Assembly.ReflectionOnlyLoadFrom(PathValue);
             return new AssemblyMetadata(assembly);
         }
     }

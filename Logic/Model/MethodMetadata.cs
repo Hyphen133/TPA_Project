@@ -59,7 +59,8 @@ namespace Logic.Model
         }
         private static bool EmitExtension(MethodBase method)
         {
-            return method.IsDefined(typeof(ExtensionAttribute), true);
+            return false;
+            //return method.IsDefined(typeof(ExtensionAttribute), true);
         }
         private static Tuple<AccessLevel, AbstractEnum, StaticEnum, VirtualEnum> EmitModifiers(MethodBase method)
         {

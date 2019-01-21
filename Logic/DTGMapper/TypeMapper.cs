@@ -83,11 +83,13 @@ namespace Logic.DTGMapper
         }
         private static IEnumerable<DTGTypeMetadata> EmitNestedTypesDTG(IEnumerable<TypeMetadata> nestedTypes)
         {
+            if (nestedTypes == null) return null;
             return from _type in nestedTypes
                    select MapToDTGModel(_type);
         }
         private static IEnumerable<DTGTypeMetadata> EmitImplementsDTG(IEnumerable<TypeMetadata> interfaces)
         {
+            if (interfaces == null) return null;
             return from currentInterface in interfaces
                    select EmitReferenceDTG(currentInterface);
         }

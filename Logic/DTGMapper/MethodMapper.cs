@@ -21,6 +21,7 @@ namespace Logic.DTGMapper
 
         internal static IEnumerable<DTGMethodMetadata> EmitMethodsDTG(IEnumerable<MethodMetadata> methods)
         {
+            if (methods == null) return null;
             return from MethodMetadata _currentMethod in methods
                    select MapToDTGModel(_currentMethod);
         }

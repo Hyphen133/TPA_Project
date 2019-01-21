@@ -11,7 +11,7 @@ namespace ViewModel
         {
             if (PathVariable.Substring(PathVariable.Length - 4) == ".dll")
             {
-                DataService.LoadAssembly(PathVariable);
+                //DataService.LoadAssembly(PathVariable);
                 AssemblyMetadata assemblyMetadata = DataService.LoadAssembly(PathVariable);
                 BaseTreeViewItem rootItem = new AssemblyTreeViewItem(assemblyMetadata);
                 HierarchicalArea.Add(rootItem);
